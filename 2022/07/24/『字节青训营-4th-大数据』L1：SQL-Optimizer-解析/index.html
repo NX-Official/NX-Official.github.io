@@ -1,0 +1,319 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营-4th』L1：SQL Optimizer 解析 | NX の 博客</title><meta name="keywords" content="字节青训营"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="相关链接🎶 学员手册：【大数据专场 学习资料一】第四届字节跳动青训营 - 掘金  大数据体系和 SQL 大数据体系  其中消息队列用于解耦存储与计算，本次青训营会从分析引擎开始展开，然后是存储、消息队列与资源调度 那么，为什么要把 SQL 优化器放在第一节课讲呢？   首先，SQL 是非常流行的，而且简单，包括数据分析师和挖掘师都在用，他们可能不会使用 Python之类的通用语言，但是他们可以很">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『字节青训营-4th』L1：SQL Optimizer 解析">
+<meta property="og:url" content="https://www.nickxu.top/2022/07/24/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL1%EF%BC%9ASQL-Optimizer-%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="相关链接🎶 学员手册：【大数据专场 学习资料一】第四届字节跳动青训营 - 掘金  大数据体系和 SQL 大数据体系  其中消息队列用于解耦存储与计算，本次青训营会从分析引擎开始展开，然后是存储、消息队列与资源调度 那么，为什么要把 SQL 优化器放在第一节课讲呢？   首先，SQL 是非常流行的，而且简单，包括数据分析师和挖掘师都在用，他们可能不会使用 Python之类的通用语言，但是他们可以很">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-07-24T09:39:39.000Z">
+<meta property="article:modified_time" content="2022-08-14T04:09:50.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="字节青训营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/07/24/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL1%EF%BC%9ASQL-Optimizer-%E8%A7%A3%E6%9E%90/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『字节青训营-4th』L1：SQL Optimizer 解析',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-14 12:09:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『字节青训营-4th』L1：SQL Optimizer 解析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-24T09:39:39.000Z" title="发表于 2022-07-24 17:39:39">2022-07-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-14T04:09:50.000Z" title="更新于 2022-08-14 12:09:50">2022-08-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/">青训营</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE/">字节跳动-4th-大数据</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">917</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『字节青训营-4th』L1：SQL Optimizer 解析"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><details class="toggle" ><summary class="toggle-button" style="">相关链接</summary><div class="toggle-content"><p>🎶 学员手册：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7122754431371706404#heading-0">【大数据专场 学习资料一】第四届字节跳动青训营 - 掘金</a></p>
+</div></details>
+<h1 id="大数据体系和-SQL">大数据体系和 SQL</h1>
+<h2 id="大数据体系">大数据体系</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202207281838291.png" alt="image-20220728183845986"></p>
+<p>其中消息队列用于解耦存储与计算，本次青训营会从分析引擎开始展开，然后是存储、消息队列与资源调度</p>
+<p>那么，为什么要把 SQL 优化器放在第一节课讲呢？</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202207281851108.png" alt="image-20220728185137832"></p>
+<ul>
+<li>首先，SQL 是非常流行的，而且简单，包括数据分析师和挖掘师都在用，他们可能不会使用 Python之类的通用语言，但是他们可以很方便地使用一条 SQL 去处理数据，得到他们想要的结果</li>
+<li>并且，SQL 是很多系统都支持的接口，而且 SQL 已经成为了大数据方面的通用接口。很多分析引擎一开始并不支持 SQL ，但现在都渐渐地提供了 SQL 接口</li>
+</ul>
+<blockquote>
+<p>也就是说， One SQL rules big data all （通过 SQL 处理所有的大数据）</p>
+</blockquote>
+<p>所以 SQL 在大数据中是非常重要的，下面将介绍 SQL 的处理流程</p>
+<h2 id="SQL-的处理流程">SQL 的处理流程</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202207281853794.png" alt="image-20220728185321503"></p>
+<p>首先，先通过 <code>Parser</code> 变成抽象语法树（Abstract Syntax Tree，AST），之后通过 <code>Analyzer</code> 变成逻辑计划（Logical Plan），再通过 <code>Optimizer</code> 变成物理计划（Physical Plan），最后交给 <code>Executor</code> 来执行</p>
+<h3 id="Parser">Parser</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202207281912750.png" alt="image-20220728191252407"></p>
+<p>死去的编译原理突然开始攻击我（bushi</p>
+<h3 id="Analyzer">Analyzer</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208050938505.png" alt="image-20220805093818200"></p>
+<p>逻辑地：只是说明了要干什么，但是没有确定用什么算法实现（例如排序）</p>
+<h3 id="Optimizer">Optimizer</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208050940298.png" alt="image-20220805094021013"></p>
+<h3 id="Executor">Executor</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051002987.png" alt="image-20220805100154293"></p>
+<h2 id="小结">小结</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051004464.png" alt="image-20220805100423140"></p>
+<h1 id="常规的查询优化器">常规的查询优化器</h1>
+<h2 id="查询优化器分类">查询优化器分类</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051007582.png" alt="image-20220805100759245"></p>
+<p>两种分类方法</p>
+<ul>
+<li>按遍历树的方向分</li>
+<li>按优化方法分</li>
+</ul>
+<h2 id="RBO（基于规则的优化）">RBO（基于规则的优化）</h2>
+<p>这些规则只是经验规则，是总结出来的，甚至可能反向优化（</p>
+<h3 id="前提知识：关系代数">前提知识：关系代数</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051010966.png" alt="image-20220805101049699"></p>
+<h3 id="3-个优化原则">3 个优化原则</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051015364.png" alt="image-20220805101507540"></p>
+<h3 id="优化规则1：列裁剪">优化规则1：列裁剪</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051020192.png" alt="image-20220805101817766"></p>
+<p>只读取需要的列</p>
+<h3 id="优化规则2：谓词下推">优化规则2：谓词下推</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051022473.png" alt="image-20220805102110852"></p>
+<p>尽早过滤掉不必要的行，减少资源占用</p>
+<h3 id="优化规则3：传递闭包">优化规则3：传递闭包</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051023983.png" alt="image-20220805102310659"></p>
+<p>表达式的等值关系 + 过滤条件 = 新的过滤条件</p>
+<h3 id="优化规则4：Runtime-Filter">优化规则4：Runtime Filter</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051055215.png" alt="image-20220805102637580"></p>
+<p>提早过滤左边的数据，那么就能减少开销（网络、运算等）</p>
+<p>JOIN 的时候得到右侧 JOIN 集合的一些特性（例如知道右侧 JOIN KEY 的范围），然后通过这些特性先过滤左侧的数据</p>
+<ul>
+<li>min-max：知道了右侧的范围是 0~100，那么左侧就只扫描 0~100 的范围（缺点：范围必须是很紧密的，不然意义不大）</li>
+<li>in-list：如右侧的值很少，就可以使用 in-list ，使用集合包含过滤（缺点：右侧集合不能太大）</li>
+<li>bloom filter：通过右侧来构建，效果是给我一个数，如果说不在那就是不在，说在是有可能在（具体细节在后面的课程介绍）</li>
+</ul>
+<h3 id="RBO-小结">RBO 小结</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051055555.png" alt="image-20220805104142945"></p>
+<p>这里只讲了4 条经验规则，但一般实现都有几百条</p>
+<p>优点是简单，但是缺点也很多（毕竟都是经验规则，不保证能得到最优的执行计划）</p>
+<h2 id="CBO（基于代价的优化）">CBO（基于代价的优化）</h2>
+<h3 id="概念">概念</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051055565.png" alt="image-20220805104643426"></p>
+<h3 id="统计信息">统计信息</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051054926.png" alt="image-20220805105400574"></p>
+<h3 id="统计信息的收集方式">统计信息的收集方式</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051109257.png" alt="image-20220805105649207"></p>
+<h3 id="统计信息推导规则">统计信息推导规则</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051109367.png" alt="image-20220805110039676"></p>
+<p>这个稍微看一下应该不难理解</p>
+<h3 id="统计信息的问题">统计信息的问题</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051106677.png" alt="image-20220805110635341"></p>
+<p>（如果是汉，那么必定是比亚迪的）</p>
+<h3 id="执行计划枚举">执行计划枚举</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051109419.png" alt="image-20220805110905123"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051111731.png" alt="image-20220805111125417"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051111356.png" alt="image-20220805111143993"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051112977.png" alt="image-20220805111215594"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051112657.png" alt="image-20220805111240327"></p>
+<h3 id="CBO-效果">CBO 效果</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051113272.png" alt="image-20220805111341957"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051113398.png" alt="image-20220805111349107"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051114427.png" alt="image-20220805111451179"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051115762.png" alt="image-20220805111515487"></p>
+<h3 id="CBO-小结">CBO 小结</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051115010.png" alt="image-20220805111558667"></p>
+<h2 id="小结-2">小结</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051117237.png" alt="image-20220805111701885"></p>
+<h1 id="社区开源实践">社区开源实践</h1>
+<h2 id="概览">概览</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051118498.png" alt="image-20220805111806216"></p>
+<h2 id="Apache-Calcite">Apache Calcite</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051120955.png" alt="image-20220805112013641"></p>
+<p>作为一个优化器，下面可以对接各种系统</p>
+<h3 id="Calcite-RBO">Calcite RBO</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051122935.png" alt="image-20220805112236593"></p>
+<h3 id="Calcite-CBO">Calcite CBO</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051144653.png" alt="image-20220805112532539"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051128906.png" alt="image-20220805112830803"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051130984.png" alt="image-20220805113037882"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051132524.png" alt="image-20220805113212421"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051133008.png" alt="image-20220805113319891"></p>
+<h2 id="小结-3">小结</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051133043.png" alt="image-20220805113339924"></p>
+<h1 id="前沿趋势">前沿趋势</h1>
+<h2 id="Big-Data-Big-Money">Big Data, Big Money</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051134384.png" alt="image-20220805113451272"></p>
+<h2 id="概览-2">概览</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051135498.png" alt="image-20220805113536393"></p>
+<h2 id="DATA-AI">DATA + AI</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051139635.png" alt="image-20220805113945507"></p>
+<h2 id="小结-4">小结</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051142863.png" alt="image-20220805114238768"></p>
+<h1 id="课程总结">课程总结</h1>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208051143904.png" alt="image-20220805114344817"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/">字节青训营</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BD%93%E7%B3%BB%E5%92%8C-SQL"><span class="toc-number">1.</span> <span class="toc-text">大数据体系和 SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BD%93%E7%B3%BB"><span class="toc-number">1.1.</span> <span class="toc-text">大数据体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL-%E7%9A%84%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">SQL 的处理流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Parser"><span class="toc-number">1.2.1.</span> <span class="toc-text">Parser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Analyzer"><span class="toc-number">1.2.2.</span> <span class="toc-text">Analyzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Optimizer"><span class="toc-number">1.2.3.</span> <span class="toc-text">Optimizer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Executor"><span class="toc-number">1.2.4.</span> <span class="toc-text">Executor</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E7%9A%84%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">常规的查询优化器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96%E5%99%A8%E5%88%86%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text">查询优化器分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RBO%EF%BC%88%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">RBO（基于规则的优化）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E6%8F%90%E7%9F%A5%E8%AF%86%EF%BC%9A%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0"><span class="toc-number">2.2.1.</span> <span class="toc-text">前提知识：关系代数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%AA%E4%BC%98%E5%8C%96%E5%8E%9F%E5%88%99"><span class="toc-number">2.2.2.</span> <span class="toc-text">3 个优化原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%991%EF%BC%9A%E5%88%97%E8%A3%81%E5%89%AA"><span class="toc-number">2.2.3.</span> <span class="toc-text">优化规则1：列裁剪</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%992%EF%BC%9A%E8%B0%93%E8%AF%8D%E4%B8%8B%E6%8E%A8"><span class="toc-number">2.2.4.</span> <span class="toc-text">优化规则2：谓词下推</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%993%EF%BC%9A%E4%BC%A0%E9%80%92%E9%97%AD%E5%8C%85"><span class="toc-number">2.2.5.</span> <span class="toc-text">优化规则3：传递闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E8%A7%84%E5%88%994%EF%BC%9ARuntime-Filter"><span class="toc-number">2.2.6.</span> <span class="toc-text">优化规则4：Runtime Filter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RBO-%E5%B0%8F%E7%BB%93"><span class="toc-number">2.2.7.</span> <span class="toc-text">RBO 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CBO%EF%BC%88%E5%9F%BA%E4%BA%8E%E4%BB%A3%E4%BB%B7%E7%9A%84%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">CBO（基于代价的优化）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="toc-number">2.3.2.</span> <span class="toc-text">统计信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%E7%9A%84%E6%94%B6%E9%9B%86%E6%96%B9%E5%BC%8F"><span class="toc-number">2.3.3.</span> <span class="toc-text">统计信息的收集方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%E6%8E%A8%E5%AF%BC%E8%A7%84%E5%88%99"><span class="toc-number">2.3.4.</span> <span class="toc-text">统计信息推导规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.5.</span> <span class="toc-text">统计信息的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E6%9E%9A%E4%B8%BE"><span class="toc-number">2.3.6.</span> <span class="toc-text">执行计划枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CBO-%E6%95%88%E6%9E%9C"><span class="toc-number">2.3.7.</span> <span class="toc-text">CBO 效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CBO-%E5%B0%8F%E7%BB%93"><span class="toc-number">2.3.8.</span> <span class="toc-text">CBO 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-2"><span class="toc-number">2.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A4%BE%E5%8C%BA%E5%BC%80%E6%BA%90%E5%AE%9E%E8%B7%B5"><span class="toc-number">3.</span> <span class="toc-text">社区开源实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A7%88"><span class="toc-number">3.1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apache-Calcite"><span class="toc-number">3.2.</span> <span class="toc-text">Apache Calcite</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Calcite-RBO"><span class="toc-number">3.2.1.</span> <span class="toc-text">Calcite RBO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Calcite-CBO"><span class="toc-number">3.2.2.</span> <span class="toc-text">Calcite CBO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-3"><span class="toc-number">3.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E6%B2%BF%E8%B6%8B%E5%8A%BF"><span class="toc-number">4.</span> <span class="toc-text">前沿趋势</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Big-Data-Big-Money"><span class="toc-number">4.1.</span> <span class="toc-text">Big Data, Big Money</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%A7%88-2"><span class="toc-number">4.2.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DATA-AI"><span class="toc-number">4.3.</span> <span class="toc-text">DATA + AI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-4"><span class="toc-number">4.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%BE%E7%A8%8B%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">课程总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

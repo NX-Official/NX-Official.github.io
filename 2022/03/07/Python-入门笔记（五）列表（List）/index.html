@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 入门笔记（五）列表（List） | NX の 博客</title><meta name="keywords" content="Python"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="列表（List） 是 Python 中最基本的数据结构，与 C 中的数组类似 创建列表 使用中括号 [] 将各个元素括起来即可，元素类型可不相同 1234list1 &#x3D; [&amp;#x27;Google&amp;#x27;, &amp;#x27;Runoob&amp;#x27;, 1997, 2000]list2 &#x3D; [1, 2, 3, 4, 5 ]list3 &#x3D; [&quot;a&quot;, &quot;b&quot;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 入门笔记（五）列表（List）">
+<meta property="og:url" content="https://www.nickxu.top/2022/03/07/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E5%88%97%E8%A1%A8%EF%BC%88List%EF%BC%89/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="列表（List） 是 Python 中最基本的数据结构，与 C 中的数组类似 创建列表 使用中括号 [] 将各个元素括起来即可，元素类型可不相同 1234list1 &#x3D; [&amp;#x27;Google&amp;#x27;, &amp;#x27;Runoob&amp;#x27;, 1997, 2000]list2 &#x3D; [1, 2, 3, 4, 5 ]list3 &#x3D; [&quot;a&quot;, &quot;b&quot;,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-03-07T00:21:01.000Z">
+<meta property="article:modified_time" content="2022-07-05T15:27:44.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/03/07/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E5%88%97%E8%A1%A8%EF%BC%88List%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python 入门笔记（五）列表（List）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-05 23:27:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python 入门笔记（五）列表（List）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-07T00:21:01.000Z" title="发表于 2022-03-07 08:21:01">2022-03-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-05T15:27:44.000Z" title="更新于 2022-07-05 23:27:44">2022-07-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/Python3-%E5%85%A5%E9%97%A8/">Python3 入门</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="Python 入门笔记（五）列表（List）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><code>列表（List）</code> 是 Python 中最基本的数据结构，与 C 中的数组类似</p>
+<h1 id="创建列表">创建列表</h1>
+<p>使用中括号 <code>[]</code> 将各个元素括起来即可，元素类型可不相同</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="string">&#x27;Google&#x27;</span>, <span class="string">&#x27;Runoob&#x27;</span>, <span class="number">1997</span>, <span class="number">2000</span>]</span><br><span class="line">list2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> ]</span><br><span class="line">list3 = [<span class="string">&quot;a&quot;</span>, <span class="string">&quot;b&quot;</span>, <span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>]</span><br><span class="line">list4 = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="访问列表中的值">访问列表中的值</h1>
+<h2 id="索引">索引</h2>
+<p>列表的索引和切片与字符串的一样</p>
+<p>使用 <code>列表[下标]</code> 来索引单个元素</p>
+<table>
+<thead>
+<tr>
+<th><code>list</code></th>
+<th>‘red’</th>
+<th>‘green’</th>
+<th>‘blue’</th>
+<th>‘yellow’</th>
+<th>‘white’</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>从前往后数</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>从后往前数</td>
+<td>-5</td>
+<td>-4</td>
+<td>-3</td>
+<td>-2</td>
+<td>-1</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>( <span class="built_in">list</span>[<span class="number">0</span>] ) <span class="comment"># red</span></span><br><span class="line"><span class="built_in">print</span>( <span class="built_in">list</span>[<span class="number">1</span>] ) <span class="comment"># green</span></span><br><span class="line"><span class="built_in">print</span>( <span class="built_in">list</span>[<span class="number">2</span>] ) <span class="comment"># blue</span></span><br><span class="line"><span class="built_in">print</span>( <span class="built_in">list</span>[-<span class="number">1</span>] ) <span class="comment"># white</span></span><br><span class="line"><span class="built_in">print</span>( <span class="built_in">list</span>[-<span class="number">2</span>] ) <span class="comment"># yellow</span></span><br><span class="line"><span class="built_in">print</span>( <span class="built_in">list</span>[-<span class="number">3</span>] ) <span class="comment"># blue</span></span><br></pre></td></tr></table></figure>
+<h2 id="切片">切片</h2>
+<p>使用 <code>变量[起始位置:终止位置:步长]</code> 来截取部分列表</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>左闭右开规则（顾头不顾尾）</li>
+<li>某个位置不指定的时候默认取最后或最前</li>
+<li>步长可选，默认为 <code>1</code></li>
+<li>切片的时候起始位置和终止位置都超出的时候不会进行报错，但是索引会报错</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>[<span class="number">0</span>:<span class="number">4</span>]) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;, &#x27;yellow&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>[<span class="number">1</span>:-<span class="number">2</span>]) <span class="comment"># [&#x27;green&#x27;, &#x27;blue&#x27;, &#x27;yellow&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>[<span class="number">1</span>:<span class="number">4</span>:<span class="number">2</span>]) <span class="comment"># [&#x27;green&#x27;, &#x27;yellow&#x27;]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>[-<span class="number">1</span>::-<span class="number">1</span>]) <span class="comment"># [&#x27;black&#x27;, &#x27;white&#x27;, &#x27;yellow&#x27;, &#x27;blue&#x27;, &#x27;green&#x27;, &#x27;red&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h2 id="For-循环遍历">For 循环遍历</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]: </span><br><span class="line">	<span class="built_in">print</span>(x, end=<span class="string">&quot; &quot;</span>)</span><br><span class="line"><span class="comment"># 输出 1 2 3</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="列表操作符">列表操作符</h1>
+<h2 id="组合：">组合：<code>+</code></h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] + [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]) <span class="comment"># [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+<h2 id="重复：">重复：<code>*</code></h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] * <span class="number">2</span>) <span class="comment"># [1, 2, 3, 1, 2, 3]</span></span><br></pre></td></tr></table></figure>
+<h2 id="元素是否存在于列表中：in-not-in">元素是否存在于列表中：<code>in</code> / <code>not in</code></h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> (<span class="number">3</span> <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment"># True</span></span><br><span class="line"><span class="built_in">print</span> (<span class="number">3</span> <span class="keyword">not</span> <span class="keyword">in</span> [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]) <span class="comment"># False</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="列表常用方法-函数">列表常用方法/函数</h1>
+<h2 id="求长">求长</h2>
+<h3 id="len-list"><code>len(list)</code></h3>
+<p>返回列表的长度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(<span class="built_in">list</span>)) <span class="comment"># 5</span></span><br></pre></td></tr></table></figure>
+<h2 id="添加">添加</h2>
+<h3 id="list-append-obj"><code>list.append(obj)</code></h3>
+<p>在末尾添加新元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>.append(<span class="string">&#x27;black&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;, &#x27;yellow&#x27;, &#x27;white&#x27;, &#x27;black&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="list-insert-pos-obj"><code>list.insert(pos,obj)</code></h3>
+<p>使用下标在任意位置添加元素，在<code>pos</code>位置及其之后的元素都会往后移一位</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>.insert(<span class="number">4</span>,<span class="string">&#x27;black&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;, &#x27;yellow&#x27;, &#x27;black&#x27;, &#x27;white&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="list-extend-seq"><code>list.extend(seq)</code></h3>
+<p>在末尾一次性追加另一个序列，<code>seq</code>可以是列表、元组、集合、字典，若为字典,则仅会将键(key)作为元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>]</span><br><span class="line">list2 = [<span class="string">&#x27;white&#x27;</span>,<span class="string">&#x27;black&#x27;</span>]</span><br><span class="line">list1.extend(list2)</span><br><span class="line"><span class="built_in">print</span>(list1) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;, &#x27;yellow&#x27;, &#x27;white&#x27;, &#x27;black&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改">修改</h2>
+<p>使用下标修改，注意下标不能超出范围（你不能通过下标来增加新元素）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>[<span class="number">4</span>] = <span class="string">&#x27;black&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;, &#x27;yellow&#x27;, &#x27;black&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h2 id="删除">删除</h2>
+<h3 id="del-list-pos"><code>del list[pos]</code></h3>
+<p>使用<code>del</code>语句根据删除元素，可以使用索引，也可以使用切片</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="keyword">del</span> <span class="built_in">list</span>[<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;yellow&#x27;, &#x27;white&#x27;]</span></span><br><span class="line"><span class="keyword">del</span> <span class="built_in">list</span>[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;yellow&#x27;, &#x27;white&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="list-pop-pos"><code>list.pop(pos)</code></h3>
+<p>删除的同时弹出元素，默认为最后一个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>.pop()) <span class="comment"># yellow</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;blue&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="list-remove-obj"><code>list.remove(obj)</code></h3>
+<p>移除列表中某个值的第一个匹配项</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>.remove(<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;yellow&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>配合<code>while</code>循环可以删除所有匹配项</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;red&#x27;</span>,  <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>]</span><br><span class="line"><span class="keyword">while</span> <span class="string">&#x27;blue&#x27;</span> <span class="keyword">in</span> <span class="built_in">list</span>:</span><br><span class="line">    <span class="built_in">list</span>.remove(<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;green&#x27;, &#x27;yellow&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="list-clear"><code>list.clear()</code></h3>
+<p>清空列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>.clear()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># []</span></span><br></pre></td></tr></table></figure>
+<h2 id="查找">查找</h2>
+<h3 id="list-index-obj-start-end"><code>list.index(obj[,start[,end]])</code></h3>
+<p>返回查找对象的第一个索引位置，如果找不到则会报错</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>.index(<span class="string">&#x27;blue&#x27;</span>)) <span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+<h3 id="max-min-list"><code>max/min(list)</code></h3>
+<p>查找列表中的最大（小）值，全数字比较数字大小，全字符串依次比较 <code>ASCII</code> 大小，混杂则无法比较</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">max</span>(<span class="built_in">list</span>)) <span class="comment"># yellow</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">min</span>(<span class="built_in">list</span>)) <span class="comment"># blue</span></span><br></pre></td></tr></table></figure>
+<h2 id="计数">计数</h2>
+<h3 id="list-count-obj"><code>list.count(obj)</code></h3>
+<p>如字面义，统计元素出现次数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>.count(<span class="string">&#x27;blue&#x27;</span>)) <span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+<h2 id="排序">排序</h2>
+<h3 id="list-sort-key-func-reverse-True"><code>list.sort([key=func][,reverse=True])</code></h3>
+<p>默认为从小到大，添加 <code>reverse=True</code> 可以反转，可添加 <code>key=func</code> 自定义关键词</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">myFunc</span>(<span class="params">e</span>):</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">len</span>(e)</span><br><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>.sort(key=myFunc,reverse=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>)</span><br></pre></td></tr></table></figure>
+<p>但是仅靠 <code>key=func</code> 不足以满足更为复杂的需求，例如在 C++ 中，经常要给结构体先按变量 <code>A</code> 排序，再按变量 <code>B</code> 排序</p>
+<p>这时就要引入 <code>functools</code> 模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">myFunc</span>(<span class="params">str1, str2</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(str1) != <span class="built_in">len</span>(str2):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(str1) - <span class="built_in">len</span>(str2)</span><br><span class="line">    <span class="keyword">elif</span> str1 &gt; str2:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>, <span class="string">&#x27;black&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>.sort(key=functools.cmp_to_key(myFunc))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;red&#x27;, &#x27;blue&#x27;, &#x27;black&#x27;, &#x27;green&#x27;, &#x27;white&#x27;, &#x27;yellow&#x27;]</span></span><br></pre></td></tr></table></figure>
+<p>注意，与 C++ 中 <code>sort(a,a+6,myFunc);</code> 不同，自定义函数返回的不是 <code>bool</code> 值，而是正负数</p>
+<blockquote>
+<p>相关阅读：<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/howto/sorting.html#sortinghowto">排序指南</a>、<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/30389643">python3 为什么取消了sort方法中的cmp参数？</a></p>
+</blockquote>
+<h3 id="list-sorted-key-func-reverse-True"><code>list.sorted([key=func][,reverse=True])</code></h3>
+<p>与 <code>list.sort()</code> 基本相同，但这个方法不会更改原列表，只会返回一个排序好的列表</p>
+<h2 id="反转">反转</h2>
+<h3 id="list-reverse"><code>list.reverse()</code></h3>
+<p>会对列表的元素进行反向排序，该方法没有返回值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = [<span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;green&#x27;</span>, <span class="string">&#x27;blue&#x27;</span>, <span class="string">&#x27;yellow&#x27;</span>, <span class="string">&#x27;white&#x27;</span>]</span><br><span class="line"><span class="built_in">list</span>.reverse()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;white&#x27;, &#x27;yellow&#x27;, &#x27;blue&#x27;, &#x27;green&#x27;, &#x27;red&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h2 id="转换">转换</h2>
+<h3 id="list-seq"><code>list(seq)</code></h3>
+<p>将元组或字符串转换为列表（元组在<a href="/2022/03/08/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E5%85%83%E7%BB%84%EF%BC%88Tuple%EF%BC%89/">下一篇</a>）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list</span> = <span class="built_in">list</span>(<span class="string">&quot;HelloWorld&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>) <span class="comment"># [&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x27;, &#x27;W&#x27;, &#x27;o&#x27;, &#x27;r&#x27;, &#x27;l&#x27;, &#x27;d&#x27;]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="嵌套列表">嵌套列表</h1>
+<p>列表之间允许嵌套</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">list2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">list1.append(list2)</span><br><span class="line"><span class="built_in">print</span>(list1) <span class="comment"># [1, 2, 3, [4, 5, 6]]</span></span><br></pre></td></tr></table></figure>
+<h1 id="引用或不引用">引用或不引用</h1>
+<p>在前面的嵌套操作中， <code>list1</code> 中嵌套了一个 <code>list2</code> ，当 <code>list2</code> 发生变化时， <code>list1</code> 也会跟着变化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">list2=[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">list1.append(list2)</span><br><span class="line">list2.append(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span>(list1) <span class="comment"># [1, 2, 3, [4, 5, 6, 7]]</span></span><br></pre></td></tr></table></figure>
+<p>又或者，再创建一个 <code>list3</code> ，并把 <code>list2</code> 赋值给 <code>list3</code> ，当 <code>list2</code> 发生变化时， <code>list3</code> 也会跟着变化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list3 = list2</span><br><span class="line"><span class="built_in">print</span>(list3) <span class="comment"># [4, 5, 6, 7]</span></span><br><span class="line">list2.append(<span class="number">8</span>)</span><br><span class="line"><span class="built_in">print</span>(list3) <span class="comment"># [4, 5, 6, 7, 8]</span></span><br></pre></td></tr></table></figure>
+<p>这就是引用，在某些场景下，这也不失为一个好功能，但有时你会想避免出现这样的状况，有下面几种解决方法：</p>
+<ul>
+<li>
+<p>使用切片</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list4 = list2[:]</span><br><span class="line"><span class="built_in">print</span>(list4) <span class="comment"># [4, 5, 6, 7, 8]</span></span><br><span class="line">list2.append(<span class="number">9</span>)</span><br><span class="line"><span class="built_in">print</span>(list4) <span class="comment"># [4, 5, 6, 7, 8]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>copy()</code> 方法</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list4 = list2.copy()</span><br><span class="line"><span class="built_in">print</span>(list4) <span class="comment"># [4, 5, 6, 7, 8]</span></span><br><span class="line">list2.append(<span class="number">9</span>)</span><br><span class="line"><span class="built_in">print</span>(list4) <span class="comment"># [4, 5, 6, 7, 8]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>深拷贝</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line">list4 = copy.deepcopy(list2)</span><br><span class="line"><span class="built_in">print</span>(list4) <span class="comment"># [4, 5, 6, 7, 8]</span></span><br><span class="line">list2.append(<span class="number">9</span>)</span><br><span class="line"><span class="built_in">print</span>(list4) <span class="comment"># [4, 5, 6, 7, 8]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h1 id="数字列表">数字列表</h1>
+<h2 id="range-函数"><code>range()</code> 函数</h2>
+<p>使用 <code>range()</code> 可以轻松地生成一系列数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(value,end=<span class="string">&quot; &quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>就像你猜想的一样，它是左闭右开的，所以并不会输出 5</p>
+<h2 id="使用-range-创建数组列表">使用 <code>range()</code> 创建数组列表</h2>
+<p>配合 <code>list()</code> ，可以将 <code>range()</code> 的结果转换为列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="number">6</span>))</span><br><span class="line"><span class="built_in">print</span>(numbers) [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>使用 <code>range()</code> 时，还可以指定步长</p>
+<p>例如这里打印 1~10 的偶数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">numbers = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">2</span>, <span class="number">11</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(numbers) <span class="comment"># [2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
+<p>使用 <code>range()</code> 能够创建几乎所有的数集，例如创建一个列表，包含 1~10 的平方</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">squares = []</span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">11</span>):</span><br><span class="line">    squares.append(value**<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(squares) <span class="comment"># [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</span></span><br></pre></td></tr></table></figure>
+<h2 id="对数字列表执行简单的统计">对数字列表执行简单的统计</h2>
+<p>你可以轻松地找出数字列表中的最大值、最小值和总和</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">digits = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">min</span>(digits)) <span class="comment"># 0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">max</span>(digits)) <span class="comment"># 9</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>(digits)) <span class="comment"># 45</span></span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%88%97%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">创建列表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%80%BC"><span class="toc-number">2.</span> <span class="toc-text">访问列表中的值</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">2.1.</span> <span class="toc-text">索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-number">2.2.</span> <span class="toc-text">切片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#For-%E5%BE%AA%E7%8E%AF%E9%81%8D%E5%8E%86"><span class="toc-number">2.3.</span> <span class="toc-text">For 循环遍历</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">3.</span> <span class="toc-text">列表操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%EF%BC%9A"><span class="toc-number">3.1.</span> <span class="toc-text">组合：+</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%A4%8D%EF%BC%9A"><span class="toc-number">3.2.</span> <span class="toc-text">重复：*</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E4%BA%8E%E5%88%97%E8%A1%A8%E4%B8%AD%EF%BC%9Ain-not-in"><span class="toc-number">3.3.</span> <span class="toc-text">元素是否存在于列表中：in &#x2F; not in</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%97%E8%A1%A8%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">列表常用方法&#x2F;函数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E9%95%BF"><span class="toc-number">4.1.</span> <span class="toc-text">求长</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#len-list"><span class="toc-number">4.1.1.</span> <span class="toc-text">len(list)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0"><span class="toc-number">4.2.</span> <span class="toc-text">添加</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-append-obj"><span class="toc-number">4.2.1.</span> <span class="toc-text">list.append(obj)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-insert-pos-obj"><span class="toc-number">4.2.2.</span> <span class="toc-text">list.insert(pos,obj)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-extend-seq"><span class="toc-number">4.2.3.</span> <span class="toc-text">list.extend(seq)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9"><span class="toc-number">4.3.</span> <span class="toc-text">修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4"><span class="toc-number">4.4.</span> <span class="toc-text">删除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#del-list-pos"><span class="toc-number">4.4.1.</span> <span class="toc-text">del list[pos]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-pop-pos"><span class="toc-number">4.4.2.</span> <span class="toc-text">list.pop(pos)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-remove-obj"><span class="toc-number">4.4.3.</span> <span class="toc-text">list.remove(obj)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-clear"><span class="toc-number">4.4.4.</span> <span class="toc-text">list.clear()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE"><span class="toc-number">4.5.</span> <span class="toc-text">查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-index-obj-start-end"><span class="toc-number">4.5.1.</span> <span class="toc-text">list.index(obj[,start[,end]])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#max-min-list"><span class="toc-number">4.5.2.</span> <span class="toc-text">max&#x2F;min(list)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0"><span class="toc-number">4.6.</span> <span class="toc-text">计数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-count-obj"><span class="toc-number">4.6.1.</span> <span class="toc-text">list.count(obj)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">4.7.</span> <span class="toc-text">排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-sort-key-func-reverse-True"><span class="toc-number">4.7.1.</span> <span class="toc-text">list.sort([key&#x3D;func][,reverse&#x3D;True])</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-sorted-key-func-reverse-True"><span class="toc-number">4.7.2.</span> <span class="toc-text">list.sorted([key&#x3D;func][,reverse&#x3D;True])</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E8%BD%AC"><span class="toc-number">4.8.</span> <span class="toc-text">反转</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-reverse"><span class="toc-number">4.8.1.</span> <span class="toc-text">list.reverse()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2"><span class="toc-number">4.9.</span> <span class="toc-text">转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-seq"><span class="toc-number">4.9.1.</span> <span class="toc-text">list(seq)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B5%8C%E5%A5%97%E5%88%97%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">嵌套列表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E6%88%96%E4%B8%8D%E5%BC%95%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">引用或不引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E5%88%97%E8%A1%A8"><span class="toc-number">7.</span> <span class="toc-text">数字列表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#range-%E5%87%BD%E6%95%B0"><span class="toc-number">7.1.</span> <span class="toc-text">range() 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-range-%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84%E5%88%97%E8%A1%A8"><span class="toc-number">7.2.</span> <span class="toc-text">使用 range() 创建数组列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E6%95%B0%E5%AD%97%E5%88%97%E8%A1%A8%E6%89%A7%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E7%BB%9F%E8%AE%A1"><span class="toc-number">7.3.</span> <span class="toc-text">对数字列表执行简单的统计</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

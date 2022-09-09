@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营-3rd』L9：将我的服务开放给用户 | NX の 博客</title><meta name="keywords" content="字节青训营"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="相关链接学员笔记：第九节：将我的服务开放给用户  课前准备 （摘自学员笔记） 专有名词    权威DNS：保存了相应域名的权威信息。权威DNS即通俗上“这个域名我说了算”的服务器   LocalDNS：缓存+递归查询，运营商（集团网）部署的本地DNS服务器，直接接受网内客户端请求   根DNS服务器：全球有13台，LocalDNS未命中缓存查询的起点服务器，其公网地址具体可参考www.iana.o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『字节青训营-3rd』L9：将我的服务开放给用户">
+<meta property="og:url" content="https://www.nickxu.top/2022/05/21/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL9%EF%BC%9A%E5%B0%86%E6%88%91%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%94%BE%E7%BB%99%E7%94%A8%E6%88%B7/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="相关链接学员笔记：第九节：将我的服务开放给用户  课前准备 （摘自学员笔记） 专有名词    权威DNS：保存了相应域名的权威信息。权威DNS即通俗上“这个域名我说了算”的服务器   LocalDNS：缓存+递归查询，运营商（集团网）部署的本地DNS服务器，直接接受网内客户端请求   根DNS服务器：全球有13台，LocalDNS未命中缓存查询的起点服务器，其公网地址具体可参考www.iana.o">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-05-21T02:58:54.000Z">
+<meta property="article:modified_time" content="2022-07-28T09:46:30.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="字节青训营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/05/21/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL9%EF%BC%9A%E5%B0%86%E6%88%91%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%94%BE%E7%BB%99%E7%94%A8%E6%88%B7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『字节青训营-3rd』L9：将我的服务开放给用户',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-28 17:46:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『字节青训营-3rd』L9：将我的服务开放给用户</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-21T02:58:54.000Z" title="发表于 2022-05-21 10:58:54">2022-05-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-28T09:46:30.000Z" title="更新于 2022-07-28 17:46:30">2022-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/">青训营</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8-3rd-%E5%90%8E%E7%AB%AF/">字节跳动-3rd-后端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『字节青训营-3rd』L9：将我的服务开放给用户"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><details class="toggle" ><summary class="toggle-button" style="">相关链接</summary><div class="toggle-content"><p>学员笔记：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7097126973163454494#heading-39">第九节：将我的服务开放给用户</a></p>
+</div></details>
+<details class="toggle" ><summary class="toggle-button" style="">课前准备 （摘自学员笔记）</summary><div class="toggle-content"><blockquote>
+<p>专有名词</p>
+</blockquote>
+<ul>
+<li>
+<p>权威DNS：保存了相应域名的权威信息。权威DNS即通俗上“这个域名我说了算”的服务器</p>
+</li>
+<li>
+<p>LocalDNS：缓存+递归查询，运营商（集团网）部署的本地DNS服务器，直接接受网内客户端请求</p>
+</li>
+<li>
+<p>根DNS服务器：全球有13台，LocalDNS未命中缓存查询的起点服务器，其公网地址具体可参考<a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.iana.org%2Fdomains%2Froot%2Fservers">www.iana.org/domains/roo…</a></p>
+</li>
+<li>
+<p>DNS Update：DNS主服务器master接受外部的变更指令</p>
+</li>
+<li>
+<p>DNS Notify：DNS主服务器master接受变更命令后，会自增自身的serial号，同时将变更的serial号告知从服务器slave</p>
+</li>
+<li>
+<p>DNS IXFR：DNS从服务器slave以增量的形式向master要求获取本次变更的内容</p>
+</li>
+<li>
+<p>DNS AXFR：DNS从服务器slave以全量的形式向master要求获取当前的全量数据</p>
+</li>
+<li>
+<p>对称加密：使用相同的秘钥来加密传输内容，一端加密后，对端收到数据会用相同的秘钥来解密</p>
+</li>
+<li>
+<p>非对称加密：如果用公钥对数据进行加密，只有用对应的私钥才能解密；如果用私钥对数据进行加密，那么只有用对应的公钥才能解密。</p>
+</li>
+<li>
+<p>静态加速：针对视频、图片等不变的内容，将其缓存在靠近用户的边缘节点，缓存预热后用户直接从边缘获取，从而加速访问速度；</p>
+</li>
+<li>
+<p>动态加速DCDN：针对API类返回值不同的请求，通过特殊的网络优化方式（路由优化、传输优化）等技术加速其达到源站的速度。</p>
+</li>
+<li>
+<p>VIP：虚拟IP，一般作为四层反向代理的入口，client看起来一直在与VIP交互</p>
+</li>
+<li>
+<p>RS：Real Server，VIP后实际承受client请求的服务，可能是物理机/虚拟机/容器POD</p>
+</li>
+<li>
+<p>DPDK：Data Plane Development Kit，主要用户4层负载均衡，用于转发的网络加速领域比较多；以极大提高网卡报文的处理性能和吞吐量，提高数据平面应用程序的工作效率</p>
+</li>
+<li>
+<p>SSL/TLS：(Secure Sockets Layer 安全套接字协议),及其继任者传输层安全（Transport Layer Security，TLS）是为网络通信提供安全及数据完整性的一种安全协议</p>
+</li>
+<li>
+<p>DPDK：Data Plane Development Kit，一种从数据面去加速网络报文处理的工具，可以极大提高数据处理性能和吞吐量，提高数据平面应用程序的工作效率</p>
+</li>
+</ul>
+<blockquote>
+<p>实验工具准备</p>
+</blockquote>
+<p>基础条件：使用Linux/MacOS操作系统，windows可以安装虚拟机，Ubuntu或者Centos都行</p>
+<p>开源软件：bind9、nginx、ngrok(<a href="https://link.juejin.cn?target=https%3A%2F%2Fngrok.com%2Fdownload">ngrok.com/download</a>)</p>
+<p>备注：bind9和nginx使用apt-get或者yum命令安装即可</p>
+</div></details>
+<hr>
+<h1 id="企业接入升级打怪之路">企业接入升级打怪之路</h1>
+<h2 id="域名系统">域名系统</h2>
+<h3 id="Host-管理">Host 管理</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211617436.jpg" alt=""></p>
+<p>example 公司在建立之初建立了一些内部站点，如办公、文档等</p>
+<p>他们的网络运维人员靠一张 Host 表来管理从 host 到 IP 的映射</p>
+<p>也就是说，运维编辑表，然后员工使用 FTP 协议拉取这个表</p>
+<p>但是随着 example 公司越来越多，这一方法出现了越来越多的问题</p>
+<ul>
+<li>流量和负载大</li>
+<li>靠人工避免域名冲突</li>
+<li>时效性差</li>
+</ul>
+<h3 id="使用域名系统">使用域名系统</h3>
+<p>所以 example 公司的运维打算使用域名系统替换 hosts 文件</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211624159.jpg" alt=""></p>
+<h3 id="域名购买和配置迁移">域名购买和配置迁移</h3>
+<p>之后， example 公司去购买了域名，解决了 Host 方案的一系列问题</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211625322.jpg" alt=""></p>
+<h3 id="如何开发外部用户访问">如何开发外部用户访问</h3>
+<p>随着公司的增长，example 公司打算开发一个外部网站，具体方案如下图</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211627888.jpg" alt=""></p>
+<h2 id="自建-DNS-服务器">自建 DNS 服务器</h2>
+<h3 id="问题背景">问题背景</h3>
+<p>前面说到，example 公司使用域名系统替换了 Host 文件解决方案，解决了一系列问题，最终把外部网站开发给了用户，但是也出现了一些问题</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211632251.jpg" alt=""></p>
+<p>所以公司的运维开始研究 DNS 系统的工作模型</p>
+<h3 id="DNS-查询过程">DNS 查询过程</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211636734.jpg" alt=""></p>
+<p>本地 DNS -&gt; 权威 DNS</p>
+<h3 id="DNS-记录类型">DNS 记录类型</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211638479.jpg" alt=""></p>
+<h3 id="权威-DNS-系统架构">权威 DNS 系统架构</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211644531.jpg" alt=""></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211646310.jpg" alt=""></p>
+<h2 id="HTTPS-协议">HTTPS 协议</h2>
+<h3 id="问题背景-2">问题背景</h3>
+<p>随着 example 公司的不断壮大和发展，最近收到了很多用户的投诉，最后发现是由 HTTP 协议造成的</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211648900.jpg" alt=""></p>
+<h3 id="对称加密和非对称加密">对称加密和非对称加密</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211652658.jpg" alt=""></p>
+<h3 id="SSL-的通信过程">SSL 的通信过程</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211653438.jpg" alt=""></p>
+<h3 id="证书链">证书链</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211656027.jpg" alt=""></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211657192.jpg" alt=""></p>
+<h3 id="使用-https">使用 https</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211659103.jpg" alt=""></p>
+<p>example 公司在使用了 https 协议之后，就不用担心明文公网传输的问题了</p>
+<h2 id="接入全站加速">接入全站加速</h2>
+<h3 id="问题背景-3">问题背景</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211704114.jpg" alt=""></p>
+<h3 id="解决方案">解决方案</h3>
+<ul>
+<li>源站容量问题：增加后端机器扩容，使用静态加速缓存</li>
+<li>网络传输问题：动态加速 DCDN</li>
+<li>全站加速：静态加速+动态加速</li>
+</ul>
+<h3 id="静态加速-CDN">静态加速 CDN</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211712326.jpg" alt=""></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211714627.jpg" alt=""></p>
+<h3 id="动态加速-DCDN">动态加速 DCDN</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211716461.jpg" alt=""></p>
+<h3 id="DCDN-原理">DCDN 原理</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211720742.jpg" alt=""></p>
+<h3 id="使用全站加速">使用全站加速</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211721566.jpg" alt=""></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211722571.jpg" alt=""></p>
+<h2 id="四层负载均衡">四层负载均衡</h2>
+<h3 id="问题背景-4">问题背景</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211723275.jpg" alt=""></p>
+<h3 id="什么是四层负载均衡？">什么是四层负载均衡？</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211726280.jpg" alt=""></p>
+<h3 id="常见的调度算法原理">常见的调度算法原理</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211727629.jpg" alt=""></p>
+<h3 id="常见的实现方式-FULLNAT">常见的实现方式 FULLNAT</h3>
+<p>在内部做一次 IP 端口的转换</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211730553.jpg" alt=""></p>
+<h3 id="四层负载均衡特点">四层负载均衡特点</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211730231.jpg" alt=""></p>
+<h3 id="使用四层负载均衡">使用四层负载均衡</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211732527.jpg" alt=""></p>
+<h2 id="七层负载均衡">七层负载均衡</h2>
+<h3 id="问题背景-5">问题背景</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211733791.jpg" alt=""></p>
+<h3 id="Nginx-简介">Nginx 简介</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211735192.jpg" alt=""></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211736196.jpg" alt=""></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211737341.jpg" alt=""></p>
+<h3 id="Nginx-反向代理示意图">Nginx 反向代理示意图</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211738334.jpg" alt=""></p>
+<h3 id="Nginx-内部结构">Nginx 内部结构</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211738677.jpg" alt=""></p>
+<h3 id="事件驱动模型">事件驱动模型</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211742097.jpg" alt=""></p>
+<h3 id="异步非阻塞">异步非阻塞</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211744108.jpg" alt=""></p>
+<h3 id="Nginx-简单调优">Nginx 简单调优</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211744374.jpg" alt=""></p>
+<h3 id="别让-OS-限制了-Nginx-的性能">别让 OS 限制了 Nginx 的性能</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211746308.jpg" alt=""></p>
+<h3 id="提升-CPU-使用效率">提升 CPU 使用效率</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211747538.jpg" alt=""></p>
+<h3 id="提升网络效率">提升网络效率</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211751870.jpg" alt=""></p>
+<h3 id="使用七层负载均衡">使用七层负载均衡</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205211752214.jpg" alt=""></p>
+<h1 id="动手实践">动手实践</h1>
+<p>（以下内容鄙人全程在 WSL 中操作）</p>
+<h2 id="准备一个-Http-服务">准备一个 Http 服务</h2>
+<p>我使用 gin 框架写了个 hello world，来提供 http 服务</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/gin-gonic/gin&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建一个默认的路由引擎</span></span><br><span class="line">	r := gin.Default()</span><br><span class="line">	<span class="comment">// 配置路由</span></span><br><span class="line"></span><br><span class="line">	r.GET(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">		c.JSON(<span class="number">200</span>, gin.H&#123;</span><br><span class="line">			<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World!&quot;</span>,</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="comment">// 启动 web 服务</span></span><br><span class="line">	r.Run()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212110151.jpg" alt=""></p>
+<p>可以看见正常运行</p>
+<h2 id="host-劫持实验">host 劫持实验</h2>
+<p>众所周知，hosts 文件的优先级高于 DNS 服务器，所以可以在本地将域名劫持到特定的 ip 上，以用来调试目的，下面来验证这个原理</p>
+<p>编辑 <code>/etc/hosts</code> ，加入下面这一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">172.23.245.154  www.toutiao.com</span><br></pre></td></tr></table></figure>
+<p>然后就能看到效果</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212115684.jpg" alt=""></p>
+<p>测试完成后记得把这一行删掉</p>
+<h2 id="搭建-DNS-服务器">搭建 DNS 服务器</h2>
+<h3 id="权威侧-zone-文件准备">权威侧 zone 文件准备</h3>
+<p>新建 zone 文件 <code>/etc/bind/example.com.zone</code>，并编辑为以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$TTL 10M</span><br><span class="line">@   IN    SOA    ns1.example.com    admin.example.com. (</span><br><span class="line">        0       ; serial</span><br><span class="line">        1D      ; refresh</span><br><span class="line">        1H      ; retry</span><br><span class="line">        1W      ; expire</span><br><span class="line">        3H )    ; minimum</span><br><span class="line"></span><br><span class="line">@    IN    NS   ns1.example.com.</span><br><span class="line">; 这里ns1主机的ip地址可以换成本机地址</span><br><span class="line">ns1        A    172.23.245.154</span><br><span class="line">; 这里www主机的ip地址可以换成本机地址</span><br><span class="line">www        A    172.23.245.154     </span><br></pre></td></tr></table></figure>
+<h3 id="bind9-配置准备">bind9 配置准备</h3>
+<p>直接编辑 <code>/etc/bind/named.conf</code> 即可，配置参考如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">logging &#123;</span><br><span class="line"> channel default_log &#123;</span><br><span class="line">        #这里注意提前创建log目录</span><br><span class="line">        file &quot;/var/log/named/named.log&quot; versions 10 size 200m;</span><br><span class="line">        severity dynamic;</span><br><span class="line">        print-category yes;</span><br><span class="line">        print-severity yes;</span><br><span class="line">        print-time yes;</span><br><span class="line">    &#125;;</span><br><span class="line">    channel query_log &#123;</span><br><span class="line">        file &quot;/var/log/named/query.log&quot; versions 10 size 200m;</span><br><span class="line">        severity dynamic;</span><br><span class="line">        print-category yes;</span><br><span class="line">        print-severity yes;</span><br><span class="line">        print-time yes;</span><br><span class="line">    &#125;;</span><br><span class="line">    channel resolver_log &#123;</span><br><span class="line">        file &quot;/var/log/named/resolver.log&quot; versions 10 size 200m;</span><br><span class="line">        severity dynamic;</span><br><span class="line">        print-category yes;</span><br><span class="line">        print-severity yes;</span><br><span class="line">        print-time yes;</span><br><span class="line">    &#125;;</span><br><span class="line">    category default &#123;default_log;&#125;;</span><br><span class="line">    category queries &#123;query_log;&#125;;</span><br><span class="line">    category query-errors &#123;query_log;&#125;;</span><br><span class="line">    category resolver &#123;resolver_log;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">options &#123;</span><br><span class="line">    #这里的ip地址可以换成本机地址</span><br><span class="line">    listen-on port 8053 &#123; 127.0.0.1; &#125;; // 鄙人按：这个服务的端口要记着</span><br><span class="line">    directory &quot;/etc/bind&quot;;</span><br><span class="line">    dnssec-validation no;</span><br><span class="line">    #支持递归查询</span><br><span class="line">    recursion yes;</span><br><span class="line">    #转发到公共DNS优先，而不是自己去迭代查询，节省网络IO资源消耗</span><br><span class="line">    forward first;</span><br><span class="line">    forwarders &#123;</span><br><span class="line">        223.5.5.5;</span><br><span class="line">        223.6.6.6;</span><br><span class="line">    &#125;;</span><br><span class="line">    allow-query &#123; any; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">zone &quot;example.com&quot; &#123;  // 权威 DNS</span><br><span class="line">    type master;</span><br><span class="line">    file &quot;example.com.zone&quot;; // 匹配上这个域名就去找上面编辑的 example.com.zone 文件</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>前车之鉴：一定要把默认有的三行 include 给注释掉</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212158124.jpg" alt=""></p>
+<h3 id="运行-bind6">运行 bind6</h3>
+<p>用下面这个命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo named -g</span><br></pre></td></tr></table></figure>
+<p>如果有报错的话，自己排查一下</p>
+<h3 id="使用-dig-命令验证">使用 dig 命令验证</h3>
+<ul>
+<li>
+<p>验证权威 DNS 服务</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig @127.0.0.1 -p 8053 www.example.com <span class="comment"># 从本机的 8053 端口找域名</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212208235.jpg" alt=""></p>
+</li>
+<li>
+<p>验证 LocalDNS 服务</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig @127.0.0.1 -p 8053 www.toutiao.com </span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212212931.jpg" alt=""></p>
+<p>未命中本地托管的 zone 数据，直接向任一 forwarders（公共DNS）请求，获取结果后缓存到本地</p>
+</li>
+</ul>
+<h2 id="四层负载均衡实验">四层负载均衡实验</h2>
+<p>正经的四层负载均衡要使用 LVS+keepalived ，但是配置专业的东西过于麻烦，这里就使用 nginx 来演示一下</p>
+<p>四层的负载均衡就是一个网关的机子转发流量到内部的机子里，但是我们现在只有一台机子，也就只能将就着玩一下</p>
+<p>目前我们一个有了两个服务：</p>
+<ul>
+<li>8053 端口的 DNS 服务</li>
+<li>8080 端口的 http 服务</li>
+</ul>
+<p>现在我们把 53 端口的 udp 报文转发到 8053 去，80 端口的 tcp 报文转发到 8080 去</p>
+<p>编辑 <code>/etc/nginx/nginx.conf</code> ，新增stream模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#四层转发，tcp/udp协议转发</span><br><span class="line">stream &#123;</span><br><span class="line">    log_format proxy &#x27;$remote_addr [$time_local] &#x27;</span><br><span class="line">                 &#x27;$protocol $status $bytes_sent $bytes_received &#x27;</span><br><span class="line">                 &#x27;$session_time &quot;$upstream_addr&quot; &#x27;</span><br><span class="line">                 &#x27;&quot;$upstream_bytes_sent&quot; &quot;$upstream_bytes_received&quot; &quot;$upstream_connect_time&quot;&#x27;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  proxy;</span><br><span class="line">    open_log_file_cache off;</span><br><span class="line"></span><br><span class="line">    upstream dns_proxy &#123;</span><br><span class="line">        server 127.0.0.1:8053; # 发送到本地的 8053</span><br><span class="line">    &#125;</span><br><span class="line">    upstream hello_proxy &#123;</span><br><span class="line">        server 127.0.0.1:8080; # 发到本地的 1080</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 53 udp reuseport;  # 监听 53 端口</span><br><span class="line">        proxy_pass dns_proxy;     # 发送到 dns_proxy</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen 81;				# 监听 81 端口</span><br><span class="line">        proxy_connect_timeout 1s;</span><br><span class="line">        proxy_timeout 300s;</span><br><span class="line">        proxy_pass hello_proxy;  # 发到 hello_proxy</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="流量转发验证">流量转发验证</h3>
+<ul>
+<li>
+<p>UDP 流量</p>
+<p>看，请求 53 端口照样可以找到 DNS 服务</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212228439.jpg" alt=""></p>
+</li>
+<li>
+<p>TCP 流量</p>
+<p>可以看见 81 端口也正常地转发了</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212233599.jpg" alt=""></p>
+</li>
+</ul>
+<h2 id="七层负载均衡实验">七层负载均衡实验</h2>
+<p>也是转发，但是是在第七层</p>
+<p>继续编辑 nginx 的配置文件，把 880 端口的 http 请求转发到 8080 去</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span><br><span class="line">                      &#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span><br><span class="line">                      &#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;;</span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line">    upstream backend &#123;</span><br><span class="line">       server 127.0.0.1:8080;</span><br><span class="line">    &#125;</span><br><span class="line">    server &#123;</span><br><span class="line">        listen       880;</span><br><span class="line">        server_name  www.example.com;</span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://backend;</span><br><span class="line">             proxy_set_header HOST $host;</span><br><span class="line">             proxy_connect_timeout 60;</span><br><span class="line">             proxy_send_timeout 60;</span><br><span class="line">             proxy_read_timeout 60;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用下面的命令重载 nginx 的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>然后检查，可以看见能够成功转发</p>
+<p>而且是真的在第 7 层转发的，有日志记录</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205212251910.jpg" alt=""></p>
+<h2 id="SSL-自签证书实验">SSL 自签证书实验</h2>
+<p>（略，感觉平时会怎么配 SSL 证书就够了）</p>
+<p>但是这个是在七层负载的同时上 SSL 证书，感兴趣的也可以去试一下</p>
+<h2 id="将本地服务开放外网访问">将本地服务开放外网访问</h2>
+<p>（略，感觉会 frp，nps之类的也够了）</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/">字节青训营</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%81%E4%B8%9A%E6%8E%A5%E5%85%A5%E5%8D%87%E7%BA%A7%E6%89%93%E6%80%AA%E4%B9%8B%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">企业接入升级打怪之路</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text">域名系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Host-%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">Host 管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.2.</span> <span class="toc-text">使用域名系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D%E8%B4%AD%E4%B9%B0%E5%92%8C%E9%85%8D%E7%BD%AE%E8%BF%81%E7%A7%BB"><span class="toc-number">1.1.3.</span> <span class="toc-text">域名购买和配置迁移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%80%E5%8F%91%E5%A4%96%E9%83%A8%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE"><span class="toc-number">1.1.4.</span> <span class="toc-text">如何开发外部用户访问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%BB%BA-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">自建 DNS 服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS-%E6%9F%A5%E8%AF%A2%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">DNS 查询过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS-%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">DNS 记录类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E5%A8%81-DNS-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-number">1.2.4.</span> <span class="toc-text">权威 DNS 系统架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS-%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">HTTPS 协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8C%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-number">1.3.2.</span> <span class="toc-text">对称加密和非对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL-%E7%9A%84%E9%80%9A%E4%BF%A1%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.3.</span> <span class="toc-text">SSL 的通信过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E4%B9%A6%E9%93%BE"><span class="toc-number">1.3.4.</span> <span class="toc-text">证书链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-https"><span class="toc-number">1.3.5.</span> <span class="toc-text">使用 https</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%85%A5%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F"><span class="toc-number">1.4.</span> <span class="toc-text">接入全站加速</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF-3"><span class="toc-number">1.4.1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.4.2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%8A%A0%E9%80%9F-CDN"><span class="toc-number">1.4.3.</span> <span class="toc-text">静态加速 CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%8A%A0%E9%80%9F-DCDN"><span class="toc-number">1.4.4.</span> <span class="toc-text">动态加速 DCDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DCDN-%E5%8E%9F%E7%90%86"><span class="toc-number">1.4.5.</span> <span class="toc-text">DCDN 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F"><span class="toc-number">1.4.6.</span> <span class="toc-text">使用全站加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.5.</span> <span class="toc-text">四层负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF-4"><span class="toc-number">1.5.1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%9B%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%9F"><span class="toc-number">1.5.2.</span> <span class="toc-text">什么是四层负载均衡？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86"><span class="toc-number">1.5.3.</span> <span class="toc-text">常见的调度算法原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F-FULLNAT"><span class="toc-number">1.5.4.</span> <span class="toc-text">常见的实现方式 FULLNAT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%89%B9%E7%82%B9"><span class="toc-number">1.5.5.</span> <span class="toc-text">四层负载均衡特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9B%9B%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.5.6.</span> <span class="toc-text">使用四层负载均衡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.6.</span> <span class="toc-text">七层负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF-5"><span class="toc-number">1.6.1.</span> <span class="toc-text">问题背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.6.2.</span> <span class="toc-text">Nginx 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="toc-number">1.6.3.</span> <span class="toc-text">Nginx 反向代理示意图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.4.</span> <span class="toc-text">Nginx 内部结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.5.</span> <span class="toc-text">事件驱动模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E9%9D%9E%E9%98%BB%E5%A1%9E"><span class="toc-number">1.6.6.</span> <span class="toc-text">异步非阻塞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-%E7%AE%80%E5%8D%95%E8%B0%83%E4%BC%98"><span class="toc-number">1.6.7.</span> <span class="toc-text">Nginx 简单调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%AB%E8%AE%A9-OS-%E9%99%90%E5%88%B6%E4%BA%86-Nginx-%E7%9A%84%E6%80%A7%E8%83%BD"><span class="toc-number">1.6.8.</span> <span class="toc-text">别让 OS 限制了 Nginx 的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8D%87-CPU-%E4%BD%BF%E7%94%A8%E6%95%88%E7%8E%87"><span class="toc-number">1.6.9.</span> <span class="toc-text">提升 CPU 使用效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8D%87%E7%BD%91%E7%BB%9C%E6%95%88%E7%8E%87"><span class="toc-number">1.6.10.</span> <span class="toc-text">提升网络效率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%83%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.6.11.</span> <span class="toc-text">使用七层负载均衡</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5"><span class="toc-number">2.</span> <span class="toc-text">动手实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E4%B8%80%E4%B8%AA-Http-%E6%9C%8D%E5%8A%A1"><span class="toc-number">2.1.</span> <span class="toc-text">准备一个 Http 服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#host-%E5%8A%AB%E6%8C%81%E5%AE%9E%E9%AA%8C"><span class="toc-number">2.2.</span> <span class="toc-text">host 劫持实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA-DNS-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.3.</span> <span class="toc-text">搭建 DNS 服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%83%E5%A8%81%E4%BE%A7-zone-%E6%96%87%E4%BB%B6%E5%87%86%E5%A4%87"><span class="toc-number">2.3.1.</span> <span class="toc-text">权威侧 zone 文件准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bind9-%E9%85%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="toc-number">2.3.2.</span> <span class="toc-text">bind9 配置准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C-bind6"><span class="toc-number">2.3.3.</span> <span class="toc-text">运行 bind6</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-dig-%E5%91%BD%E4%BB%A4%E9%AA%8C%E8%AF%81"><span class="toc-number">2.3.4.</span> <span class="toc-text">使用 dig 命令验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E9%AA%8C"><span class="toc-number">2.4.</span> <span class="toc-text">四层负载均衡实验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E8%BD%AC%E5%8F%91%E9%AA%8C%E8%AF%81"><span class="toc-number">2.4.1.</span> <span class="toc-text">流量转发验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E5%B1%82%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%AE%9E%E9%AA%8C"><span class="toc-number">2.5.</span> <span class="toc-text">七层负载均衡实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL-%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E5%AE%9E%E9%AA%8C"><span class="toc-number">2.6.</span> <span class="toc-text">SSL 自签证书实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%94%BE%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE"><span class="toc-number">2.7.</span> <span class="toc-text">将本地服务开放外网访问</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

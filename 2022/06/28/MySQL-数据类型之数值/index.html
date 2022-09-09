@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL 数据类型之数值 | NX の 博客</title><meta name="keywords" content="MySQL"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="总览表 MySQL 支持标准 SQL 中所有的数据类型，此外还拓展了一些，总体来说可分为整数、浮点数、定点数和位，如下表所示   整数类型    名称 字节 最小值 最大值     TINYINT 1 有符号 -128无符号 0 有符号 127无符号 255   SMALLINT 2 有符号 -32768无符号 0 有符号 32767无符号 65535   MEDIUMINT 3 有符号 -838">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 数据类型之数值">
+<meta property="og:url" content="https://www.nickxu.top/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E6%95%B0%E5%80%BC/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="总览表 MySQL 支持标准 SQL 中所有的数据类型，此外还拓展了一些，总体来说可分为整数、浮点数、定点数和位，如下表所示   整数类型    名称 字节 最小值 最大值     TINYINT 1 有符号 -128无符号 0 有符号 127无符号 255   SMALLINT 2 有符号 -32768无符号 0 有符号 32767无符号 65535   MEDIUMINT 3 有符号 -838">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-06-28T04:04:30.000Z">
+<meta property="article:modified_time" content="2022-07-01T14:49:48.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E6%95%B0%E5%80%BC/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL 数据类型之数值',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-01 22:49:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL 数据类型之数值</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-28T04:04:30.000Z" title="发表于 2022-06-28 12:04:30">2022-06-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-01T14:49:48.000Z" title="更新于 2022-07-01 22:49:48">2022-07-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/MySQL/">MySQL</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="MySQL 数据类型之数值"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="总览表">总览表</h1>
+<p>MySQL 支持标准 SQL 中所有的数据类型，此外还拓展了一些，总体来说可分为整数、浮点数、定点数和位，如下表所示</p>
+<ul>
+<li>
+<p>整数类型</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:center">字节</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TINYINT</code></td>
+<td style="text-align:center">1</td>
+<td>有符号 -128<br />无符号 0</td>
+<td>有符号 127<br />无符号 255</td>
+</tr>
+<tr>
+<td><code>SMALLINT</code></td>
+<td style="text-align:center">2</td>
+<td>有符号 -32768<br />无符号 0</td>
+<td>有符号 32767<br />无符号 65535</td>
+</tr>
+<tr>
+<td><code>MEDIUMINT</code></td>
+<td style="text-align:center">3</td>
+<td>有符号 -8388608<br />无符号 0</td>
+<td>有符号 -8388607<br />无符号 1677215</td>
+</tr>
+<tr>
+<td><code>INT</code> 或 <code>INTEGER</code></td>
+<td style="text-align:center">4</td>
+<td>有符号 -2147483648<br />无符号 0</td>
+<td>有符号 2147483647<br />无符号 4294967295</td>
+</tr>
+<tr>
+<td><code>BIGINT</code></td>
+<td style="text-align:center">8</td>
+<td>有符号 -9223372036854775808<br />无符号 0</td>
+<td>有符号 -9223372036854775807<br />无符号 18446744073709551615</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>说明：有符号/无符号 指的是这一字段是否有 <code>UNSIGNED</code> 这一属性</p>
+</blockquote>
+</li>
+<li>
+<p>浮点数类型</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:center">字节</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FLOAT</code></td>
+<td style="text-align:center">4</td>
+<td>±1.175494351E-38</td>
+<td>±3.402823466E+38</td>
+</tr>
+<tr>
+<td><code>DOUBLE</code></td>
+<td style="text-align:center">8</td>
+<td>±2.2250738585072014E-308</td>
+<td>±1.7976931348623157E+308</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>定点数类型</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:center">字节</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DEC(M,D)</code> 或 <code>DECIMAL(M,D)</code></td>
+<td style="text-align:center">M+2</td>
+<td>最大取值与 <code>DOUBLE</code> 相同， <code>DEC</code> 的有效取值范围由 <code>M</code> 和 <code>D</code> 决定</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>位类型</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:center">字节</th>
+<th>最小值</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BIT(M)</code></td>
+<td style="text-align:center">1~8</td>
+<td><code>BIT(1)</code></td>
+<td><code>BIT(64)</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr>
+<h1 id="整数类型">整数类型</h1>
+<p>整数类型分为 5 个：<code>TINYINT</code> 、<code>SMALLINT</code> 、<code>MEDIUMINT</code> 、<code>INT</code> 、<code>BIGINT</code>，它们的大小在上表中，非常简洁明了</p>
+<p>下面将介绍有关它的三个属性</p>
+<h2 id="ZEROFILL（补零）">ZEROFILL（补零）</h2>
+<blockquote>
+<p>这个在当前版本已经不建议使用了，并且会在未来的版本中删除，但是还是讲一下</p>
+</blockquote>
+<p>对于整型数据，MySQL 支持 <mark class="hl-label green">使用小括号来指示显示宽度</mark> （这里的括号含义只是显示宽度，与存储没关系，记住啦！）并且这个一般是配合 <code>ZEROFILL</code> 属性使用的，例如 <code>INT(5)</code> 的意思是要显示的时候如果不足 5 位，就在前面补宽度到 5 位，如果不手动指定显示宽度的话默认是 <code>INT(11)</code></p>
+<p>下面来演示一下，先建表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t1 (id1 <span class="type">INT</span>, id2 <span class="type">INT</span>(<span class="number">5</span>));</span><br></pre></td></tr></table></figure>
+<p>然后插入数据，并且发现格式没有变化（但是有些样例会补空格，我不知道是为什么）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t1;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206281632626.png" alt="image-20220628163218578"></p>
+<p>然后给它们加上 <code>ZEROFILL</code> 属性，可以发现有效果了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 MODIFY id1 <span class="type">INT</span> ZEROFILL;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 MODIFY id2 <span class="type">INT</span>(<span class="number">5</span>) ZEROFILL;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t1;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206281634204.png" alt="image-20220628163421141"></p>
+<p>要记住，这个只是规定了显示补零的位数，不改变存储的大小</p>
+<p>并且，如果数据超过了这个位数，那么宽度格式就没有意义了，按照原样输出</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 <span class="keyword">VALUES</span>(<span class="number">1234567</span>,<span class="number">1234567</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t1;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206281636651.png" alt="image-20220628163618590"></p>
+<h2 id="UNSIGNED（无符号）">UNSIGNED（无符号）</h2>
+<p>所有的整数都可以有一个属性  <code>UNSIGNED</code>（无符号），使用该属性时最小值位 0，最大值翻倍（就如上表所示）</p>
+<p>并且，如果已经有了 <code>ZEROFILL</code> 属性， MySQL 会自动为该列添加 <code>UNSIGNED</code></p>
+<h2 id="AUTO-INCREMENT（自增）">AUTO_INCREMENT（自增）</h2>
+<p>需要产生唯一标识符或顺序值时，可以使用该属性</p>
+<p><code>AUTO_INCREMENT</code> 的值一般从 1 开始，当欲插入 NULL 或 DEFAULT 到一个使用了该属性的列时，MySQL 会插入一个比该列中最大值大 1 的值</p>
+<p>关于该属性，有下面几点说明：</p>
+<ol>
+<li>
+<p>只有整数类型才能使用该属性</p>
+</li>
+<li>
+<p>必须同时有 <code>NOT NULL</code> 属性，建议同时使用 <code>UNSIGNED</code> 属性</p>
+</li>
+<li>
+<p>只有<a href="/2022/06/28/%E3%80%8EMySQL%E3%80%8F%E4%B8%BB%E9%94%AE%E4%B8%8E%E5%94%AF%E4%B8%80%E9%94%AE/">主键（primary key）或唯一键（unique）</a>或为它们的一部分才能使用该属性（其实与上一条一个意思）</p>
+</li>
+<li>
+<p>建表时，可以使用 <code>AUTO_INCREMENT= N </code> 来指定自增起始值，建表后可用 <code>ALTER TABLE table_name AUTO_INCREMENT= N</code> 来重设自增的起始值</p>
+</li>
+<li>
+<p>当插入/更新记录时，如果为 <code>AUTO_INCREMENT</code> 数据列明确指定了一个数值，则会出现两种情况</p>
+<ul>
+<li>如果插入/更新的值与已有的编号重复，则会出现出错信息，因为 <code>AUTO_INCREMENT</code> 数据列的值必须是唯一的</li>
+<li>如果插入/更新的值大于已编号的值，则会把该值插入/更新到数据列中，并使在下一个编号将从这个新值开始递增。也就是说，可以跳过一些编号</li>
+</ul>
+</li>
+<li>
+<p>如果自增序列的最大值被删除了，则在插入新记录时，该值被重用</p>
+</li>
+</ol>
+<hr>
+<h1 id="小数类型（浮点与定点）">小数类型（浮点与定点）</h1>
+<p>对于小数，MySQL 有两种方式：浮点与定点。浮点包括 <code>FLOAT</code> 和 <code>DOUBLE</code> ，定点数只有 <code>DECIMAL</code> 一种。定点数以字符串的形式存放，比浮点数精确，适合用来表示货币等精度高的数据</p>
+<p>与整型类似，小数后面也可以加带括号的后缀，但是含义是不同的</p>
+<p>首先是与整型的不同，整数和浮点数后面的括号形如 <code>(M,D)</code> ，精度 <code>M</code> 表示一共有多少位（整数加小数），标度 <code>D</code> 表示其中小数有多少位，</p>
+<ul>
+<li>对于浮点数，正如上表所述，这个类型的存储大小是不受这个后缀改变的，只是当保存数据的时候，会按照这个后缀的精度进行四舍五入保存，并且如果超过了长度限制（即使这个类型原本是能装下的）就会报错</li>
+<li>对于定点数，这个后缀会同时决定类型的大小和存储规则</li>
+</ul>
+<p>如果不指定精度的话，浮点数会按照实际的精度（有实际的软硬件决定）显示，定点数默认为 <code>(10,0)</code></p>
+<hr>
+<p>下面是一个例子，来比较 <code>FLOAT</code> 、 <code>DOUBLE</code> 和 <code>DECIMAL</code> 三者的不同</p>
+<p>首先建个表，字段分别为 <code>float(5,2)</code> 、 <code>double(5,2)</code> 和 <code>decimal(5,2)</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t1 (</span><br><span class="line">    id1 <span class="type">float</span>(<span class="number">5</span>,<span class="number">2</span>) <span class="keyword">default</span> <span class="keyword">NULL</span>,</span><br><span class="line">    id2 <span class="keyword">double</span>(<span class="number">5</span>,<span class="number">2</span>) <span class="keyword">default</span> <span class="keyword">NULL</span>,</span><br><span class="line">    id3 <span class="type">decimal</span>(<span class="number">5</span>,<span class="number">2</span>) <span class="keyword">default</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>然后分别插入数据 <code>1.23</code> ，可以看见数据都正确地被插入了</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 <span class="keyword">VALUES</span>(<span class="number">1.23</span>,<span class="number">1.23</span>,<span class="number">1.23</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t1;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206302155699.png" alt="image-20220630215501621"></p>
+<p>接下来尝试数据 <code>1.234</code> ，可以看见前两个浮点类型舍去了最后一位，并且定点类型报警被截断了</p>
+<p>（如果是在传统的 <code>SQLMode</code> ，这条记录是无法被插入的）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 <span class="keyword">VALUES</span>(<span class="number">1.234</span>,<span class="number">1.234</span>,<span class="number">1.234</span>);</span><br><span class="line"><span class="keyword">SHOW</span> WARNINGS;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t1;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206302157491.png" alt="image-20220630215739437"></p>
+<p>现在把三个字段的精度和标度全部去掉，再插入一次数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 MODIFY id1 <span class="type">FLOAT</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 MODIFY id2 <span class="keyword">DOUBLE</span>;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 MODIFY id3 <span class="type">DECIMAL</span>;</span><br><span class="line"><span class="keyword">DESC</span> t1;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1 <span class="keyword">VALUES</span>(<span class="number">1.234</span>,<span class="number">1.234</span>,<span class="number">1.234</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t1;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206302213491.png" alt="image-20220630221310419"></p>
+<hr>
+<h1 id="位类型">位类型</h1>
+<p>对于 <code>BIT</code>（位）类型，顾名思义用于存放位， <code>BIT(M)</code> 可以存放多位二进制数，<code>M</code> 的范围为 <code>1~64</code> ，默认值为 <code>1</code></p>
+<p>对于位字段，可以使用 <code>SELECT</code> 查询 16 进制结果（但在 MySQL 5.7 中是不显示的），也可以使用 <code>BIN()</code> 或 <code>HEX()</code> 函数读取</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t2 (id BIT);</span><br><span class="line"><span class="keyword">DESC</span> t2;</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t2 <span class="keyword">VALUES</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t2;</span><br><span class="line"><span class="keyword">SELECT</span> BIN(id),HEX(id) <span class="keyword">FROM</span> t2;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202207012247190.png" alt="image-20220701224711079"></p>
+<p>插入数据时，首先会将数字转换为二进制然后插入， 如果位数不够就会报错</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t2 <span class="keyword">VALUES</span>(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t2 MODIFY id BIT(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t2 <span class="keyword">VALUES</span>(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">SELECT</span> BIN(id),HEX(id) <span class="keyword">FROM</span> t2;</span><br></pre></td></tr></table></figure>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202207012249158.png" alt="image-20220701224916068"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E8%A7%88%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">总览表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">整数类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ZEROFILL%EF%BC%88%E8%A1%A5%E9%9B%B6%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">ZEROFILL（补零）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UNSIGNED%EF%BC%88%E6%97%A0%E7%AC%A6%E5%8F%B7%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">UNSIGNED（无符号）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AUTO-INCREMENT%EF%BC%88%E8%87%AA%E5%A2%9E%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">AUTO_INCREMENT（自增）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%8F%E6%95%B0%E7%B1%BB%E5%9E%8B%EF%BC%88%E6%B5%AE%E7%82%B9%E4%B8%8E%E5%AE%9A%E7%82%B9%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">小数类型（浮点与定点）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%8D%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">位类型</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

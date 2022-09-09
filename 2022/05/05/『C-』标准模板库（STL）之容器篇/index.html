@@ -1,0 +1,400 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『C++』标准模板库（STL）之容器篇 | NX の 博客</title><meta name="keywords" content="STL"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="鄙人认为 C++ 相比 C 最大的更新就是内置的 STL 了，里面封装了一堆好用的容器，而不用关心其内部实现的原理和具体代码，十分方便快捷，除了容器外还有一堆算法，这个在下一篇会讲 本文仅记录我认为比较常用的容器，例如 pair 这种比较鸡肋的就不记录了  注意：使用 STL 必须要定义命名空间，例如using namespace std;  Vector vector 直译为“向量”，但是一般当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『C++』标准模板库（STL）之容器篇">
+<meta property="og:url" content="https://www.nickxu.top/2022/05/05/%E3%80%8EC-%E3%80%8F%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93%EF%BC%88STL%EF%BC%89%E4%B9%8B%E5%AE%B9%E5%99%A8%E7%AF%87/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="鄙人认为 C++ 相比 C 最大的更新就是内置的 STL 了，里面封装了一堆好用的容器，而不用关心其内部实现的原理和具体代码，十分方便快捷，除了容器外还有一堆算法，这个在下一篇会讲 本文仅记录我认为比较常用的容器，例如 pair 这种比较鸡肋的就不记录了  注意：使用 STL 必须要定义命名空间，例如using namespace std;  Vector vector 直译为“向量”，但是一般当">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-05-05T11:10:48.000Z">
+<meta property="article:modified_time" content="2022-05-06T08:35:36.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="STL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/05/05/%E3%80%8EC-%E3%80%8F%E6%A0%87%E5%87%86%E6%A8%A1%E6%9D%BF%E5%BA%93%EF%BC%88STL%EF%BC%89%E4%B9%8B%E5%AE%B9%E5%99%A8%E7%AF%87/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『C++』标准模板库（STL）之容器篇',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-06 16:35:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『C++』标准模板库（STL）之容器篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-05T11:10:48.000Z" title="发表于 2022-05-05 19:10:48">2022-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-06T08:35:36.000Z" title="更新于 2022-05-06 16:35:36">2022-05-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/C-C/">C / C++</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『C++』标准模板库（STL）之容器篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>鄙人认为 C++ 相比 C 最大的更新就是内置的 STL 了，里面封装了一堆好用的容器，而不用关心其内部实现的原理和具体代码，十分方便快捷，除了容器外还有一堆算法，这个在下一篇会讲</p>
+<p>本文仅记录我认为比较常用的容器，例如 <code>pair</code> 这种比较鸡肋的就不记录了</p>
+<blockquote>
+<p>注意：使用 STL 必须要定义命名空间，例如<code>using namespace std;</code></p>
+</blockquote>
+<h1 id="Vector">Vector</h1>
+<p><code>vector</code> 直译为“向量”，但是一般当成可变长的数组用</p>
+<p>众所周知，C/C++ 中的数组一旦定义就无法改变长度，而 <code>vector</code>  就可以解决这个问题，但是代价也是明显的：运行速度更慢</p>
+<p>记得使用 <code>#include &lt;vector&gt;</code> 来引入头文件</p>
+<h2 id="定义">定义</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="keyword">typename</span>&gt; name;</span><br></pre></td></tr></table></figure>
+<p>以上定义相当于定义了一个一维数组 <code>name[size]</code> ，但是 <code>size</code> 不确定，其长度可以根据需要而变化。其中 <code>typename</code> 可以是任何基本类型，例如 <code>int</code>、 <code>double</code> 、<code>char</code> 、结构体等，也可以套娃 STL 标准容器，例如 <code>vector</code> 、 <code>queue</code> 等</p>
+<h2 id="访问">访问</h2>
+<h3 id="使用下标">使用下标</h3>
+<p>这就像是访问传统的数组一样，非常方便，例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt; v;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,v[index]);</span><br></pre></td></tr></table></figure>
+<p>注意：</p>
+<ul>
+<li>不能越界，不然会报错</li>
+<li>这种方法仅限于访问，不能通过它来修改</li>
+</ul>
+<h3 id="使用迭代器">使用迭代器</h3>
+<p>可以将迭代器（<code>iterator</code>）理解为一种类似指针的变量。其定义为：<code>vector&lt;typename&gt;::iterator it;</code> ，例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt;::iterator it= v.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">5</span>; i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,*(it + i));</span><br></pre></td></tr></table></figure>
+<h2 id="常用方法">常用方法</h2>
+<ul>
+<li><code>push_back(x)</code> ：在后面添加一个元素 <code>x</code>，时间复杂度为 O(1)</li>
+<li><code>size()</code> ： 用来获得元素的个数</li>
+<li><code>pop_back()</code> ：弹出尾元素，时间复杂度为 O(1)</li>
+<li><code>clear()</code> ：清空所有元素，时间复杂度为 O(n)</li>
+<li><code>insert(it,x)</code> ：在迭代器 <code>it</code> 处插入一个元素 <code>x</code>，时间复杂度为 O(n)</li>
+<li><code>erase()</code> ：删除元素，使用 <code>erase(it)</code>删除迭代器 <code>it</code> 处的元素（时间复杂度为 O(1)），或使用 <code>erase(first,last)</code> 删除左闭右开区间 <code>[first,last)</code> 内的所有元素（时间复杂度为 O(last-first)）</li>
+</ul>
+<h1 id="Stack">Stack</h1>
+<p><code>stack</code> 翻译为栈，是一种“后进先出”的容器，只能通过 <code>top()</code> 和 <code>pop()</code> 来访问栈顶元素</p>
+<p>记得使用 <code>#include &lt;stack&gt;</code> 来引入头文件</p>
+<h2 id="定义-2">定义</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stack&lt;<span class="keyword">typename</span>&gt; name;</span><br></pre></td></tr></table></figure>
+<p>类似地，<code>typename</code> 可以是任何基本类型或者容器，<code>name</code> 是栈的名字</p>
+<h2 id="常用方法-2">常用方法</h2>
+<ul>
+<li><code>push(x)</code> ：将 <code>x</code> 压入栈，时间复杂度为 O(1)</li>
+<li><code>top()</code> ：获得栈顶元素（但不删除），时间复杂度为 O(1)</li>
+<li><code>pop()</code> ：弹出栈顶元素，时间复杂度为 O(1)</li>
+<li><code>empty()</code> ：检测是否为空，空返回 <code>true</code>，否则返回 <code>false</code>，时间复杂度为 O(1)</li>
+<li><code>size()</code> ：返回元素个数，时间复杂度为 O(1)</li>
+</ul>
+<h1 id="Queue">Queue</h1>
+<p><code>queue</code> 翻译为队列，是一种“先进先出”的容器，只能通过函数 <code>front()</code> 来访问队首元素，或通过函数  <code>back()</code> 来访问队尾元素</p>
+<p>记得使用 <code>#include &lt;queue&gt;</code> 来引入头文件</p>
+<h2 id="定义-3">定义</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queue&lt;<span class="keyword">typename</span>&gt; name;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>typename</code> 可以是任何基本类型或者容器，<code>name</code> 为队列的名字</p>
+<h2 id="常用方法-3">常用方法</h2>
+<ul>
+<li><code>push(x)</code> ：将 <code>x</code> 入队，时间复杂度为 O(1)</li>
+<li><code>front()</code> ：获取队首元素，时间复杂度为 O(1)</li>
+<li><code>back()</code>  ：获取队尾元素，时间复杂度为 O(1)</li>
+<li><code>pop()</code> ：让队首元素出队，时间复杂度为 O(1)</li>
+<li><code>empty()</code> ：检测是否为空，空返回 <code>true</code>，否则返回 <code>false</code>，时间复杂度为 O(1)</li>
+<li><code>size()</code> ：返回元素个数，时间复杂度为 O(1)</li>
+</ul>
+<h2 id="priority-queue">priority_queue</h2>
+<p>STL 中还有两种容器与队列有关，分别是双端队列（<code>deque</code>）和优先队列（<code>priority_queue</code>）</p>
+<p>但是用的最多的还是优先队列，简单的说就是可以同时帮你在内部排序的队列</p>
+<p>基本定义式与一般队列相似，但如果要指定排序方向，则需要复杂一点，请看下面的两个实例</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">priority_queue&lt;<span class="type">int</span>,vector&lt;<span class="type">int</span>&gt;,less&lt;<span class="type">int</span>&gt; &gt; q;</span><br></pre></td></tr></table></figure>
+<p>第二种定义方式的尖括号内多出了 2 个参数：一个是 <code>vector&lt;int&gt;</code> ， 表示的是承载底层数据结构——堆（<code>heap</code>）的容器，其类型要与第 1 个参数一致；另一个是 <code>less&lt;int&gt;</code> ，是对第 1 个参数的比较类， <code>less&lt;int&gt;</code> 表示数字越大的优先级越大（大根堆），而如果用 <code>greater&lt;int&gt;</code> 则表示数字越小的优先级越大（小根堆）</p>
+<p>一定要记得 <code>less</code> 是大在前， <code>greater</code> 是小在前</p>
+<p>而默认的就是大在前，所以这两个定义其实是一样的</p>
+<p>它的方法与 <code>queue</code> 大同小异，但是也有不同：</p>
+<ul>
+<li><code>push()</code> 方法的时间复杂度提升为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log _{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span> ，毕竟内部要排序</li>
+<li>没有了 <code>front()</code> 和 <code>back()</code> 方法，只能通过 <code>top()</code> 或 <code>pop()</code> 访问队首元素</li>
+</ul>
+<h1 id="Map">Map</h1>
+<p><code>map</code> 翻译为映射，是STL中的常用容器。其实，数组就是一种映射，比如：<code>int a[100];</code> 就是定义了一个 <code>int</code> 到 <code>int</code> 的映射。而 <code>a[5]=25;</code> 就是把 5 映射到 25。数组总是将 <code>int</code> 类型映射到其它基本类型（称为数组的基类型），这同时也带来了一个问题，有时候我们希望把 <code>string</code> 映射成一个 <code>int</code>，数组就不方便了。这时就可以使用 <code>map</code>，<code>map</code> 可以将任何基本类型（包括STL容器）映射到任何基本类型（包括STL容器）</p>
+<p>记得使用 <code>#include &lt;map&gt;</code> 来引入头文件</p>
+<h2 id="定义-4">定义</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map&lt;typename1,typename2&gt; name;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>typename1</code> 是映射前的类型（键 <code>key</code>），<code>typename2</code> 是映射后的类型（值 <code>value</code>），<code>name</code> 为映射的名字</p>
+<h2 id="访问-2">访问</h2>
+<p>和 vector 类似，有下标和迭代器两种方法</p>
+<h3 id="使用下标-2">使用下标</h3>
+<p>通过下标访问就像普通的数组元素访问，例如先定义 <code>map&lt;char,int&gt; mp</code> ，然后就可以通过 <code>mp['c']</code> 的方式来访问它对应的元素，如 <code>mp['c']=124</code></p>
+<p>与 vector 不同，你可以用这种方法直接添加键值对</p>
+<h3 id="使用迭代器-2">使用迭代器</h3>
+<p>通过迭代器访问，先作如下定义：<code>map&lt;typename1,typename2&gt;::iterator it;</code></p>
+<p>因为 map 的每一对映射都有两个 <code>typename</code> ，所以，我们使用 <code>it-&gt;first</code> 来访问键，而使用 <code>it-&gt;second</code> 来访问值</p>
+<h2 id="常用方法-4">常用方法</h2>
+<ul>
+<li><code>find(key)</code> ：返回键为 <code>key</code> 的映射的迭代器，时间复杂度为 O( <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log _{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span>)</li>
+<li><code>size()</code> ：获得映射的对数，时间复杂度为 O(1)</li>
+<li><code>clear()</code> ：清空所有映射，时间复杂度为 O(n)</li>
+<li><code>erase()</code> ：与 vector 中的相同：删除元素，使用 <code>erase(it)</code>删除迭代器 <code>it</code> 指向的元素（时间复杂度为 O(1)），或使用 <code>erase(first,last)</code> 删除左闭右开区间 <code>[first,last)</code> 内的所有元素（时间复杂度为 O(last-first)），但是还多了一个用法：<code>erase(key)</code> ，时间复杂度为 O( <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log _{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span>)</li>
+</ul>
+<h1 id="Set">Set</h1>
+<p><code>set</code> 翻译为集合，是一个内部自动有序且不含重复元素的容器。<code>set</code> 最主要的作用就是自动去重并按升序排序，因此遇到需要去重但是又不方便直接开数组的情况。<code>set</code> 中的元素是唯一的，其内部采用“红黑树”实现</p>
+<p>记得使用 <code>#include &lt;map&gt;</code> 来引入头文件</p>
+<h2 id="定义-5">定义</h2>
+<h3 id="方法一">方法一</h3>
+<p>基础模板</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set&lt;<span class="keyword">typename</span>&gt; name;</span><br></pre></td></tr></table></figure>
+<p>其中，<code>typename</code> 可以是任何基本类型或者容器，<code>name</code> 是集合的名字</p>
+<p>当然有些时候会定义 set 数组，例如：<code>set&lt;int&gt; st[100];</code> ，这样 <code>st[0]～st[99]</code> 中的每一个元素都是一个 set 容器</p>
+<h3 id="方法二">方法二</h3>
+<p>直接通过花括号枚举我们要传入<code>set</code>的值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set&lt;string&gt; st&#123;<span class="string">&quot;good&quot;</span>, <span class="string">&quot;bad&quot;</span>, <span class="string">&quot;medium&quot;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="方法三">方法三</h3>
+<p>从其他结构导入元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set&lt;string&gt; st&#123;<span class="string">&quot;good&quot;</span>, <span class="string">&quot;bad&quot;</span>, <span class="string">&quot;medium&quot;</span>&#125;;</span><br><span class="line"><span class="function">set&lt;string&gt; <span class="title">st2</span><span class="params">(st)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> myints[] = &#123;<span class="number">75</span>,<span class="number">23</span>,<span class="number">65</span>,<span class="number">42</span>,<span class="number">13</span>&#125;;</span><br><span class="line"><span class="function">set&lt;<span class="type">int</span>&gt; <span class="title">myset</span> <span class="params">(myints, myints+<span class="number">5</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="访问-3">访问</h2>
+<p>set 只能通过迭代器访问。即先定义一个迭代器：<code>set&lt;typename&gt;::iterator it;</code> 然后使用 <code>*it</code>来访问 set 中的元素，例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (std::set&lt;<span class="type">int</span>&gt;::iterator it=myset.<span class="built_in">begin</span>(); it!=myset.<span class="built_in">end</span>(); ++it)</span><br><span class="line">    cout &lt;&lt; <span class="string">&#x27; &#x27;</span> &lt;&lt; *it;</span><br></pre></td></tr></table></figure>
+<p>注意 set 不支持 <code>*(it+i)</code> 或 <code>it &lt; st.end()</code> 的访问方式（实际上除了 vector 和 string 之外的 STL 容器都不支持）</p>
+<h2 id="常用方法-5">常用方法</h2>
+<ul>
+<li>
+<p><code>insert(x)</code></p>
+</li>
+<li>
+<p><code>find(value)</code> ：返回对应值为 <code>value</code> 的迭代器，时间复杂度为 O( <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log _{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span>)</p>
+</li>
+<li>
+<p><code>size()</code> ：获得元素个数，时间复杂度为 O(1)</p>
+</li>
+<li>
+<p><code>clear()</code> ：清空所有元素，时间复杂度为 O(n)</p>
+</li>
+<li>
+<p><code>erase()</code> ：</p>
+<p>与 map 相同，有三种用法</p>
+<ul>
+<li><code>erase(it)</code> ，删除迭代器 <code>it</code> 指向的元素（时间复杂度为 O(1)），</li>
+<li><code>erase(first,last)</code> ， 删除左闭右开区间 <code>[first,last)</code> 内的所有元素（时间复杂度为 O(last-first)）</li>
+<li><code>erase(value)</code>  ，时间复杂度为 O( <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow><mi>log</mi><mo>⁡</mo></mrow><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">\log _{2}n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">n</span></span></span></span>)</li>
+</ul>
+</li>
+</ul>
+<h1 id="String">String</h1>
+<p>在 C 中，一般使用字符数组 <code>char str[]</code> 来存放字符串，但是操作麻烦，容易出错。C++ 在 STL 中加入了 <code>string</code> 类型，对字符串常用的需求功能进行了封装，使得操作起来更加方便，且不必担心内存是否足够、字符串的长度等问题</p>
+<h2 id="定义-6">定义</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string name;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>name</code> 是字符串变量的名字</p>
+<p>当然，你也可以当场就初始化，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string str=<span class="string">&quot;abcd&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="访问-4">访问</h2>
+<h3 id="使用下标-3">使用下标</h3>
+<p>就像普通字符数组一样操作，非常方便</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string str= <span class="string">&quot;abcd&quot;</span> ;</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>(); i++) <span class="built_in">printf</span>( <span class="string">&quot;%c&quot;</span> ,str[i]);</span><br></pre></td></tr></table></figure>
+<h3 id="使用迭代器-3">使用迭代器</h3>
+<p>先定义 string 迭代器 <code>string::iterator it</code> ，然后就可以通过 <code>*it</code> 来访问 string 里的每一个字符了，例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string str=<span class="string">&quot;abcdefg&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(string::iterator it = str.<span class="built_in">begin</span>() + <span class="number">2</span>; it != str.<span class="built_in">end</span>(); it++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*it); <span class="comment">//输出 cdefg</span></span><br></pre></td></tr></table></figure>
+<h2 id="输入输出">输入输出</h2>
+<p>如果要读入或者输出整个字符串，一般只能用 <code>cin</code> 和 <code>cout</code> ，如果非要用<code>printf</code> 输出 <code>string</code>，则需要用 <code>c_str()</code> 方法将 string 转换成字符数组，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string str;</span><br><span class="line">cin&gt;&gt;str;</span><br><span class="line">cout&lt;&lt;str&lt;&lt;endl;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,str.<span class="built_in">c_str</span>());</span><br></pre></td></tr></table></figure>
+<h2 id="运算">运算</h2>
+<p>string 可以使用 <code>+</code> 来连接两个字符串，大小比较也是可以使用的</p>
+<h2 id="常用方法-6">常用方法</h2>
+<ul>
+<li>
+<p><code>length() </code>和 <code>size()</code> ：求长度，时间复杂度为 O(1)<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23925936">（?）</a>，二者完全相同</p>
+</li>
+<li>
+<p><code>clear()</code> ：清空，时间复杂度为 O(1) （鄙人疑惑：为什么不是 O(n)）</p>
+</li>
+<li>
+<p><code>substr(pos,len)</code> ：返回从 <code>pos</code> 号位置开始、长度为 <code>len</code> 的子串，时间复杂度为 O(n)</p>
+</li>
+<li>
+<p><code>insert ()</code>：</p>
+<p>有多种写法，时间复杂度都是 O(n)</p>
+<ul>
+<li><code>insert(pos,string)</code> ：在 <code>pos</code> 号位置插入字符串 <code>string</code></li>
+<li><code>insert(it,it2,it3)</code> ：<code>it</code> 为原字符串的欲插入位置，<code>it2</code> 和 <code>it3</code> 为待插入字符串的首尾迭代器（左闭右开区间）</li>
+</ul>
+</li>
+<li>
+<p><code>erase()</code> ：</p>
+<ul>
+<li><code>erase(it)</code> ，删除迭代器 <code>it</code> 指向的元素（时间复杂度为 O(1)），</li>
+<li><code>erase(first,last)</code> ， 删除左闭右开区间 <code>[first,last)</code> 内的所有元素（时间复杂度为 O(last-first)）</li>
+<li><code>erase(pos,length)</code> ，从 <code>pos</code> 位置开始删 <code>length</code> 个字符（时间复杂度为 O(length)）</li>
+</ul>
+</li>
+<li>
+<p><code>find()</code> ：</p>
+<p>两种写法，时间复杂度都是 O(n*m)</p>
+<ul>
+<li><code>str.find(str2)</code> ，当 <code>str2</code> 是 <code>str</code> 的子串时，返回其在 <code>str</code> 中第一次出现的位置；否则返回<code>string::npos</code>。<code>string::npos</code> 是一个常数，其本身的值等于 -1，但由于是 <code>unsigned int</code> 类型，因此，也可以认为是 <code>unsigned int</code> 类型的最大值</li>
+<li><code>str.find(str2,pos)</code> ，是从 <code>str</code> 的 <code>pos</code> 号位开始匹配 <code>str2</code> ，返回值同上</li>
+</ul>
+</li>
+<li>
+<p><code>replace()</code> ：</p>
+<p>两种写法，时间复杂度都是 O(str.length)</p>
+<ul>
+<li><code>str.replace(pos,len,str2)</code> ：表示把 <code>str</code> 从 <code>pos</code> 号位开始、长度为 <code>len</code> 的子串替换为 <code>str2</code></li>
+<li><code>str.replace(it1,it2,str2)</code> ：表示把 <code>str</code> 的迭代器 <code>it1</code> ~ <code>it2</code> 范围内（左闭右开区间）的子串替换为 <code>str2</code></li>
+</ul>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/STL/">STL</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Vector"><span class="toc-number">1.</span> <span class="toc-text">Vector</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE"><span class="toc-number">1.2.</span> <span class="toc-text">访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%8B%E6%A0%87"><span class="toc-number">1.2.1.</span> <span class="toc-text">使用下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">使用迭代器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Stack"><span class="toc-number">2.</span> <span class="toc-text">Stack</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-2"><span class="toc-number">2.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-2"><span class="toc-number">2.2.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Queue"><span class="toc-number">3.</span> <span class="toc-text">Queue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-3"><span class="toc-number">3.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-3"><span class="toc-number">3.2.</span> <span class="toc-text">常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#priority-queue"><span class="toc-number">3.3.</span> <span class="toc-text">priority_queue</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Map"><span class="toc-number">4.</span> <span class="toc-text">Map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-4"><span class="toc-number">4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-2"><span class="toc-number">4.2.</span> <span class="toc-text">访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%8B%E6%A0%87-2"><span class="toc-number">4.2.1.</span> <span class="toc-text">使用下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%AD%E4%BB%A3%E5%99%A8-2"><span class="toc-number">4.2.2.</span> <span class="toc-text">使用迭代器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-4"><span class="toc-number">4.3.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Set"><span class="toc-number">5.</span> <span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-5"><span class="toc-number">5.1.</span> <span class="toc-text">定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">5.1.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">5.1.2.</span> <span class="toc-text">方法二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89"><span class="toc-number">5.1.3.</span> <span class="toc-text">方法三</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-3"><span class="toc-number">5.2.</span> <span class="toc-text">访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-5"><span class="toc-number">5.3.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#String"><span class="toc-number">6.</span> <span class="toc-text">String</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-6"><span class="toc-number">6.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE-4"><span class="toc-number">6.2.</span> <span class="toc-text">访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%B8%8B%E6%A0%87-3"><span class="toc-number">6.2.1.</span> <span class="toc-text">使用下标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%BF%AD%E4%BB%A3%E5%99%A8-3"><span class="toc-number">6.2.2.</span> <span class="toc-text">使用迭代器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">6.3.</span> <span class="toc-text">输入输出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97"><span class="toc-number">6.4.</span> <span class="toc-text">运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95-6"><span class="toc-number">6.5.</span> <span class="toc-text">常用方法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

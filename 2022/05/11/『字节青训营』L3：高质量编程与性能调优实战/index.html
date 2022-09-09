@@ -1,0 +1,502 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营-3rd』L3：高质量编程与性能调优实战 | NX の 博客</title><meta name="keywords" content="字节青训营"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="相关链接配套实例代码：https:&#x2F;&#x2F;github.com&#x2F;wolfogre&#x2F;go-pprof-practice 【Go 语言原理与实践学习资料（上）】第三届字节跳动青训营 - 后端专场  前情提要：     高质量编程 高质量编程简介 什么是高质量：编写的代码能够达到正确可靠、简洁清晰的目标  各种边界条件是否考虑完备 异常情况处理，稳定性保证 易读易维护  编程原则：  简单性 可读性 团队生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『字节青训营-3rd』L3：高质量编程与性能调优实战">
+<meta property="og:url" content="https://www.nickxu.top/2022/05/11/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL3%EF%BC%9A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="相关链接配套实例代码：https:&#x2F;&#x2F;github.com&#x2F;wolfogre&#x2F;go-pprof-practice 【Go 语言原理与实践学习资料（上）】第三届字节跳动青训营 - 后端专场  前情提要：     高质量编程 高质量编程简介 什么是高质量：编写的代码能够达到正确可靠、简洁清晰的目标  各种边界条件是否考虑完备 异常情况处理，稳定性保证 易读易维护  编程原则：  简单性 可读性 团队生">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-05-11T05:26:20.000Z">
+<meta property="article:modified_time" content="2022-07-28T09:46:30.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="字节青训营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/05/11/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL3%EF%BC%9A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BC%96%E7%A8%8B%E4%B8%8E%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E5%AE%9E%E6%88%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『字节青训营-3rd』L3：高质量编程与性能调优实战',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-28 17:46:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『字节青训营-3rd』L3：高质量编程与性能调优实战</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-11T05:26:20.000Z" title="发表于 2022-05-11 13:26:20">2022-05-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-28T09:46:30.000Z" title="更新于 2022-07-28 17:46:30">2022-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/">青训营</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8-3rd-%E5%90%8E%E7%AB%AF/">字节跳动-3rd-后端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『字节青训营-3rd』L3：高质量编程与性能调优实战"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><details class="toggle" ><summary class="toggle-button" style="">相关链接</summary><div class="toggle-content"><p>配套实例代码：<a target="_blank" rel="noopener" href="https://github.com/wolfogre/go-pprof-practice">https://github.com/wolfogre/go-pprof-practice</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7093721879462019102/#heading-16">【Go 语言原理与实践学习资料（上）】第三届字节跳动青训营 - 后端专场</a></p>
+</div></details>
+<p>前情提要：</p>
+<ul>
+<li></li>
+</ul>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/551a67231c244f4aad77cbaabc10e2cf~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp?" alt=""></p>
+<h1 id="高质量编程">高质量编程</h1>
+<h2 id="高质量编程简介">高质量编程简介</h2>
+<p>什么是高质量：编写的代码能够达到正确可靠、简洁清晰的目标</p>
+<ul>
+<li>各种边界条件是否考虑完备</li>
+<li>异常情况处理，稳定性保证</li>
+<li>易读易维护</li>
+</ul>
+<p>编程原则：</p>
+<ul>
+<li>简单性</li>
+<li>可读性</li>
+<li>团队生产力</li>
+</ul>
+<h2 id="编码规范">编码规范</h2>
+<p>如何编写高质量 Go 代码</p>
+<ul>
+<li>代码格式</li>
+<li>注释</li>
+<li>命名规范</li>
+<li>控制流程</li>
+<li>错误和异常处理</li>
+</ul>
+<h3 id="代码格式">代码格式</h3>
+<p>推荐使用 gofmt 等工具自动格式化代码</p>
+<h4 id="gofmt">gofmt</h4>
+<p>官方的自动格式化工具</p>
+<h4 id="goimports">goimports</h4>
+<p>能自动控制库的引用</p>
+<h3 id="注释">注释</h3>
+<h4 id="注释应该做的">注释应该做的</h4>
+<ul>
+<li>
+<p>解释代码作用（适合注释公共符号）</p>
+</li>
+<li>
+<p>解释代码是如何做的（适合注释实现过程）</p>
+</li>
+<li>
+<p>解释代码实现的原因（适合解释代码的外部因素，提供额外上下文）</p>
+</li>
+<li>
+<p>解释代码什么情况会出错（适合解释代码的限制条件）</p>
+</li>
+<li>
+<p>公共符号始终要注释</p>
+<ul>
+<li>包中声明的每个公共的符号：变量、常量、函数以及结构都需要添加注释</li>
+<li>任何既不明显也不简短的公共功能必须予以注释</li>
+<li>无论长度或复杂程度如何，对库中的任何函数必须进行注释</li>
+</ul>
+</li>
+</ul>
+<p>有一个例外，不需要注释实现接口的方法</p>
+<h4 id="小结">小结</h4>
+<ul>
+<li>代码是最好的注释</li>
+<li>注释应该提供代码未表达出的上下文信息</li>
+</ul>
+<h3 id="命名">命名</h3>
+<h4 id="variable">variable</h4>
+<ul>
+<li>
+<p>简洁胜于冗长</p>
+</li>
+<li>
+<p>缩略词全大写，但当其位于变量开头且不需要导出时，使用全小写</p>
+<ul>
+<li>例如使用 <code>ServeHTTP</code> 而不是 <code>ServeHttp</code></li>
+<li>使用 <code>XMLHTTPRequest</code> 或者 <code>xmlHTTPRequest</code></li>
+</ul>
+</li>
+<li>
+<p>变量距离其被使用的地方越远，则需要携带越多的上下文信息</p>
+</li>
+<li>
+<p>全局变量在其名字中需要更多的上下文信息，使得在不同地方可以轻易辨认出其含义</p>
+</li>
+</ul>
+<h4 id="function">function</h4>
+<ul>
+<li>函数名不携带包名的上下文信息，因为包名和函数名总是成对出现的</li>
+<li>函数名尽量简短</li>
+<li>当名为 foo 的包某个函数返回类型 Foo 时，可以省略类型信息而不导致歧义</li>
+<li>当名为 foo 的包某个函数返回类型 T 时（T 并不是 Foo），可以在函数名中加入类型信息</li>
+</ul>
+<h4 id="package">package</h4>
+<ul>
+<li>只由小写字母组成。不包含大写字母和下划线等字符</li>
+<li>简短并包含一定的上下文信息。例如 schema、task 等</li>
+<li>不要与标准库同名。例如不要使用 sync 或者 strings</li>
+</ul>
+<p>尽量满足的规则：</p>
+<ul>
+<li>不使用变量名作为包名</li>
+<li>使用单数而不是复数</li>
+<li>谨慎使用缩写</li>
+</ul>
+<h4 id="小结-2">小结</h4>
+<ul>
+<li>核心目标是降低阅读理解代码的成本</li>
+<li>重点考虑上下文信息，设计简洁清晰的名称</li>
+</ul>
+<h3 id="控制流程">控制流程</h3>
+<ul>
+<li>
+<p>避免嵌套，保持正常流程清晰</p>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad</span></span><br><span class="line"><span class="keyword">if</span> foo &#123;</span><br><span class="line">	<span class="keyword">return</span> x</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Good</span></span><br><span class="line"><span class="keyword">if</span> foo &#123;</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>尽量保持正常代码路径为最小缩进</p>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bad</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">OneFunc</span><span class="params">()</span></span> <span class="type">error</span> &#123;</span><br><span class="line">    err := doSomething()</span><br><span class="line">    <span class="keyword">if</span> err := <span class="literal">nil</span> &#123;</span><br><span class="line">        err := doAnotherThing()</span><br><span class="line">        <span class="keyword">if</span> err == <span class="literal">nil</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> err</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Good</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">OneFunc</span><span class="params">()</span></span> <span class="type">error</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> err := doSomething(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> err := doAnotherThing(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> err</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>小结</p>
+<ul>
+<li>
+<p>线性原理，处理逻辑尽量走直线，避免复杂的嵌套分支</p>
+</li>
+<li>
+<p>提高代码的可读性</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="错误与异常处理">错误与异常处理</h3>
+<h4 id="简单错误">简单错误</h4>
+<p>简单错误指仅出现一次的错误，且在其他地方不需要捕获该错误</p>
+<p>优先使用 errors.New 创建匿名变量来直接表示简单错误</p>
+<p>如果有格式化的需求，使用 fmt.Error</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/golang/go/blob/master/src/net/http/client.go#L802</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">defaultCheckRedirect</span><span class="params">(req *Request, via []*Request)</span></span> <span class="type">error</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(via) &gt;= <span class="number">10</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> errors.New(<span class="string">&quot;stopped after 10 redirects&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="错误的-Wrap-和-Unwrap">错误的 Wrap 和 Unwrap</h4>
+<p>将一个 error 嵌套进另一个 error 中，从而生成一个 error 的跟踪链</p>
+<p>从 Go1.13 后，可以在 <code>fmt.Errorf</code> 中使用 <code>%w</code> 关键字来将一个错误 wrap 至其错误链中</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/golang/go/blob/master/src/cmd/go/internal/work/exec.go#L983</span></span><br><span class="line">list, _, err := c.GetBytes(cache.Subkey(a.actionID, <span class="string">&quot;srcfiles&quot;</span>))</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> fmt.Errorf(<span class="string">&quot;reading srcfiles list: %w&quot;</span>, err)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="错误判定">错误判定</h4>
+<ul>
+<li>
+<p>使用 <code>errors.Is</code> 可以判定错误链上的所有错误是否含有特定的错误</p>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/golang/go/blob/master/src/cmd/go/internal/modfetch/sumdb.go#L208</span></span><br><span class="line">data, err = lockedfile.Read(targ)</span><br><span class="line"><span class="keyword">if</span> errors.Is(err, fs.ErrNotExist) &#123;</span><br><span class="line"><span class="comment">// Treat non-existent as empty, to bootstrap the &quot;latest&quot; file</span></span><br><span class="line"><span class="comment">// the first time we connect to a given database.</span></span><br><span class="line"><span class="keyword">return</span> []<span class="type">byte</span>&#123;&#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>在错误链上获取特定种类的错误，使用 <code>errors.As</code></p>
+  <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://github.com/golang/go/blob/master/src/errors/wrap_test.go#L255</span></span><br><span class="line"><span class="keyword">if</span> _, err := os.Open(<span class="string">&quot;non-existing&quot;</span>); err != <span class="literal">nil</span> &#123;</span><br><span class="line">		<span class="keyword">var</span> pathError *fs.PathError</span><br><span class="line">		<span class="keyword">if</span> errors.As(err, &amp;pathError) &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;Failed at path:&quot;</span>, pathError.Path)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fmt.Println(err)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="panic">panic</h4>
+<ul>
+<li>不建议在业务代码中使用 panic</li>
+<li>如果当前 goroutine 中所有 deferred 函数都不包含 recover 就会造成整个程序崩溃</li>
+<li>当程序启动阶段发生不可逆转的错误时，可以在 init 或 main 函数中使用 panic</li>
+</ul>
+<h4 id="recover">recover</h4>
+<ul>
+<li>recover 只能在被 defer 的函数中使用，嵌套无法生效，只在当前 goroutine 生效</li>
+<li>如果需要更多的上下文信息，可以 recover 后在 log 中记录当前的调用栈。</li>
+</ul>
+<h2 id="性能优化建议">性能优化建议</h2>
+<h3 id="Slice">Slice</h3>
+<ul>
+<li>在尽可能的情况下，在使用 make() 初始化切片时提供容量信息，特别是在追加切片时</li>
+<li>在已有切片的基础上进行切片，不会创建新的底层数组。因为原来的底层数组没有发生变化，内存会一直占用，直到没有变量引用该数组。因此很可能出现这么一种情况，原切片由大量的元素构成，但是我们在原切片的基础上切片，虽然只使用了很小一段，但底层数组在内存中仍然占据了大量空间，得不到释放。推荐的做法，使用 copy 替代 re-slice</li>
+</ul>
+<h3 id="Map">Map</h3>
+<p>和 Slice 一样，应该根据实际需求提前预估好需要的空间</p>
+<h3 id="字符串处理">字符串处理</h3>
+<ul>
+<li>
+<p>常见的字符串拼接方式</p>
+<ul>
+<li><code>+</code></li>
+<li><code>strings.Builder</code></li>
+<li><code>bytes.Buffer</code></li>
+</ul>
+</li>
+<li>
+<p><code>strings.Builder</code> 最快，<code>bytes.Buffer</code> 较快，<code>+</code> 最慢</p>
+</li>
+<li>
+<p>原理</p>
+<ul>
+<li>
+<p>字符串在 Go 语言中是不可变类型，占用内存大小是固定的，当使用 + 拼接 2 个字符串时，生成一个新的字符串，那么就需要开辟一段新的空间，新空间的大小是原来两个字符串的大小之和</p>
+</li>
+<li>
+<p>strings.Builder，bytes.Buffer 的内存是以倍数申请的</p>
+</li>
+<li>
+<p>strings.Builder 和 bytes.Buffer 底层都是 []byte 数组，bytes.Buffer 转化为字符串时重新申请了一块空间，存放生成的字符串变量，而 strings.Builder 直接将底层的 []byte 转换成了字符串类型返回</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="空结构体">空结构体</h3>
+<ul>
+<li>空结构体不占据内存空间，可作为占位符使用</li>
+<li>比如实现简单的 Set
+<ul>
+<li>Go 语言标准库没有提供 Set 的实现，通常使用 map 来代替。对于集合场景，只需要用到 map 的键而不需要值</li>
+</ul>
+</li>
+</ul>
+<h3 id="atomic-包">atomic 包</h3>
+<p>对于变量来说，建议使用 <code>atomic</code> 来代替 <code>sync.Mutex</code></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205121936775.jpg" alt=""></p>
+<p>原理</p>
+<ul>
+<li>锁的实现是通过操作系统来实现，属于系统调用，<code>atomic</code> 操作是通过硬件实现的，效率比锁高很多</li>
+<li><code>sync.Mutex</code> 应该用来保护一段逻辑，不仅仅用于保护一个变量</li>
+<li>对于非数值系列，可以使用 <code>atomic.Value</code>，<code>atomic.Value</code> 能承载一个 <code>interface&#123;&#125;</code></li>
+</ul>
+<h3 id="小结-3">小结</h3>
+<ul>
+<li>
+<p>避免常见的性能陷阱可以保证大部分程序的性能</p>
+</li>
+<li>
+<p>针对普通应用代码，不要一味地追求程序的性能，应当在满足正确可靠、简洁清晰等质量要求的前提下提高程序性能</p>
+</li>
+</ul>
+<h1 id="性能调优实战">性能调优实战</h1>
+<h2 id="性能调优简介">性能调优简介</h2>
+<ul>
+<li>要依靠数据不是猜测</li>
+<li>要定位最大瓶颈而不是细枝末节</li>
+<li>不要过早优化</li>
+<li>不要过度优化</li>
+</ul>
+<h2 id="性能分析工具-pprof-实战">性能分析工具 pprof 实战</h2>
+<h3 id="功能简介">功能简介</h3>
+<h3 id="排查实战">排查实战</h3>
+<h4 id="搭建-pprof-实践项目">搭建 pprof 实践项目</h4>
+<h4 id="浏览器查看指标">浏览器查看指标</h4>
+<h4 id="CPU">CPU</h4>
+<ul>
+<li>命令：topN</li>
+<li>命令：list</li>
+<li>命令：web</li>
+</ul>
+<h4 id="Heap-堆内存">Heap - 堆内存</h4>
+<ul>
+<li>Top 视图</li>
+<li>Source 视图</li>
+</ul>
+<h3 id="goroutine-协程">goroutine - 协程</h3>
+<h4 id="mutex-锁">mutex - 锁</h4>
+<h4 id="block-阻塞">block - 阻塞</h4>
+<h4 id="小结-4">小结</h4>
+<h3 id="采样过程和原理">采样过程和原理</h3>
+<h3 id="小结-5">小结</h3>
+<h2 id="性能调优案例">性能调优案例</h2>
+<h3 id="基本概念">基本概念</h3>
+<pre><code>- 服务：能单独部署，承载一定功能的程序
+- 依赖：Service A 的功能实现依赖 Service B 的响应结果，称为 Service A 依赖 Service B
+- 调用链路：能支持一个接口请求的相关服务集合及其相互之间的依赖关系
+- 基础库：公共的工具包、中间件
+</code></pre>
+<h3 id="业务优化">业务优化</h3>
+<pre><code>- 流程
+    - 建立服务性能评估手段
+    - 分析性能数据，定位性能瓶颈
+    - 重点优化项改造
+    - 优化效果验证
+- 建立压测评估链路
+    - 服务性能评估
+    - 构造请求流量
+    - 压测范围
+    - 性能数据采集
+- 分析性能火焰图，定位性能瓶颈
+    - pprof 火焰图
+- 重点优化项分析
+    - 规范组件库使用
+    - 高并发场景优化
+    - 增加代码检查规则避免增量劣化出现
+    - 优化正确性验证
+- 上线验证评估
+    - 逐步放量，避免出现问题
+- 进一步优化，服务整体链路分析
+    - 规范上游服务调用接口，明确场景需求
+    - 分析业务流程，通过业务流程优化提升服务性能
+</code></pre>
+<h3 id="基础库优化">基础库优化</h3>
+<pre><code>- 适应范围更广，覆盖更多服务
+- AB 实验 SDK 的优化
+    - 分析基础库核心逻辑和性能瓶颈
+    - 完善改造方案，按需获取，序列化协议优化
+    - 内部压测验证
+    - 推广业务服务落地验证
+</code></pre>
+<h3 id="Go-语言优化">Go 语言优化</h3>
+<pre><code>- 适应范围最广，Go 服务都有收益
+- 优化方式
+    - 优化内存分配策略
+    - 优化代码编译流程，生成更高效的程序
+    - 内部压测验证
+    - 推广业务服务落地验证
+</code></pre>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/">字节青训营</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BC%96%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">高质量编程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BC%96%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">高质量编程简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83"><span class="toc-number">1.2.</span> <span class="toc-text">编码规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.2.1.</span> <span class="toc-text">代码格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gofmt"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">gofmt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#goimports"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">goimports</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.2.2.</span> <span class="toc-text">注释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A%E5%BA%94%E8%AF%A5%E5%81%9A%E7%9A%84"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">注释应该做的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E5%90%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">命名</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#variable"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">variable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#function"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#package"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">package</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-2"><span class="toc-number">1.2.3.4.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.4.</span> <span class="toc-text">控制流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E4%B8%8E%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">1.2.5.</span> <span class="toc-text">错误与异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E9%94%99%E8%AF%AF"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">简单错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84-Wrap-%E5%92%8C-Unwrap"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">错误的 Wrap 和 Unwrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%88%A4%E5%AE%9A"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">错误判定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#panic"><span class="toc-number">1.2.5.4.</span> <span class="toc-text">panic</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#recover"><span class="toc-number">1.2.5.5.</span> <span class="toc-text">recover</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">性能优化建议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Slice"><span class="toc-number">1.3.1.</span> <span class="toc-text">Slice</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map"><span class="toc-number">1.3.2.</span> <span class="toc-text">Map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86"><span class="toc-number">1.3.3.</span> <span class="toc-text">字符串处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.3.4.</span> <span class="toc-text">空结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#atomic-%E5%8C%85"><span class="toc-number">1.3.5.</span> <span class="toc-text">atomic 包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-3"><span class="toc-number">1.3.6.</span> <span class="toc-text">小结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E5%AE%9E%E6%88%98"><span class="toc-number">2.</span> <span class="toc-text">性能调优实战</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E7%AE%80%E4%BB%8B"><span class="toc-number">2.1.</span> <span class="toc-text">性能调优简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7-pprof-%E5%AE%9E%E6%88%98"><span class="toc-number">2.2.</span> <span class="toc-text">性能分析工具 pprof 实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%AE%80%E4%BB%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">功能简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E6%9F%A5%E5%AE%9E%E6%88%98"><span class="toc-number">2.2.2.</span> <span class="toc-text">排查实战</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA-pprof-%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">搭建 pprof 实践项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9F%A5%E7%9C%8B%E6%8C%87%E6%A0%87"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">浏览器查看指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CPU"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">CPU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Heap-%E5%A0%86%E5%86%85%E5%AD%98"><span class="toc-number">2.2.2.4.</span> <span class="toc-text">Heap - 堆内存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#goroutine-%E5%8D%8F%E7%A8%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text">goroutine - 协程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mutex-%E9%94%81"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">mutex - 锁</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#block-%E9%98%BB%E5%A1%9E"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">block - 阻塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-4"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%87%E6%A0%B7%E8%BF%87%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-number">2.2.4.</span> <span class="toc-text">采样过程和原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93-5"><span class="toc-number">2.2.5.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%E6%A1%88%E4%BE%8B"><span class="toc-number">2.3.</span> <span class="toc-text">性能调优案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.3.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%9A%E5%8A%A1%E4%BC%98%E5%8C%96"><span class="toc-number">2.3.2.</span> <span class="toc-text">业务优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%BA%93%E4%BC%98%E5%8C%96"><span class="toc-number">2.3.3.</span> <span class="toc-text">基础库优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-%E8%AF%AD%E8%A8%80%E4%BC%98%E5%8C%96"><span class="toc-number">2.3.4.</span> <span class="toc-text">Go 语言优化</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

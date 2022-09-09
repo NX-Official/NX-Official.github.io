@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 入门笔记（十一）面向对象 | NX の 博客</title><meta name="keywords" content="Python"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="面向对象基础 面向对象（OOP）这种烂大街东西我觉得应该没什么必要再赘述了，就简单地搬运一下菜鸟教程里面的说明  类(Class)： 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。 方法： 类中定义的函数。 类变量： 类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。 数据成员： 类变量或者实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 入门笔记（十一）面向对象">
+<meta property="og:url" content="https://www.nickxu.top/2022/07/06/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="面向对象基础 面向对象（OOP）这种烂大街东西我觉得应该没什么必要再赘述了，就简单地搬运一下菜鸟教程里面的说明  类(Class)： 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。 方法： 类中定义的函数。 类变量： 类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。 数据成员： 类变量或者实例">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-07-05T23:11:01.000Z">
+<meta property="article:modified_time" content="2022-07-06T15:05:08.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/07/06/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python 入门笔记（十一）面向对象',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-06 23:05:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python 入门笔记（十一）面向对象</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-05T23:11:01.000Z" title="发表于 2022-07-06 07:11:01">2022-07-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-06T15:05:08.000Z" title="更新于 2022-07-06 23:05:08">2022-07-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/Python3-%E5%85%A5%E9%97%A8/">Python3 入门</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="Python 入门笔记（十一）面向对象"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="面向对象基础">面向对象基础</h1>
+<p>面向对象（OOP）这种烂大街东西我觉得应该没什么必要再赘述了，就简单地搬运一下菜鸟教程里面的说明</p>
+<ul>
+<li><strong>类(Class)：</strong> 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。</li>
+<li><strong>方法：</strong> 类中定义的函数。</li>
+<li><strong>类变量：</strong> 类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。</li>
+<li><strong>数据成员：</strong> 类变量或者实例变量用于处理类及其实例对象的相关的数据。</li>
+<li><strong>方法重写：</strong> 如果从父类继承的方法不能满足子类的需求，可以对其进行改写，这个过程叫方法的覆盖（override），也称为方法的重写。</li>
+<li><strong>局部变量：</strong> 定义在方法中的变量，只作用于当前实例的类。</li>
+<li><strong>实例变量：</strong> 在类的声明中，属性是用变量来表示的，这种变量就称为实例变量，实例变量就是一个用 self 修饰的变量。</li>
+<li><strong>继承：</strong> 即一个派生类（derived class）继承基类（base class）的字段和方法。继承也允许把一个派生类的对象作为一个基类对象对待。例如，有这样一个设计：一个 Dog 类型的对象派生自 Animal 类，这是模拟 “是一个（is-a）” 关系（例如，Dog 是一个 Animal）。</li>
+<li><strong>实例化：</strong> 创建一个类的实例，类的具体对象。</li>
+<li><strong>对象：</strong> 通过类定义的数据结构实例。对象包括两个数据成员（类变量和实例变量）和方法。</li>
+</ul>
+<p>杭助的 <a target="_blank" rel="noopener" href="https://github.com/hduhelp/backend_guide/blob/main/common/oop/oop_started.md#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A">Guide</a> 也可以看一下，OOP 是一种思想，很多语言都有支持</p>
+<hr>
+<h1 id="初尝类与实例">初尝类与实例</h1>
+<h2 id="创建一个简单的类">创建一个简单的类</h2>
+<p>先讲一下基本的模板</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ClassName</span>:  <span class="comment"># 类名的首字母要大写，这是约定，然后因为这里没有继承（从父类创建新类），所以后面没有括号</span></span><br><span class="line">    &lt;statement-<span class="number">1</span>&gt; <span class="comment"># --第 1 条描述--</span></span><br><span class="line">    .             <span class="comment"># 类定义里面可以放一堆的属性（类中的变量）、方法（附着在这个类上的专属函数）</span></span><br><span class="line">    .             <span class="comment"># 属性可以直接定义，但是如果这样的话不够优雅</span></span><br><span class="line">    .             <span class="comment"># 比较常见的做法是在 __init__() 方法中定义，这样方便在创建的时候个性化每个实例的属性</span></span><br><span class="line">    &lt;statement-N&gt; <span class="comment"># --第 N 条描述--</span></span><br></pre></td></tr></table></figure>
+<p>下面创建一个 <code>Dog</code> 类，它有名字和年龄两个属性，还有蹲下和打滚两个方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, age</span>):  <span class="comment"># 初始化属性</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sit</span>(<span class="params">self</span>): <span class="comment"># 模拟蹲下</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.name&#125;</span> is now sitting.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">roll_over</span>(<span class="params">self</span>): <span class="comment"># 模拟打滚</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;self.name&#125;</span> rolled over!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><code>__init__()</code> 是一个特殊方法，它会在每次实例化的时候自动执行，<mark class="hl-label green">它的第一个参数指代实例本身</mark> （不一定是 <code>self</code> ，但是一般都用这个词），然后你就可以使用 <code>self.name</code> 来操纵实例内的 <code>name</code> 属性</p>
+<p>下面的两个方法为了简单都只有打印语句的功能，和上面的方法一样，必须在开头多一个参数，来表示实例本身（就和 <code>__init__()</code> 一样），这是类中的方法与普通函数的一个特殊的区别</p>
+<h2 id="通过类创建和使用实例">通过类创建和使用实例</h2>
+<h3 id="访问属性">访问属性</h3>
+<p>下面先来创建一个实例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_dog = Dog(<span class="string">&quot;Rex&quot;</span>, <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;My dog&#x27;s name is <span class="subst">&#123;my_dog.name&#125;</span>.&quot;</span>)    <span class="comment"># My dog&#x27;s name is Rex.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;My dog is <span class="subst">&#123;my_dog.age&#125;</span> years old.&quot;</span>)  <span class="comment"># My dog is 6 years old.</span></span><br></pre></td></tr></table></figure>
+<p>首先，通过 <code>Dog()</code> 来自动调用 <code>__init__()</code> 方法创建了一个 <code>Dog</code> 的实例 <code>my_dog</code> ，它的名称是 <code>Rex</code> ，年龄是 <code>6</code></p>
+<p>接下来，你就可以使用诸如 <code>my_dog.name</code> 的方式来访问实例中的属性了</p>
+<h3 id="调用方法">调用方法</h3>
+<p>实例化一个类之后，你便可以调用其中的方法</p>
+<p>比如命令小狗下蹲和打滚</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_dog.sit()        <span class="comment"># Rex is now sitting.</span></span><br><span class="line">my_dog.roll_over()  <span class="comment"># Rex rolled over!</span></span><br></pre></td></tr></table></figure>
+<h3 id="创建多个实例">创建多个实例</h3>
+<p>一旦定义好了类，创建多少个实例都可以</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">my_dog = Dog(<span class="string">&quot;Rex&quot;</span>, <span class="number">6</span>)</span><br><span class="line">your_dog = Dog(<span class="string">&quot;Lucy&quot;</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;My dog&#x27;s name is <span class="subst">&#123;my_dog.name&#125;</span>.&quot;</span>)    <span class="comment"># My dog&#x27;s name is Rex.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;My dog is <span class="subst">&#123;my_dog.age&#125;</span> years old.&quot;</span>)  <span class="comment"># My dog is 6 years old.</span></span><br><span class="line">my_dog.sit()        <span class="comment"># Rex is now sitting.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\nYour dog&#x27;s name is <span class="subst">&#123;your_dog.name&#125;</span>.&quot;</span>)  <span class="comment"># Your dog&#x27;s name is Lucy.</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Your dog is <span class="subst">&#123;your_dog.age&#125;</span> years old.&quot;</span>)  <span class="comment"># Your dog is 3 years old.</span></span><br><span class="line">your_dog.sit()        <span class="comment"># Lucy is now sitting.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="稍微深入">稍微深入</h1>
+<h2 id="属性默认值">属性默认值</h2>
+<p>下面来编写一个表示汽车的类，它存储了有关汽车的信息，还有返回基本信息与打印里程的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, model, year</span>): <span class="comment"># 初始化对象属性</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.model = model</span><br><span class="line">        self.year = year</span><br><span class="line">        self.odometer_reading = <span class="number">0</span>  <span class="comment"># 设置汽车里程数的默认值为 0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_descriptive_name</span>(<span class="params">self</span>): <span class="comment"># 返回整洁的描述性信息</span></span><br><span class="line">        long_name = <span class="built_in">str</span>(self.year) + <span class="string">&#x27; &#x27;</span> + self.name + <span class="string">&#x27; &#x27;</span> + self.model</span><br><span class="line">        <span class="keyword">return</span> long_name.title()</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">read_odometer</span>(<span class="params">self</span>): <span class="comment"># 打印一条消息，指出汽车里程</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;This car has &quot;</span> + <span class="built_in">str</span>(self.odometer_reading) + <span class="string">&quot; miles on it.&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">my_new_car = Car(<span class="string">&#x27;audi&#x27;</span>, <span class="string">&#x27;a4&#x27;</span>, <span class="number">2016</span>) <span class="comment"># 实例化</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(my_new_car.get_descriptive_name()) <span class="comment"># 2016 Audi A4</span></span><br><span class="line">my_new_car.read_odometer() <span class="comment"># This car has 0 miles on it.</span></span><br></pre></td></tr></table></figure>
+<p>在这里设置了属性的默认值 <code>self.odometer_reading = 0</code> ，它表示汽车的初始里程为 0</p>
+<h2 id="修改属性的值">修改属性的值</h2>
+<p>属性的值毋庸置疑是可以修改的，下面来看几个例子，以修改汽车的里程为例</p>
+<h3 id="直接手动修改">直接手动修改</h3>
+<p>最为简单粗暴的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_new_car.odometer_reading = <span class="number">23</span> <span class="comment"># 手动修改实例的属性</span></span><br><span class="line">my_new_car.read_odometer() <span class="comment"># This car has 23 miles on it.</span></span><br></pre></td></tr></table></figure>
+<h3 id="通过方法更新新值">通过方法更新新值</h3>
+<p>新加一个方法，用于修改里程</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">update_odometer</span>(<span class="params">self, mileage</span>): <span class="comment"># 用于修改里程数</span></span><br><span class="line">    self.odometer_reading = mileage</span><br></pre></td></tr></table></figure>
+<p>然后你可以这样使用它，这种方法明显更加优雅</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_new_car.update_odometer(<span class="number">23</span>) <span class="comment"># 修改实例的属性</span></span><br></pre></td></tr></table></figure>
+<p>当然，你还可以扩展一下，增加一些逻辑，比如禁止将里程回滚</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">update_odometer</span>(<span class="params">self, mileage</span>): <span class="comment"># 用于修改里程数</span></span><br><span class="line">    <span class="keyword">if</span> mileage &gt;= self.odometer_reading:</span><br><span class="line">        self.odometer_reading = mileage</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;You can&#x27;t roll back an odometer!&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>还可以更优雅嘛？可以的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">increment_odometer</span>(<span class="params">self, miles</span>): <span class="comment"># 用于增加里程数</span></span><br><span class="line">    self.odometer_reading += miles</span><br></pre></td></tr></table></figure>
+<p>使用这个方法，可以只给出里程的增量，然后这个方法会自动求值并修改属性</p>
+<hr>
+<h1 id="继承与重写">继承与重写</h1>
+<h2 id="初尝继承">初尝继承</h2>
+<p>在编写类时，并非总要从空白开始，如果要编写的类是另一个现成类的特殊版本，可以使用继承</p>
+<p>原有的类被称为父类或基类，而新类被称为子类或派生类，基本的格式如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DerivedClassName</span>(<span class="title class_ inherited__">BaseClassName</span>):</span><br><span class="line">    &lt;statement-<span class="number">1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br></pre></td></tr></table></figure>
+<p>子类与父类必须定义在一个作用域内，如果父类在另一个模块内，可以这样写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DerivedClassName</span>(modname.BaseClassName):</span><br></pre></td></tr></table></figure>
+<hr>
+<p>现在来尝试一下，从汽车类（ <code>Car</code> ）的基础上创建一个新的电动车类（ <code>ElectricCar</code> ），并且暂时不添加新的属性与方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, model, year</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(name, model, year) <span class="comment"># 没有 self</span></span><br></pre></td></tr></table></figure>
+<p>这里的 <code>super()</code> 为调用父类，你也可以选择下面这种写法，但是没有前者规范</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Car.__init__(self, name, model, year) <span class="comment"># 有 self</span></span><br></pre></td></tr></table></figure>
+<p>现在测试一下有没有问题，能否使用父类的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_tesla = ElectricCar(<span class="string">&#x27;tesla&#x27;</span>, <span class="string">&#x27;model s&#x27;</span>, <span class="number">2019</span>)</span><br><span class="line"><span class="built_in">print</span>(my_tesla.get_descriptive_name()) <span class="comment"># 2019 Tesla Model S</span></span><br></pre></td></tr></table></figure>
+<p>没有问题，下面可以接着添加子类的特有属性和方法了</p>
+<hr>
+<p>下面添加一个电动车特有的属性（电瓶容量），以及一个查看容量的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, model, year</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(name, model, year)</span><br><span class="line">        self.battery_size = <span class="number">70</span> <span class="comment"># 看这里</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">describe_battery</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;This car has a &quot;</span> + <span class="built_in">str</span>(self.battery_size) + <span class="string">&quot;-kWh battery.&quot;</span>)</span><br><span class="line">        </span><br><span class="line"> <span class="built_in">print</span>(my_tesla.battery_size) <span class="comment"># 70，成功返回</span></span><br></pre></td></tr></table></figure>
+<p>正如你所见，现在的子类已经能实现父类没有的功能了</p>
+<hr>
+<p>还可以更优雅嘛？当然可以</p>
+<p>当使用代码模拟实物的时候，你会发现要添加的细节越来越多，属性和方法以及文件会越来越长。在这种情况下，可以将类的一部分提取出来，作为一个单独的类</p>
+<p>例如，在不断给 <code>ElectricCar</code> 添加细节的时候，有关电瓶的内容会越来越多，现在先尝试把这些内容提取出来，放到 <code>Battery</code> 类中，然后再将 <code>Battery</code> 作为 <code>ElectricCar</code> 的一个属性</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Battery</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, battery_size=<span class="number">70</span></span>):</span><br><span class="line">        self.battery_size = battery_size</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">describe_battery</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;This car has a &quot;</span> + <span class="built_in">str</span>(self.battery_size) + <span class="string">&quot;-kWh battery.&quot;</span>)</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ElectricCar</span>(<span class="title class_ inherited__">Car</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, model, year</span>):</span><br><span class="line">        <span class="built_in">super</span>().__init__(name, model, year)</span><br><span class="line">        self.battery = Battery()</span><br></pre></td></tr></table></figure>
+<p>然后可以这样使用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">my_tesla = ElectricCar(<span class="string">&#x27;tesla&#x27;</span>, <span class="string">&#x27;model s&#x27;</span>, <span class="number">2019</span>)</span><br><span class="line">my_tesla.battery.describe_battery()  <span class="comment"># This car has a 70-kWh battery.</span></span><br></pre></td></tr></table></figure>
+<h2 id="方法重写">方法重写</h2>
+<p>如果父类的某个方法不能满足子类的要求，子类中可以重新定义该方法，父类中的将被覆盖</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span>:        <span class="comment"># 定义父类</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">myMethod</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;调用父类方法&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span>(<span class="title class_ inherited__">Parent</span>):  <span class="comment"># 定义子类</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">myMethod</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;调用子类方法&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c = Child()          <span class="comment"># 子类实例</span></span><br><span class="line">c.myMethod()         <span class="comment"># 子类调用重写方法</span></span><br><span class="line"><span class="built_in">super</span>(Child, c).myMethod()  <span class="comment"># 用子类对象调用父类已被覆盖的方法</span></span><br></pre></td></tr></table></figure>
+<p>结果为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">调用子类方法</span><br><span class="line">调用父类方法</span><br></pre></td></tr></table></figure>
+<h2 id="多继承">多继承</h2>
+<p>Python 支持多继承形式，多继承的类定义形如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DerivedClassName</span>(Base1, Base2, Base3):</span><br><span class="line">    &lt;statement-<span class="number">1</span>&gt;</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    .</span><br><span class="line">    &lt;statement-N&gt;</span><br></pre></td></tr></table></figure>
+<p>需要注意圆括号中父类的顺序，若是父类中有相同的方法名，而在子类使用时未指定，python 从左至右搜索</p>
+<p>即方法在子类中未找到时，从左到右查找父类中是否包含方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#类定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">people</span>:</span><br><span class="line">    <span class="comment">#定义基本属性</span></span><br><span class="line">    name = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    age = <span class="number">0</span></span><br><span class="line">    <span class="comment">#定义私有属性,私有属性在类外部无法直接进行访问</span></span><br><span class="line">    __weight = <span class="number">0</span></span><br><span class="line">    <span class="comment">#定义构造方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,n,a,w</span>):</span><br><span class="line">        self.name = n</span><br><span class="line">        self.age = a</span><br><span class="line">        self.__weight = w</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s 说: 我 %d 岁。&quot;</span> %(self.name,self.age))</span><br><span class="line"> </span><br><span class="line"><span class="comment">#单继承示例</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">student</span>(<span class="title class_ inherited__">people</span>):</span><br><span class="line">    grade = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,n,a,w,g</span>):</span><br><span class="line">        <span class="comment">#调用父类的构函</span></span><br><span class="line">        people.__init__(self,n,a,w)</span><br><span class="line">        self.grade = g</span><br><span class="line">    <span class="comment">#覆写父类的方法</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s 说: 我 %d 岁了，我在读 %d 年级&quot;</span>%(self.name,self.age,self.grade))</span><br><span class="line"> </span><br><span class="line"><span class="comment">#另一个类，多重继承之前的准备</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">speaker</span>():</span><br><span class="line">    topic = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    name = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,n,t</span>):</span><br><span class="line">        self.name = n</span><br><span class="line">        self.topic = t</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">speak</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;我叫 %s，我是一个演说家，我演讲的主题是 %s&quot;</span>%(self.name,self.topic))</span><br><span class="line"> </span><br><span class="line"><span class="comment">#多重继承</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">sample</span>(speaker,student):</span><br><span class="line">    a =<span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,n,a,w,g,t</span>):</span><br><span class="line">        student.__init__(self,n,a,w,g)</span><br><span class="line">        speaker.__init__(self,n,t)</span><br><span class="line"> </span><br><span class="line">test = sample(<span class="string">&quot;Tim&quot;</span>,<span class="number">25</span>,<span class="number">80</span>,<span class="number">4</span>,<span class="string">&quot;Python&quot;</span>)</span><br><span class="line">test.speak()   <span class="comment">#方法名同，默认调用的是在括号中参数位置排前父类的方法</span></span><br></pre></td></tr></table></figure>
+<p>执行以上程序输出结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我叫 Tim，我是一个演说家，我演讲的主题是 Python</span><br></pre></td></tr></table></figure>
+<h1 id="下划线的含义">下划线的含义</h1>
+<h2 id="私有与公有">私有与公有</h2>
+<p>这里可以康下面两个链接</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1z94y1U7j9?spm_id_from=333.999.0.0&amp;vd_source=e2613baf768b2432fcb2b9edd79c0c68">Python 中各种下划线的骚操作：_、<em>xx、xx</em>、__xx、<strong>xx</strong>、_classname__xx</a></li>
+<li><a href="/2022/07/06/%E3%80%8EPython%E3%80%8F%E5%8D%95%E4%B8%8B%E5%88%92%E7%BA%BF%E5%BC%80%E5%A4%B4%E3%80%81%E5%8F%8C%E4%B8%8B%E5%88%92%E7%BA%BF%E5%BC%80%E5%A4%B4/">『Python』单下划线开头、双下划线开头</a></li>
+</ul>
+<h2 id="运算符重载">运算符重载</h2>
+<p>Python 同样支持运算符重载，我们可以对类的专有方法进行重载，实例如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Vector</span>:</span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, a, b</span>):</span><br><span class="line">      self.a = a</span><br><span class="line">      self.b = b</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">      <span class="keyword">return</span> <span class="string">&#x27;Vector (%d, %d)&#x27;</span> % (self.a, self.b)</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">def</span> <span class="title function_">__add__</span>(<span class="params">self,other</span>):</span><br><span class="line">      <span class="keyword">return</span> Vector(self.a + other.a, self.b + other.b)</span><br><span class="line"> </span><br><span class="line">v1 = Vector(<span class="number">2</span>,<span class="number">10</span>)</span><br><span class="line">v2 = Vector(<span class="number">5</span>,-<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span> (v1 + v2)</span><br></pre></td></tr></table></figure>
+<p>以上代码执行结果如下所示:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vector(7,8)</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">面向对象基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E5%B0%9D%E7%B1%BB%E4%B8%8E%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">初尝类与实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text">创建一个简单的类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%92%8C%E4%BD%BF%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">通过类创建和使用实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%B1%9E%E6%80%A7"><span class="toc-number">2.2.1.</span> <span class="toc-text">访问属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">调用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%A4%9A%E4%B8%AA%E5%AE%9E%E4%BE%8B"><span class="toc-number">2.2.3.</span> <span class="toc-text">创建多个实例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A8%8D%E5%BE%AE%E6%B7%B1%E5%85%A5"><span class="toc-number">3.</span> <span class="toc-text">稍微深入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E9%BB%98%E8%AE%A4%E5%80%BC"><span class="toc-number">3.1.</span> <span class="toc-text">属性默认值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC"><span class="toc-number">3.2.</span> <span class="toc-text">修改属性的值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9"><span class="toc-number">3.2.1.</span> <span class="toc-text">直接手动修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E6%96%B9%E6%B3%95%E6%9B%B4%E6%96%B0%E6%96%B0%E5%80%BC"><span class="toc-number">3.2.2.</span> <span class="toc-text">通过方法更新新值</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E4%B8%8E%E9%87%8D%E5%86%99"><span class="toc-number">4.</span> <span class="toc-text">继承与重写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%B0%9D%E7%BB%A7%E6%89%BF"><span class="toc-number">4.1.</span> <span class="toc-text">初尝继承</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E9%87%8D%E5%86%99"><span class="toc-number">4.2.</span> <span class="toc-text">方法重写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BB%A7%E6%89%BF"><span class="toc-number">4.3.</span> <span class="toc-text">多继承</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%8B%E5%88%92%E7%BA%BF%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-number">5.</span> <span class="toc-text">下划线的含义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%81%E6%9C%89%E4%B8%8E%E5%85%AC%E6%9C%89"><span class="toc-number">5.1.</span> <span class="toc-text">私有与公有</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="toc-number">5.2.</span> <span class="toc-text">运算符重载</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营-3rd』L15：微服务架构原理与治理实践 | NX の 博客</title><meta name="keywords" content="字节青训营"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="微服务架构介绍 系统架构演进历史 为什么系统架构需要演进？  互联网的爆炸性发展 硬件设施的快速发展 需求复杂性的多样化 开发人员的急剧增加 计算机理论及技术的发展   单体架构   All in one process  优势：  性能最高 冗余小  劣势：  debug 困难 模块相互影响 模块分工、开发流程  垂直应用架构   按照业务线垂直划分  优势：  业务独立开发维护  劣势：  不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『字节青训营-3rd』L15：微服务架构原理与治理实践">
+<meta property="og:url" content="https://www.nickxu.top/2022/05/29/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL15%EF%BC%9A%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%B2%BB%E7%90%86%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="微服务架构介绍 系统架构演进历史 为什么系统架构需要演进？  互联网的爆炸性发展 硬件设施的快速发展 需求复杂性的多样化 开发人员的急剧增加 计算机理论及技术的发展   单体架构   All in one process  优势：  性能最高 冗余小  劣势：  debug 困难 模块相互影响 模块分工、开发流程  垂直应用架构   按照业务线垂直划分  优势：  业务独立开发维护  劣势：  不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-05-29T10:52:52.000Z">
+<meta property="article:modified_time" content="2022-07-28T09:46:30.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="字节青训营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/05/29/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL15%EF%BC%9A%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86%E4%B8%8E%E6%B2%BB%E7%90%86%E5%AE%9E%E8%B7%B5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『字节青训营-3rd』L15：微服务架构原理与治理实践',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-28 17:46:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『字节青训营-3rd』L15：微服务架构原理与治理实践</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-29T10:52:52.000Z" title="发表于 2022-05-29 18:52:52">2022-05-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-28T09:46:30.000Z" title="更新于 2022-07-28 17:46:30">2022-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/">青训营</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8-3rd-%E5%90%8E%E7%AB%AF/">字节跳动-3rd-后端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『字节青训营-3rd』L15：微服务架构原理与治理实践"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="微服务架构介绍">微服务架构介绍</h1>
+<h2 id="系统架构演进历史">系统架构演进历史</h2>
+<p>为什么系统架构需要演进？</p>
+<ul>
+<li>互联网的爆炸性发展</li>
+<li>硬件设施的快速发展</li>
+<li>需求复杂性的多样化</li>
+<li>开发人员的急剧增加</li>
+<li>计算机理论及技术的发展</li>
+</ul>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056648.png" alt="image-20220609160002559"></p>
+<h3 id="单体架构">单体架构</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056029.png" alt="img"></p>
+<blockquote>
+<p>All in one process</p>
+</blockquote>
+<p>优势：</p>
+<ol>
+<li>性能最高</li>
+<li>冗余小</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>debug 困难</li>
+<li>模块相互影响</li>
+<li>模块分工、开发流程</li>
+</ol>
+<h3 id="垂直应用架构">垂直应用架构</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056037.png" alt="img"></p>
+<blockquote>
+<p>按照业务线垂直划分</p>
+</blockquote>
+<p>优势：</p>
+<ol>
+<li>业务独立开发维护</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>不同业务存在冗余</li>
+<li>每个业务还是单体</li>
+</ol>
+<h3 id="分布式架构">分布式架构</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056029.png" alt="img"></p>
+<blockquote>
+<p>抽出业务无关的公共模块</p>
+</blockquote>
+<p>优势：</p>
+<ol>
+<li>业务无关的独立服务</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>服务模块bug可导致全站瘫痪</li>
+<li>调用关系复杂</li>
+<li>不同服务冗余</li>
+</ol>
+<h3 id="SOA架构（Service-Oriented-Architecture）">SOA架构（Service Oriented  Architecture）</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056696.png" alt="img"></p>
+<blockquote>
+<p>面向服务</p>
+</blockquote>
+<p>优势：</p>
+<ol>
+<li>服务注册</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>整个系统是中心化的</li>
+<li>需要从上至下设计</li>
+<li>重构困难</li>
+</ol>
+<h3 id="微服务架构">微服务架构</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056716.png" alt="img"></p>
+<blockquote>
+<p>彻底的服务化</p>
+</blockquote>
+<p>优势：</p>
+<ol>
+<li>开发效率</li>
+<li>业务独立设计</li>
+<li>自下而上</li>
+<li>故障隔离</li>
+</ol>
+<p>劣势：</p>
+<ol>
+<li>治理、运维难度</li>
+<li>观测挑战</li>
+<li>安全性</li>
+<li>分布式系统</li>
+</ol>
+<h2 id="微服务架构概览">微服务架构概览</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056690.png" alt="img"></p>
+<h2 id="微服务架构核心要素">微服务架构核心要素</h2>
+<h3 id="服务治理">服务治理</h3>
+<ul>
+<li>服务注册</li>
+<li>服务发现</li>
+<li>负载均衡</li>
+<li>扩缩容</li>
+<li>流量治理</li>
+<li>稳定性治理</li>
+<li>…</li>
+</ul>
+<h3 id="可观察性">可观察性</h3>
+<ul>
+<li>日志采集</li>
+<li>日志分析</li>
+<li>监控打点</li>
+<li>监控大盘</li>
+<li>异常报警</li>
+<li>链路追踪</li>
+<li>…</li>
+</ul>
+<h3 id="安全">安全</h3>
+<ul>
+<li>身份验证</li>
+<li>认证授权</li>
+<li>访问令牌</li>
+<li>审计</li>
+<li>传输加密</li>
+<li>黑产攻击</li>
+<li>…</li>
+</ul>
+<h1 id="微服务架构原理及特征">微服务架构原理及特征</h1>
+<h2 id="基本概念">基本概念</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056172.png" alt="img"></p>
+<ul>
+<li>
+<p>服务（Service）</p>
+<p>一组具有相同逻辑的运行实体</p>
+</li>
+<li>
+<p>实例（Instance）</p>
+<p>一个服务中，每个运行实体即为一个实例</p>
+</li>
+<li>
+<p>实例与进程的关系</p>
+<p>实例与进程直接没有必然对应关系，一个实例可以对应一个或多个进程（反之不常见）</p>
+</li>
+<li>
+<p>集群（Cluster）</p>
+<p>通常指服务内部的逻辑划分，包含多个实例</p>
+</li>
+<li>
+<p>常见的实例承载形式</p>
+<p>进程、VM、k8s pod…</p>
+</li>
+<li>
+<p>有状态/无状态服务</p>
+<p>服务的实例是否存储了可持久化的数据（例如磁盘文件）</p>
+</li>
+<li>
+<p>服务间通信</p>
+<p>对于单体服务，不同模块通信只是简单的函数调用</p>
+<p>对于微服务，服务间通信意味着网络传输</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056355.png" alt="img"></p>
+</li>
+</ul>
+<hr>
+<p>例：如果将 HDFS 看做一组微服务：</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056772.png" alt="img"></p>
+<hr>
+<h2 id="服务注册与发现">服务注册与发现</h2>
+<h3 id="服务注册">服务注册</h3>
+<blockquote>
+<p>问题：在代码层面，如何指定调用一个目标服务的地址（ip:port）？</p>
+</blockquote>
+<ul>
+<li>
+<p>hardcode?</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056068.png" alt="img"></p>
+<p>问题：如果写死了，就只能使用一个实例</p>
+</li>
+<li>
+<p>DNS?</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056572.png" alt="img"></p>
+<p>问题：</p>
+<ol>
+<li>
+<p>本地 DNS 存在缓存，导致延时</p>
+</li>
+<li>
+<p>负载均衡问题</p>
+</li>
+<li>
+<p>不支持服务实例的探活检查</p>
+</li>
+<li>
+<p>域名无法配置接口</p>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p>解决思路：新增一个统一的服务注册中心，用于存储服务名到服务实例的映射</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056990.png" alt="img"></p>
+<h3 id="服务发现">服务发现</h3>
+<p>（服务上线及下线过程）</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056798.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056437.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056946.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056141.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056986.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056210.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056190.png" alt="img"></p>
+<h2 id="流量特征">流量特征</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056771.png" alt="img"></p>
+<ul>
+<li>统一网关入口</li>
+<li>内网通信多采用PRC</li>
+<li>网状调用链路</li>
+</ul>
+<h2 id="总结">总结</h2>
+<ul>
+<li>微服务架构中基本组件及术语</li>
+<li>服务注册及发现</li>
+<li>无损的服务示例上下线流程</li>
+<li>微服务架构中的基本流量特征</li>
+</ul>
+<h1 id="核心服务治理功能">核心服务治理功能</h1>
+<h2 id="服务发布">服务发布</h2>
+<p>服务发布（Deployment），指让一个服务升级运行新的代码的过程</p>
+<p>服务发布的难点</p>
+<ul>
+<li>
+<p>服务不可用</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056580.png" alt="img"></p>
+</li>
+<li>
+<p>服务抖动</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056682.png" alt="img"></p>
+</li>
+<li>
+<p>服务回滚</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056008.png" alt="img"></p>
+</li>
+</ul>
+<h3 id="蓝绿部署">蓝绿部署</h3>
+<p>先用另一个集群接替工作，原集群升级完毕后再切回来</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056209.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056223.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056367.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056690.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056065.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056215.png" alt="img"></p>
+<p>简单、稳定，但是需要双倍资源</p>
+<h3 id="灰度发布（金丝雀发布）">灰度发布（金丝雀发布）</h3>
+<p>让一些流量先适用新版本，再逐步扩大比例</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056430.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056212.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056116.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056384.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056428.png" alt="img"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206091928147.png" alt="img"></p>
+<p>占用资源小，但是也有不足，如某些问题是达到一定规模之后才能发现的，如果更新了99%才发现重大bug，那么要回滚会非常麻烦</p>
+<h2 id="流量治理">流量治理</h2>
+<p>在微服务架构下，我们可以基于地区、集群、实例、请求等维度，对端到端流量的路由路径进行精确控制</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056170.png" alt="img"></p>
+<h2 id="负载均衡">负载均衡</h2>
+<p>负载均衡（Load Balance）负责分配请求在每个下游实例上的分布</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056214.png" alt="img"></p>
+<p>常见的 LB 策略：</p>
+<ul>
+<li>Round Robin</li>
+<li>Random</li>
+<li>Ring Hash</li>
+<li>Least Request</li>
+<li>…</li>
+</ul>
+<h2 id="稳定性治理">稳定性治理</h2>
+<p>线上服务总是会出问题的，这与程序的正确性无关</p>
+<ul>
+<li>网络攻击</li>
+<li>流量突增</li>
+<li>机房断电</li>
+<li>光纤被挖</li>
+<li>机器故障</li>
+<li>网络故障</li>
+<li>机房空调故障</li>
+<li>…</li>
+</ul>
+<p>微服务架构中典型的稳定性治理功能：</p>
+<h3 id="限流">限流</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056358.png" alt="img"></p>
+<p>（根据流量限度，该拒绝的拒绝，不能让服务卡死宕机）</p>
+<h3 id="熔断">熔断</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056401.png" alt="img"></p>
+<p>（下游联系不到时，直接拒绝上游请求，不然上游会一直重试）</p>
+<h3 id="过载保护">过载保护</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056368.png" alt="img"></p>
+<p>（根据负载限度，该拒绝的拒绝，不能让服务卡死宕机）</p>
+<h3 id="降级">降级</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056595.png" alt="img"></p>
+<p>（对比服务的重要性，拒绝一些请求）</p>
+<h2 id="总结-2">总结</h2>
+<ul>
+<li>服务发布：蓝绿发布、灰度发布</li>
+<li>基于地区、集群、实例、请求等多维度的流量治理功能</li>
+<li>几种常见的负载均衡策略</li>
+<li>微服务架构中的稳定性治理功能</li>
+</ul>
+<h1 id="字节跳动服务治理实践">字节跳动服务治理实践</h1>
+<h2 id="重试的意义">重试的意义</h2>
+<p>本地函数调用如果出错，重试没有意义，远程函数调用才有意义</p>
+<ul>
+<li>
+<p>降低错误率</p>
+<p>假设单次请求的错误概率为0.01，那么连续两次错误的概率为0.0001</p>
+</li>
+<li>
+<p>降低长尾延时</p>
+<p>对于偶尔耗时较长的请求，重试请求有机会提前返回</p>
+</li>
+<li>
+<p>容忍暂时性错误</p>
+<p>可尽量规避网络抖动</p>
+</li>
+<li>
+<p>避开下游故障实例</p>
+<p>一个服务中可能会有少量实例故障，重试其他实例可以成功</p>
+</li>
+</ul>
+<h2 id="重试的难点">重试的难点</h2>
+<p>既然重试有这么多好处，为什么默认不用呢</p>
+<ul>
+<li>
+<p>幂等性（多次执行的结果是否相同，如对数据库中添加记录，连续执行两次就添加了两条记录）</p>
+</li>
+<li>
+<p>重试风暴</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056020.png" alt="img"></p>
+<p>（如果每一次都无脑重试3次）</p>
+</li>
+<li>
+<p>超时设置</p>
+</li>
+</ul>
+<h2 id="重试策略">重试策略</h2>
+<h3 id="限制重试比例">限制重试比例</h3>
+<p>设定一个重试比例阈值（例如1%），重试次数占所有请求比例不超过该阈值</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056024.png" alt="img"></p>
+<h3 id="防止链路重试">防止链路重试</h3>
+<p>链路层面的防重试风暴的核心是限制每层都发生重试，理想情况下只有最下一层发生重试，可以返回特殊的 status 表面 “请求失败，但别重试”</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056243.png" alt="img"></p>
+<h3 id="Hedged-Request">Hedged Request</h3>
+<p>对于可能超时（或延时高）的请求，重新向另一个下游实例发送一个相同的请求，并等待先到的响应</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056457.png" alt="img"></p>
+<h2 id="重试效果验证">重试效果验证</h2>
+<p>实践验证经过上述重试策略后，在链路上发生的重试放大效应</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206092056396.jpeg" alt="img"></p>
+<h2 id="总结-3">总结</h2>
+<ul>
+<li>重试的意义及难点</li>
+<li>应对重试风暴的策略</li>
+</ul>
+<details class="toggle" ><summary class="toggle-button" style="">原视频截图</summary><div class="toggle-content"><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032149338.png" alt="image-20220603214941247"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032150062.png" alt="image-20220603215003990"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032150228.png" alt="image-20220603215051155"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032154057.png" alt="image-20220603215406969"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032154026.png" alt="image-20220603215448935"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032156062.png" alt="image-20220603215629975"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032158669.png" alt="image-20220603215830585"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032202705.png" alt="image-20220603220222622"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032202966.png" alt="image-20220603220233888"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032206206.png" alt="image-20220603220638113"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032210260.png" alt="image-20220603221057175"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032212023.png" alt="image-20220603221226932"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032213819.png" alt="image-20220603221355737"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032214155.png" alt="image-20220603221414071"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032214361.png" alt="image-20220603221455281"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032217125.png" alt="image-20220603221734043"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032218088.png" alt="image-20220603221839011"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032220462.png" alt="image-20220603222006386"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032220765.png" alt="image-20220603222017689"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032220839.png" alt="image-20220603222032762"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032221670.png" alt="image-20220603222108577"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032221754.png" alt="image-20220603222120677"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032221726.png" alt="image-20220603222142652"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032223555.png" alt="image-20220603222358493"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032225686.png" alt="image-20220603222506593"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032226846.png" alt="image-20220603222649761"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032229630.png" alt="image-20220603222913566"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032229018.png" alt="image-20220603222942947"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032229527.png" alt="image-20220603222947460"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032229614.png" alt="image-20220603222954548"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032231915.png" alt="image-20220603223116821"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032231469.png" alt="image-20220603223127375"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032237381.png" alt="image-20220603223719285"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032238608.png" alt="image-20220603223846532"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032239719.png" alt="image-20220603223935627"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032241250.png" alt="image-20220603224105179"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032241132.png" alt="image-20220603224126050"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032245235.png" alt="image-20220603224508158"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032245584.png" alt="image-20220603224558490"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032247525.png" alt="image-20220603224732443"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032248943.png" alt="image-20220603224826855"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032249852.png" alt="image-20220603224917767"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032251066.png" alt="image-20220603225102994"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032252611.png" alt="image-20220603225208540"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032253228.png" alt="image-20220603225336155"></p>
+<p>（如果每一次都无脑重试3次）</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032255064.png" alt="image-20220603225513996"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032257934.png" alt="image-20220603225716845"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032258002.png" alt="image-20220603225838931"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032300008.png" alt="image-20220603230039932"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206032301850.png" alt="image-20220603230156787"></p>
+</div></details>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/">字节青训营</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">微服务架构介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E6%BC%94%E8%BF%9B%E5%8E%86%E5%8F%B2"><span class="toc-number">1.1.</span> <span class="toc-text">系统架构演进历史</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">单体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9E%82%E7%9B%B4%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.2.</span> <span class="toc-text">垂直应用架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.3.</span> <span class="toc-text">分布式架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SOA%E6%9E%B6%E6%9E%84%EF%BC%88Service-Oriented-Architecture%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">SOA架构（Service Oriented  Architecture）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.5.</span> <span class="toc-text">微服务架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-number">1.2.</span> <span class="toc-text">微服务架构概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0"><span class="toc-number">1.3.</span> <span class="toc-text">微服务架构核心要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86"><span class="toc-number">1.3.1.</span> <span class="toc-text">服务治理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%A7%82%E5%AF%9F%E6%80%A7"><span class="toc-number">1.3.2.</span> <span class="toc-text">可观察性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E5%85%A8"><span class="toc-number">1.3.3.</span> <span class="toc-text">安全</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86%E5%8F%8A%E7%89%B9%E5%BE%81"><span class="toc-number">2.</span> <span class="toc-text">微服务架构原理及特征</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0"><span class="toc-number">2.2.</span> <span class="toc-text">服务注册与发现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C"><span class="toc-number">2.2.1.</span> <span class="toc-text">服务注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-number">2.2.2.</span> <span class="toc-text">服务发现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-number">2.3.</span> <span class="toc-text">流量特征</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.4.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E5%8A%9F%E8%83%BD"><span class="toc-number">3.</span> <span class="toc-text">核心服务治理功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%8F%91%E5%B8%83"><span class="toc-number">3.1.</span> <span class="toc-text">服务发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%93%9D%E7%BB%BF%E9%83%A8%E7%BD%B2"><span class="toc-number">3.1.1.</span> <span class="toc-text">蓝绿部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%B0%E5%BA%A6%E5%8F%91%E5%B8%83%EF%BC%88%E9%87%91%E4%B8%9D%E9%9B%80%E5%8F%91%E5%B8%83%EF%BC%89"><span class="toc-number">3.1.2.</span> <span class="toc-text">灰度发布（金丝雀发布）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%B2%BB%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">流量治理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">3.3.</span> <span class="toc-text">负载均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A%E6%80%A7%E6%B2%BB%E7%90%86"><span class="toc-number">3.4.</span> <span class="toc-text">稳定性治理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E6%B5%81"><span class="toc-number">3.4.1.</span> <span class="toc-text">限流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%94%E6%96%AD"><span class="toc-number">3.4.2.</span> <span class="toc-text">熔断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E8%BD%BD%E4%BF%9D%E6%8A%A4"><span class="toc-number">3.4.3.</span> <span class="toc-text">过载保护</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%8D%E7%BA%A7"><span class="toc-number">3.4.4.</span> <span class="toc-text">降级</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">3.5.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E6%9C%8D%E5%8A%A1%E6%B2%BB%E7%90%86%E5%AE%9E%E8%B7%B5"><span class="toc-number">4.</span> <span class="toc-text">字节跳动服务治理实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%AF%95%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">4.1.</span> <span class="toc-text">重试的意义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%AF%95%E7%9A%84%E9%9A%BE%E7%82%B9"><span class="toc-number">4.2.</span> <span class="toc-text">重试的难点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%AF%95%E7%AD%96%E7%95%A5"><span class="toc-number">4.3.</span> <span class="toc-text">重试策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E9%87%8D%E8%AF%95%E6%AF%94%E4%BE%8B"><span class="toc-number">4.3.1.</span> <span class="toc-text">限制重试比例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%98%B2%E6%AD%A2%E9%93%BE%E8%B7%AF%E9%87%8D%E8%AF%95"><span class="toc-number">4.3.2.</span> <span class="toc-text">防止链路重试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hedged-Request"><span class="toc-number">4.3.3.</span> <span class="toc-text">Hedged Request</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%AF%95%E6%95%88%E6%9E%9C%E9%AA%8C%E8%AF%81"><span class="toc-number">4.4.</span> <span class="toc-text">重试效果验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-3"><span class="toc-number">4.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『Go』方法和接口 | NX の 博客</title><meta name="keywords" content="Go"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="一、方法 1.方法是什么 你可以为某个类型声明它的专属函数，如为 A 类型声明函数 f 函数 f 就附加在了类型 A 上，使用 A.f() 来调用 这时 f 就称为 A 的 「方法」 类型 A 就称为方法 f 的 「接收者」  方法就是一种带「接收者」参数的函数  2.为什么要使用方法 方法使我们能在Go中运用面向对象的思想来编程（就像C++中的类一样） 3.如何使用方法 3.1 方法的声明 首先">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『Go』方法和接口">
+<meta property="og:url" content="https://www.nickxu.top/2021/11/09/go-fang-fa-he-jie-kou/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="一、方法 1.方法是什么 你可以为某个类型声明它的专属函数，如为 A 类型声明函数 f 函数 f 就附加在了类型 A 上，使用 A.f() 来调用 这时 f 就称为 A 的 「方法」 类型 A 就称为方法 f 的 「接收者」  方法就是一种带「接收者」参数的函数  2.为什么要使用方法 方法使我们能在Go中运用面向对象的思想来编程（就像C++中的类一样） 3.如何使用方法 3.1 方法的声明 首先">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2021-11-09T08:43:32.000Z">
+<meta property="article:modified_time" content="2022-03-02T12:41:18.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2021/11/09/go-fang-fa-he-jie-kou/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『Go』方法和接口',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-03-02 20:41:18'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『Go』方法和接口</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-09T08:43:32.000Z" title="发表于 2021-11-09 16:43:32">2021-11-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-03-02T12:41:18.000Z" title="更新于 2022-03-02 20:41:18">2022-03-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Golang/">Golang</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『Go』方法和接口"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、方法">一、方法</h2>
+<h3 id="1-方法是什么">1.方法是什么</h3>
+<p>你可以为某个类型声明它的专属函数，如为 A 类型声明函数 f</p>
+<p>函数 f 就附加在了类型 A 上，使用 <strong>A.f()</strong> 来调用</p>
+<p>这时 f 就称为 A 的 <strong>「方法」</strong></p>
+<p>类型 A 就称为方法 f 的 <strong>「接收者」</strong></p>
+<blockquote>
+<p><strong>方法就是一种带「接收者」参数的函数</strong></p>
+</blockquote>
+<h3 id="2-为什么要使用方法">2.为什么要使用方法</h3>
+<p>方法使我们能在Go中运用面向对象的思想来编程（就像C++中的类一样）</p>
+<h3 id="3-如何使用方法">3.如何使用方法</h3>
+<h4 id="3-1-方法的声明">3.1 方法的声明</h4>
+<p>首先复习一下函数的声明格式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> 函数名 <span class="params">(参数列表)</span></span> (返回值列表)&#123;</span><br><span class="line"><span class="comment">// 函数体</span></span><br><span class="line"><span class="keyword">return</span> 返回值列表</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法无疑就是多了个接收者参数，位置在 func 和函数名之间</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(接收者)</span></span> 函数名 (参数列表) (返回值列表)&#123;</span><br><span class="line"><span class="comment">// 函数体</span></span><br><span class="line"><span class="keyword">return</span> 返回值列表</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ol>
+<li>
+<p>你不能在 A 包内为 B 包内的一个类型定义方法，也就是说方法和接收者必须在同一个包里</p>
+</li>
+<li>
+<p>内建类型无法定义方法，因为这些类型不是你定义的，<s>你也不知道它是在哪个包里定义的</s></p>
+</li>
+</ol>
+<p>例子：声明一个 point 类型，用于表示一个二维坐标的点，再为它声明一个方法 dis ，用于获取该点到原点的距离。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;math&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明 Point 类型</span></span><br><span class="line"><span class="keyword">type</span> Point <span class="keyword">struct</span> &#123;</span><br><span class="line">	X, Y <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明 dis 方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a Point)</span></span> dis() <span class="type">float64</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> math.Sqrt(a.X*a.X + a.Y*a.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := Point&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">	fmt.Println(a.dis()) <span class="comment">//输出 5</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="3-2-值接收者与指针接收者">3.2 值接收者与指针接收者</h4>
+<p>如为 A 类型声明方法 f，那么接收者就是值，每次传入的都是拷贝的一个副本，方法内操作的是原变量的副本</p>
+<p>如为 A 类型的指针声明方法 f，那么接收者就是指针，每次传入的都是一个指针，方法内操作的是原变量</p>
+<p>现在新声明一个方法 add，实现对坐标的加法功能</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;math&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明 Point 类型</span></span><br><span class="line"><span class="keyword">type</span> Point <span class="keyword">struct</span> &#123;</span><br><span class="line">	X, Y <span class="type">float64</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明 dis 方法</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a Point)</span></span> dis() <span class="type">float64</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> math.Sqrt(a.X*a.X + a.Y*a.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明 add 方法，新增加法功能</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(a *Point)</span></span> add(n, m <span class="type">float64</span>) &#123;</span><br><span class="line">	a.X += n</span><br><span class="line">	a.Y += m</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := Point&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">	fmt.Println(a)       <span class="comment">//输出 &#123;3 4&#125;</span></span><br><span class="line">	fmt.Println(a.dis()) <span class="comment">//输出 5</span></span><br><span class="line">	(&amp;a).add(<span class="number">2</span>, <span class="number">8</span>)</span><br><span class="line">	fmt.Println(a)       <span class="comment">//输出 &#123;5 12&#125;</span></span><br><span class="line">	fmt.Println(a.dis()) <span class="comment">//输出 13</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="3-3-指针重定向">3.3 指针重定向</h4>
+<p>刚才为 Point 的指针声明了方法 add，但实际上使用值也可以成功调用，Go可以为你自动转换（重定向）</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := Point&#123;<span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">	fmt.Println(a)       <span class="comment">//输出 &#123;3 4&#125;</span></span><br><span class="line">	fmt.Println(a.dis()) <span class="comment">//输出 5</span></span><br><span class="line">	a.add(<span class="number">2</span>, <span class="number">8</span>)          <span class="comment">//与 (&amp;a).add(2, 8) 等价，没有问题 </span></span><br><span class="line">	fmt.Println(a)       <span class="comment">//输出 &#123;5 12&#125;</span></span><br><span class="line">	fmt.Println(a.dis()) <span class="comment">//输出 13</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说，如果方法的接收者为指针，传入时无论是值或者指针都会被自动转换为指针</p>
+<p>对立情况也是如此，如果方法的接收者为值，传入时无论是值或者指针都会被自动转换为值</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println((&amp;a).dis()) <span class="comment">//会自动转换，没有问题</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、接口">二、接口</h2>
+<p>首先感谢<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Gt411F7uE?from=search&amp;seid=11935336223076492437&amp;spm_id_from=333.337.0.0">这个视频</a>，教会了我接口</p>
+<h3 id="1-为什么要用接口">1.为什么要用接口</h3>
+<p>在讲接口是什么的时候，有必要先弄清楚为什么要用接口</p>
+<p>接口同方法一样，也是服务于面向对象思想的</p>
+<p>比如一个网上商城可能使用支付宝、微信、银联等方式去在线支付，我们能不能把它们当成“支付方式”来处理呢？</p>
+<p>比如三角形，四边形，圆形都能计算周长和面积，我们能不能把它们当成“图形”来处理呢？</p>
+<p>比如销售、行政、程序员都能计算月薪，我们能不能把他们当成“员工”来处理呢？</p>
+<p>Go语言中为了解决类似上面的问题，就设计了接口这个概念。接口区别于我们之前所有的具体类型，接口是一种抽象的类型。</p>
+<p>当你看到一个接口类型的值时，你不知道它是什么，唯一知道的是通过它的方法能做什么。</p>
+<h3 id="2-接口是什么">2.接口是什么</h3>
+<p><strong>接口是一种数据类型</strong> ，它的作用是 <strong>保存</strong> 一类符合条件的数据类型</p>
+<p>“符合条件”具体地说就是看那些数据类型有没有实现某个接口所规定的方法，<strong>凡是实现了这些方法的类型就称实现了这个接口</strong>，实现了这个接口，这个接口就能<strong>保存</strong>那些类型</p>
+<p>接口不管你的方法怎么实现的，只要你有这个方法就行。也就是说，你拿到一个接口，只知道它能实现什么（有什么方法），而不知道它具体是怎么完成的</p>
+<h3 id="3-接口怎么用">3.接口怎么用</h3>
+<h4 id="3-1-接口的声明">3.1 接口的声明</h4>
+<p>接口的声明格式如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> 接口类型名 <span class="keyword">interface</span>&#123;</span><br><span class="line">    方法名<span class="number">1</span>( 参数列表<span class="number">1</span> ) 返回值列表<span class="number">1</span></span><br><span class="line">    方法名<span class="number">2</span>( 参数列表<span class="number">2</span> ) 返回值列表<span class="number">2</span></span><br><span class="line">    …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：接口在命名时，一般会在单词后面添加 er，如有写操作的接口叫 Writer，有字符串功能的接口叫 Stringer 等。接口名最好要能突出该接口的类型含义</p>
+<h4 id="3-2-接口的基础用法">3.2 接口的基础用法</h4>
+<p>我们来定义一个 Sayer 接口：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sayer 接口</span></span><br><span class="line"><span class="keyword">type</span> Sayer <span class="keyword">interface</span> &#123;</span><br><span class="line">	say()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再定义 dog 和 cat 两个结构体：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> dog <span class="keyword">struct</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> cat <span class="keyword">struct</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>因为 Sayer 接口里只有一个 say 方法，所以我们只需要给 dog 和 cat 分别实现 say 方法就可以实现 Sayer 接口了</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// dog实现了Sayer接口</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d dog)</span></span> say() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;汪汪汪&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// cat实现了Sayer接口</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c cat)</span></span> say() &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;喵喵喵&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>接口类型变量能够存储所有实现了该接口的实例</strong>， 例如上面的示例中，Sayer 类型的变量能够存储 dog 和 cat 类型的变量</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> x Sayer <span class="comment">// 声明一个Sayer类型的变量x</span></span><br><span class="line">	a := cat&#123;&#125;  <span class="comment">// 实例化一个cat</span></span><br><span class="line">	b := dog&#123;&#125;  <span class="comment">// 实例化一个dog</span></span><br><span class="line">	x = a       <span class="comment">// 可以把cat实例直接赋值给x</span></span><br><span class="line">	x.say()     <span class="comment">// 喵喵喵</span></span><br><span class="line">	x = b       <span class="comment">// 可以把dog实例直接赋值给x</span></span><br><span class="line">	x.say()     <span class="comment">// 汪汪汪</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-结合函数的用法">3.3 结合函数的用法</h4>
+<p>先假设我们摸一只猫的时候，猫会喵喵喵地叫，摸一条狗的时候，它会汪汪汪地叫</p>
+<p>现在我们写一个”摸“函数，要求来什么都会摸一下，并且不管是猫还是狗都可以传入</p>
+<p>这时我们就可以用接口来作为参数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">touch</span><span class="params">(x Sayer)</span></span> &#123;</span><br><span class="line">	x.say()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a := cat&#123;&#125; <span class="comment">// 实例化一个cat</span></span><br><span class="line">	b := dog&#123;&#125; <span class="comment">// 实例化一个dog</span></span><br><span class="line">	touch(a)   <span class="comment">//喵喵喵</span></span><br><span class="line">	touch(b)   <span class="comment">//汪汪汪</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这便是结合函数的用法</p>
+<h4 id="3-4-值接收者和指针接收者实现接口的区别">3.4 值接收者和指针接收者实现接口的区别</h4>
+<p>先来说<strong>值接收者实现接口</strong></p>
+<p>在上面的例子中，无论是猫还是狗的 say 方法用的都是值接收者</p>
+<p>拿狗举例子，我们分别尝试把 dog 类型和 *dog 类型赋给一个 Sayer 接口</p>
+<p>第一条（dog类型）我们取名为 旺财，第二条（*dog类型）我们取名为 富贵</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> x Sayer</span><br><span class="line">	<span class="keyword">var</span> wangcai = dog&#123;&#125; <span class="comment">// 旺财是dog类型</span></span><br><span class="line">	x = wangcai         <span class="comment">// x可以接收dog类型</span></span><br><span class="line">	<span class="keyword">var</span> fugui = &amp;dog&#123;&#125;  <span class="comment">// 富贵是*dog类型</span></span><br><span class="line">	x = fugui           <span class="comment">// x可以接收*dog类型</span></span><br><span class="line">	x.say()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面的代码中我们可以发现，使用值接收者实现接口之后，不管是 值（dog） 还是 指针（*dog） 类型的变量都可以赋值给该接口变量，如果是指针的话会先自动求它的值</p>
+<p>而<strong>指针接收者实现接口</strong>则不同：</p>
+<p>如果我们把狗的 say 方法改为指针接收者，则会有错误：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(d *dog)</span></span> say() &#123;   <span class="comment">//接收者改为了指针类型</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;汪汪汪&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> x Sayer</span><br><span class="line">	<span class="keyword">var</span> wangcai = dog&#123;&#125; <span class="comment">// 旺财是dog类型</span></span><br><span class="line">	x = wangcai         <span class="comment">//错误：x不能接收dog类型</span></span><br><span class="line">	x.say()</span><br><span class="line">	<span class="keyword">var</span> fugui = &amp;dog&#123;&#125;  <span class="comment">// 富贵是*dog类型</span></span><br><span class="line">	x = fugui           <span class="comment">// x可以接收*dog类型</span></span><br><span class="line">	x.say()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时实现 Sayer 接口的是 *dog 类型，所以不能给 x 传入 dog 类型的 wangcai，此时 x 只能存储 *dog 类型的值</p>
+<h4 id="3-5-接口嵌套">3.5 接口嵌套</h4>
+<p>接口与接口间可以通过嵌套创造出新的接口</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Sayer 接口</span></span><br><span class="line"><span class="keyword">type</span> Sayer <span class="keyword">interface</span> &#123;</span><br><span class="line">	say()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Mover 接口</span></span><br><span class="line"><span class="keyword">type</span> Mover <span class="keyword">interface</span> &#123;</span><br><span class="line">	move()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口嵌套</span></span><br><span class="line"><span class="keyword">type</span> animal <span class="keyword">interface</span> &#123;</span><br><span class="line">	Sayer</span><br><span class="line">	Mover</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>嵌套得到的接口的使用与普通接口一样，只是一种偷懒的方法，相当于把其他接口的内容复制过来</p>
+<h4 id="3-6-空接口">3.6 空接口</h4>
+<p>空接口是指没有定义任何方法的接口。因此任何类型都实现了空接口</p>
+<p>这不就很好玩了吗？空接口可以存储任意类型的变量！</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 定义一个空接口x</span></span><br><span class="line">	<span class="keyword">var</span> x <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	s := <span class="string">&quot;Hello World&quot;</span></span><br><span class="line">	x = s</span><br><span class="line">	fmt.Printf(<span class="string">&quot;type:%T value:%v\n&quot;</span>, x, x)</span><br><span class="line">	i := <span class="number">100</span></span><br><span class="line">	x = i</span><br><span class="line">	fmt.Printf(<span class="string">&quot;type:%T value:%v\n&quot;</span>, x, x)</span><br><span class="line">	b := <span class="literal">true</span></span><br><span class="line">	x = b</span><br><span class="line">	fmt.Printf(<span class="string">&quot;type:%T value:%v\n&quot;</span>, x, x)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>空接口有两个主要应用：</p>
+<p><strong>作为函数的参数</strong></p>
+<p>使用空接口实现可以接收任意类型的函数参数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空接口作为函数参数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">show</span><span class="params">(a <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;type:%T value:%v\n&quot;</span>, a, a)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>作为map的值</strong></p>
+<p>使用空接口实现可以保存任意值的字典</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 空接口作为map值</span></span><br><span class="line">	<span class="keyword">var</span> studentInfo = <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">interface</span>&#123;&#125;)</span><br><span class="line">	studentInfo[<span class="string">&quot;name&quot;</span>] = <span class="string">&quot;小明&quot;</span></span><br><span class="line">	studentInfo[<span class="string">&quot;age&quot;</span>] = <span class="number">18</span></span><br><span class="line">	studentInfo[<span class="string">&quot;married&quot;</span>] = <span class="literal">false</span></span><br><span class="line">	fmt.Println(studentInfo)</span><br></pre></td></tr></table></figure>
+<h4 id="3-7-类型断言">3.7 类型断言</h4>
+<p>想判断接口中保存的类型可以用类型断言（其实就是猜测）来完成，格式为：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x.(T)</span><br></pre></td></tr></table></figure>
+<p>其中 T 表示断言 x 可能是的类型</p>
+<p>该语法返回两个参数，第一个参数是 x 转化为 T 类型后的变量，第二个值是一个布尔值，若为 true 则表示断言（猜测）成功，为 false 则表示断言（猜测）失败。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> x <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line">	x = <span class="string">&quot;Hello 沙河&quot;</span></span><br><span class="line">	v, ok := x.(<span class="type">string</span>)</span><br><span class="line">	<span class="keyword">if</span> ok &#123;</span><br><span class="line">		fmt.Println(v)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;类型断言失败&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要断言多次就需要写多个 if 判断，这个时候我们可以使用 switch 语句来实现：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">justifyType</span><span class="params">(x <span class="keyword">interface</span>&#123;&#125;)</span></span> &#123;</span><br><span class="line">	<span class="keyword">switch</span> v := x.(<span class="keyword">type</span>) &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="type">string</span>:</span><br><span class="line">		fmt.Printf(<span class="string">&quot;x is a string，value is %v\n&quot;</span>, v)</span><br><span class="line">	<span class="keyword">case</span> <span class="type">int</span>:</span><br><span class="line">		fmt.Printf(<span class="string">&quot;x is a int is %v\n&quot;</span>, v)</span><br><span class="line">	<span class="keyword">case</span> <span class="type">bool</span>:</span><br><span class="line">		fmt.Printf(<span class="string">&quot;x is a bool is %v\n&quot;</span>, v)</span><br><span class="line">	<span class="keyword">default</span>:</span><br><span class="line">		fmt.Println(<span class="string">&quot;unsupport type！&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Go/">Go</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">一、方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%96%B9%E6%B3%95%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">1.方法是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">2.为什么要使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">3.如何使用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%96%B9%E6%B3%95%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 方法的声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%80%BC%E6%8E%A5%E6%94%B6%E8%80%85%E4%B8%8E%E6%8C%87%E9%92%88%E6%8E%A5%E6%94%B6%E8%80%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 值接收者与指针接收者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E6%8C%87%E9%92%88%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 指针重定向</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.</span> <span class="toc-text">二、接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.1.</span> <span class="toc-text">1.为什么要用接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8E%A5%E5%8F%A3%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">2.2.</span> <span class="toc-text">2.接口是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%A5%E5%8F%A3%E6%80%8E%E4%B9%88%E7%94%A8"><span class="toc-number">2.3.</span> <span class="toc-text">3.接口怎么用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-number">2.3.1.</span> <span class="toc-text">3.1 接口的声明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95"><span class="toc-number">2.3.2.</span> <span class="toc-text">3.2 接口的基础用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E7%BB%93%E5%90%88%E5%87%BD%E6%95%B0%E7%9A%84%E7%94%A8%E6%B3%95"><span class="toc-number">2.3.3.</span> <span class="toc-text">3.3 结合函数的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-%E5%80%BC%E6%8E%A5%E6%94%B6%E8%80%85%E5%92%8C%E6%8C%87%E9%92%88%E6%8E%A5%E6%94%B6%E8%80%85%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.3.4.</span> <span class="toc-text">3.4 值接收者和指针接收者实现接口的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-5-%E6%8E%A5%E5%8F%A3%E5%B5%8C%E5%A5%97"><span class="toc-number">2.3.5.</span> <span class="toc-text">3.5 接口嵌套</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-6-%E7%A9%BA%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.3.6.</span> <span class="toc-text">3.6 空接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-7-%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80"><span class="toc-number">2.3.7.</span> <span class="toc-text">3.7 类型断言</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

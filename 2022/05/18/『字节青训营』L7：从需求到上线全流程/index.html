@@ -1,0 +1,586 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营-3rd』L7：从需求到上线全流程 | NX の 博客</title><meta name="keywords" content="字节青训营"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="第七节：从需求到上线全流程 这一节的内容是讲作为一个大企的后端人，平时的工作是怎样进行的 印象很深的地方就是按照跑火车的节奏每周先拿开会需求，开发，上线测试，再开会、开发…还是很有意思的 正经的笔记真的没时间做，下面就备份一手学习资料吧（其实也基本能囊括上课讲的内容了）  概述 课程背景： 作为后端研发同学，在一个完整的需求交付周期内究竟要做哪些事情？在各个阶段需要跟不同的角色和平台打交道。介绍常">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『字节青训营-3rd』L7：从需求到上线全流程">
+<meta property="og:url" content="https://www.nickxu.top/2022/05/18/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL7%EF%BC%9A%E4%BB%8E%E9%9C%80%E6%B1%82%E5%88%B0%E4%B8%8A%E7%BA%BF%E5%85%A8%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="第七节：从需求到上线全流程 这一节的内容是讲作为一个大企的后端人，平时的工作是怎样进行的 印象很深的地方就是按照跑火车的节奏每周先拿开会需求，开发，上线测试，再开会、开发…还是很有意思的 正经的笔记真的没时间做，下面就备份一手学习资料吧（其实也基本能囊括上课讲的内容了）  概述 课程背景： 作为后端研发同学，在一个完整的需求交付周期内究竟要做哪些事情？在各个阶段需要跟不同的角色和平台打交道。介绍常">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-05-18T07:12:22.000Z">
+<meta property="article:modified_time" content="2022-07-28T09:46:30.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="字节青训营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/05/18/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL7%EF%BC%9A%E4%BB%8E%E9%9C%80%E6%B1%82%E5%88%B0%E4%B8%8A%E7%BA%BF%E5%85%A8%E6%B5%81%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『字节青训营-3rd』L7：从需求到上线全流程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-07-28 17:46:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『字节青训营-3rd』L7：从需求到上线全流程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-18T07:12:22.000Z" title="发表于 2022-05-18 15:12:22">2022-05-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-28T09:46:30.000Z" title="更新于 2022-07-28 17:46:30">2022-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/">青训营</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8-3rd-%E5%90%8E%E7%AB%AF/">字节跳动-3rd-后端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『字节青训营-3rd』L7：从需求到上线全流程"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7097126973163454494#heading-36">第七节：从需求到上线全流程</a></p>
+<p>这一节的内容是讲作为一个大企的后端人，平时的工作是怎样进行的</p>
+<p>印象很深的地方就是按照跑火车的节奏每周先拿开会需求，开发，上线测试，再开会、开发…还是很有意思的</p>
+<p>正经的笔记真的没时间做，下面就备份一手学习资料吧（其实也基本能囊括上课讲的内容了）</p>
+<hr>
+<h2 id="概述">概述</h2>
+<p><strong>课程背景：</strong> 作为后端研发同学，在一个完整的需求交付周期内究竟要做哪些事情？在各个阶段需要跟不同的角色和平台打交道。介绍常见的研发模式和迭代流程，以实际的例子让同学感受一下后端研发的日常，能够提升大家在团队中协作的能力。</p>
+<p><strong>课程目标：</strong></p>
+<ol>
+<li>提升对流程的认知</li>
+<li>熟悉在公司大团队中协作开发</li>
+<li>对职业生涯的日常有更直观的理解</li>
+</ol>
+<h2 id="课前-（必须）">课前 （必须）</h2>
+<h3 id="词汇表">词汇表</h3>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>英文</th>
+<th>中文</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>研发模式</td>
+<td>Waterfall Model</td>
+<td>瀑布模型</td>
+<td>瀑布模型（Waterfall Model）最早强调软件或系统开发应有完整之周期，且必须完整的经历周期之每一开发阶段，并系统化的考量分析与设计的技术、时间与资源之投入等。由于该模式强调系统开发过程需有完整的规划、分析、设计、测试及文件等管理与控制，因此能有效的确保系统质量，它已经成为软体业界大多数软件开发的最初标准</td>
+</tr>
+<tr>
+<td>The Scaled Agile Framework(SAFe)</td>
+<td>规模化敏捷框架</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Scrum</td>
+<td>Scrum</td>
+<td>在软件工程中，Scrum是以经验过程为依据，采用迭代、增量的方法来提高产品开发的可预见性并控制风险的理论，Scrum不是一种过程，也不是一项构建产品的技术，而是一个框架，在Scrum框架中可以应用各种过程和技术，Scrum的作用是让开发实践方法的相对功效显现出来以便随时改进。 Scrum是敏捷(Agile)开发的一种实践模式，敏捷开发强调拥抱需求变化，快速响应不断变化的需求，并尽可能快地提供可以工作的软件产品，敏捷最强调的是可以正常工作的软件产品，文档等不是非常的强调（并非不要文档，只是需要必要的文档），敏捷理论认为面对面的沟通交流远比文档更有效。 敏捷开发的Scrum模式是以价值驱动(Value-Driven)的开发模式，即认为用户的需求并不一定需要100%实现，最重要的是将对用户最有价值的功能实现并交付.</td>
+<td></td>
+</tr>
+<tr>
+<td>流程中的概念</td>
+<td>Scrum Master</td>
+<td>敏捷教练</td>
+<td>Scrum Master是Scrum教练和团队带头人，确保团队合理的运作Scrum，并帮助团队扫除实施中的障碍</td>
+</tr>
+<tr>
+<td>Product Owner</td>
+<td>产品负责人</td>
+<td>产品负责人，确定产品的方向和愿景，定义产品发布的内容、优先级及交付时间，为产品投资回报率负责；</td>
+<td></td>
+</tr>
+<tr>
+<td>Agile Release Train</td>
+<td>敏捷发布火车</td>
+<td>敏捷开发的一种发布模式</td>
+<td></td>
+</tr>
+<tr>
+<td>RD</td>
+<td>研发工程师</td>
+<td>RD一般指Research and Development Engineer，即研发工程师。</td>
+<td></td>
+</tr>
+<tr>
+<td>PM</td>
+<td>产品经理</td>
+<td>产品经理</td>
+<td></td>
+</tr>
+<tr>
+<td>PRD</td>
+<td>产品需求文档</td>
+<td>产品需求文档</td>
+<td></td>
+</tr>
+<tr>
+<td>RD</td>
+<td>研发工程师</td>
+<td>RD一般指Research and Development Engineer，即研发工程师。</td>
+<td></td>
+</tr>
+<tr>
+<td>UED</td>
+<td>交互设计师</td>
+<td>用户体验设计师，交互设计师，界面设计师</td>
+<td></td>
+</tr>
+<tr>
+<td>QA</td>
+<td>测试工程师</td>
+<td>指理解产品的功能要求，并对其进行测试，检查软件有没有缺陷（Bug），测试软件是否具有稳定性（Robustness）、安全性、易操作性等性能，写出相应的测试规范和测试用例的专门工作人员。</td>
+<td></td>
+</tr>
+<tr>
+<td>Backlog</td>
+<td>待办事项</td>
+<td>产品订单（product backlog）是整个专案的概要文档。产品订单包括所有所需特性的粗略的描述。产品订单是关于将要生产什么样的产品。产品订单是开放的，每个人都可以编辑。产品订单包括粗略的估算，通常以天为单位。估算将帮助产品负责人衡量时程表和优先级（例如，如果&quot;增加拼写检查&quot;特性的估计需要花3天或3个月，将影响产品负责人对该特性的渴望）。 冲刺订单（sprint backlog）是大大细化了的文档，包含团队如何实现下一个冲刺的需求的信息。任务被分解为以小时为单位，没有任务可以超过16个小时。如果一个任务超过16个小时，那么它就应该被进一步分解。冲刺订单上的任务不会被分派，而是由团队成员签名认领他们喜爱的任务。</td>
+<td></td>
+</tr>
+<tr>
+<td>Grooming Meeting</td>
+<td>Grooming会议</td>
+<td>这个会议上面会由PO来描述下个迭代需要实现的功能，大家讨论要不要干</td>
+<td></td>
+</tr>
+<tr>
+<td>Planning Meeting</td>
+<td>Planning会议</td>
+<td>这个会议讨论功能具体什么时候干，要估算任务的工作量</td>
+<td></td>
+</tr>
+<tr>
+<td>基础知识</td>
+<td>CNCF</td>
+<td>云原生计算基金会</td>
+<td>云原生计算是软件开发中的一种方法，它利用云计算“在现代动态环境（例如公共云、私有云和混合云）中构建和运行可扩展的应用程序”。 通过声明性代码部署的容器、微服务、无服务器功能和不可变基础设施等技术是这种架构风格的常见元素。</td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td>K8S</td>
+<td>生产级别的容器编排系统。Kubernetes 是一个可移植的、可扩展的开源平台，用于管理容器化的工作负载和服务，可促进声明式配置和自动化。 Kubernetes 拥有一个庞大且快速增长的生态系统。Kubernetes 的服务、支持和工具广泛可用。</td>
+<td></td>
+</tr>
+<tr>
+<td>FAAS</td>
+<td>函数即服务</td>
+<td>函数即服务。仅通过编写函数（function）就能够发布为一个 API 或者服务，实现业务功能的技术体系。由于处理单元为函数粒度，往往底层也能够支持自动扩缩容地更精细化使用计算资源，开发侧支持事件驱动，可由消息或多种 Hook 触发，同时拥有快速上线、按需付费等优点。</td>
+<td></td>
+</tr>
+<tr>
+<td>APAAS</td>
+<td>平台即服务</td>
+<td>是一个为应用程序服务提供开发和部署环境的云服务</td>
+<td></td>
+</tr>
+<tr>
+<td>IDE</td>
+<td>IDE</td>
+<td>用于提供程序开发环境的应用程序。一般包括代码编辑器、编译器、调试器和图形用户界面等工具</td>
+<td></td>
+</tr>
+<tr>
+<td>Git</td>
+<td>Git</td>
+<td>分布式的版本管理系统</td>
+<td></td>
+</tr>
+<tr>
+<td>Merge/Rebase</td>
+<td>合并/变基</td>
+<td>处理代码分支的操作，将不同的分支整合成一个的两种方式</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="课中">课中</h2>
+<h3 id="1-为什么要有流程">1. 为什么要有流程</h3>
+<h4 id="团队规模和流程的关系">团队规模和流程的关系</h4>
+<p>随着团队规模和问题复杂度的上升，一个人搞定一切就不可能了，超过了一个人，就需要进行团队协作，自然也就需要有流程。<br>
+常见的协作模式：</p>
+<ul>
+<li>瀑布模型 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7ffdaa2f4cf648028e1534f8f811462f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"></li>
+<li>敏捷开发 <img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7a8226ec557a452d976bf34b0cbe0a29~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"></li>
+<li>规模化敏捷</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/cd79b20834984f308934378ef3dcc64a~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"></p>
+<h4 id="后端的定位">后端的定位</h4>
+<ul>
+<li>瀑布模式
+<ul>
+<li>按照时间节点参与会议，产出文档（系统分析，概要设计，详细设计，接口文档，提测文档等）</li>
+<li>按照时间节点交付测试</li>
+<li>按照时间节点发布</li>
+</ul>
+</li>
+<li>敏捷团队
+<ul>
+<li>跟随迭代制定规划，进行开发</li>
+<li>参与待办事项整理会议（Backlog Grooming Meeting）
+<ul>
+<li>PO描述下个迭代希望实现的用户故事</li>
+</ul>
+</li>
+<li>迭代计划会议（Sprint Planning Meeting）
+<ul>
+<li>选择迭代的任务和估算工作量</li>
+</ul>
+</li>
+<li>每日站会（Standup Meeting）
+<ul>
+<li>昨天你做了什么?</li>
+<li>今天你将要做什么?</li>
+<li>你有需要帮助的地方吗?</li>
+</ul>
+</li>
+<li>评审会（Retrospective Meeting）
+<ul>
+<li>小组向产品负责人展示迭代工作结果</li>
+</ul>
+</li>
+<li>反思会（Retrospective Meeting）
+<ul>
+<li>在每个迭代后召开简短的反思会，总结哪些事情做得好，哪些事情做得不好</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="团队协作">团队协作</h4>
+<p>一个具体的迭代时间表：</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b82fefa85cd94b60be71e920121ee6f8~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"></p>
+<h3 id="2-有哪些流程">2. 有哪些流程</h3>
+<h4 id="需求阶段">需求阶段</h4>
+<ul>
+<li>
+<p>不要浪费时间讨论不应该存在的问题</p>
+</li>
+<li>
+<p>站在用户的角度思考</p>
+</li>
+<li>
+<p>给出后端系统视角的建议，估算任务优先级</p>
+</li>
+</ul>
+<h4 id="开发阶段">开发阶段</h4>
+<ul>
+<li>
+<p>云原生下的开发：</p>
+<ul>
+<li>容器化技术</li>
+<li>微服务技术</li>
+<li>WebIDE</li>
+</ul>
+</li>
+<li>
+<p>团队分支策略：</p>
+<ul>
+<li>为什么会有分支策略</li>
+<li>有哪些分支策略</li>
+<li>合并的方式</li>
+</ul>
+</li>
+<li>
+<p>代码规范</p>
+<ul>
+<li>养成良好的注释习惯，超过三个月的代码，自己都会忘了当时在想什么</li>
+<li>不要有魔法数字，魔法字符串</li>
+<li>重复的逻辑抽象成公共的方法，不要copy代码</li>
+<li>正确使用IDE的重构功能，防止修改错误</li>
+</ul>
+</li>
+<li>
+<p>自测</p>
+<ul>
+<li>单元测试</li>
+<li>功能环境测试</li>
+<li>测试数据构造</li>
+</ul>
+</li>
+<li>
+<p>文档</p>
+<ul>
+<li>大型改造需要有技术设计文档，方案评审</li>
+<li>好的接口文档能更方便的和前端进行沟通</li>
+</ul>
+</li>
+</ul>
+<h4 id="测试阶段">测试阶段</h4>
+<ul>
+<li>功能测试</li>
+</ul>
+<p>功能测试，是为了测试一个新开发的功能，因此需要有能模拟线上的开发和测试环境，环境之间能相互隔离，这样可以独立验证不同的新功能</p>
+<ul>
+<li>
+<p>集成测试：集成测试，是为了把几个功能合在一起测试，因为可能各个新功能独立测试没有问题，但是合在一起却产生了bug</p>
+</li>
+<li>
+<p>回归测试：回归测试是为了验证老的功能不被新的改动影响</p>
+</li>
+</ul>
+<h4 id="发布阶段">发布阶段</h4>
+<ul>
+<li>
+<p>各种发布模式</p>
+<ul>
+<li>蛮力发布：简单粗暴，直接用新版本覆盖老版本。</li>
+<li>金丝雀发布：由于金丝雀对瓦斯极其敏感，因此以前矿工开矿下矿洞前，先会放一只金丝雀进去探是否有有毒气体，看金丝雀能否活下来，金丝雀发布由此得名。</li>
+<li>滚动发布：每个实例都通过金丝雀的方式逐步放大流量，对用户影响小，体验平滑</li>
+<li>蓝绿发布：常备两个集群，先把流量全部切换到Group 1，升级Group2，然后再把流量全部切换到Group 2，升级Group 1。最终恢复流量。</li>
+<li>红黑发布：与蓝绿发布类似，但是日常只有一个集群工作，发布时扩容一个集群升级新版本，切换流量后下掉老版本的集群。</li>
+</ul>
+</li>
+<li>
+<p>发布过程要做的事</p>
+<ul>
+<li>发布负责人
+<ul>
+<li>负责按照计划执行发布</li>
+<li>需要通知各个相关人员发布进展</li>
+<li>观察各个服务的发布状态，及时处理异常</li>
+</ul>
+</li>
+<li>变更服务的相关RD
+<ul>
+<li>按照上线checklist检查服务的日志，监控，响应上线过程中的告警</li>
+<li>对于自己负责的改动，在小流量或者是预览环境进行功能验证</li>
+<li>执行发布计划中的其他操作（如线上配置，数据处理等）</li>
+</ul>
+</li>
+<li>值班同学
+<ul>
+<li>发布过程中的监控和告警需要特别关注，如果有异常需要立刻判断是否由变更引起</li>
+<li>如果有变更引起的告警或者用户反馈，需要及时中止发布</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="运维阶段">运维阶段</h4>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/858f17e23c734576800edc150bf87095~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"></p>
+<h3 id="3-怎样执行流程">3. 怎样执行流程</h3>
+<h4 id="DevOps">DevOps</h4>
+<ul>
+<li>效率竖井
+<ul>
+<li>流程中实际产生价值的部分很短</li>
+<li>大量的时间用在等待和传递上</li>
+<li>人和人之间的沟通很慢</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c12374129f8d4c11a2a07b74bd6ed511~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="img"></p>
+<ul>
+<li>DevOps解决方案
+<ul>
+<li>代码管理</li>
+<li>自动化测试</li>
+<li>持续集成</li>
+<li>持续交付</li>
+</ul>
+</li>
+</ul>
+<h4 id="全流程自动化">全流程自动化</h4>
+<ul>
+<li>
+<p>通过效能平台串联各个阶段</p>
+<ul>
+<li>需求发起研发流程的自动化</li>
+<li>写代码，测试环境部署的自动化</li>
+<li>自动化测试触发和报告分析</li>
+<li>发布过程可观测融入流程</li>
+</ul>
+</li>
+<li>
+<p>减少无价值的等待</p>
+<ul>
+<li>分析整个流程的耗时，计算真正产生价值的时间</li>
+<li>不断优化流程，让有价值的流程时间占比上升</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考文献">参考文献</h2>
+<ol>
+<li>
+<p>瀑布模型 <a href="https://link.juejin.cn?target=https%3A%2F%2Fzh.wikipedia.org%2Fwiki%2F%E7%80%91%E5%B8%83%E6%A8%A1%E5%9E%8B">zh.wikipedia.org/wiki/%E7%80…</a></p>
+</li>
+<li>
+<p>Scrum: <a href="https://link.juejin.cn?target=https%3A%2F%2Fzh.wikipedia.org%2Fwiki%2FScrum">zh.wikipedia.org/wiki/Scrum</a></p>
+</li>
+<li>
+<p>SAFe：</p>
+<p>a.  <a href="https://link.juejin.cn?target=http%3A%2F%2Fwww.woshipm.com%2Fpd%2F4331832.html">www.woshipm.com/pd/4331832.…</a><br>
+b.  <a href="https://link.juejin.cn?target=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FScaled_agile_framework">en.wikipedia.org/wiki/Scaled…</a></p>
+</li>
+<li>
+<p>CNCF：<a href="https://link.juejin.cn?target=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FCloud_Native_Computing_Foundation">en.wikipedia.org/wiki/Cloud_…</a></p>
+</li>
+<li>
+<p>常用的发布模式：<a href="https://link.juejin.cn?target=https%3A%2F%2Fwww.cnblogs.com%2FLeo_wl%2Fp%2F14395960.html">www.cnblogs.com/Leo_wl/p/14…</a></p>
+</li>
+</ol>
+<p>作者：青训营官方账号<br>
+链接：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7097126973163454494">https://juejin.cn/post/7097126973163454494</a><br>
+来源：稀土掘金<br>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/">字节青训营</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E5%89%8D-%EF%BC%88%E5%BF%85%E9%A1%BB%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">课前 （必须）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%8D%E6%B1%87%E8%A1%A8"><span class="toc-number">2.1.</span> <span class="toc-text">词汇表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BE%E4%B8%AD"><span class="toc-number">3.</span> <span class="toc-text">课中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E6%B5%81%E7%A8%8B"><span class="toc-number">3.1.</span> <span class="toc-text">1. 为什么要有流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E8%A7%84%E6%A8%A1%E5%92%8C%E6%B5%81%E7%A8%8B%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.1.1.</span> <span class="toc-text">团队规模和流程的关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E7%9A%84%E5%AE%9A%E4%BD%8D"><span class="toc-number">3.1.2.</span> <span class="toc-text">后端的定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%A2%E9%98%9F%E5%8D%8F%E4%BD%9C"><span class="toc-number">3.1.3.</span> <span class="toc-text">团队协作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%B5%81%E7%A8%8B"><span class="toc-number">3.2.</span> <span class="toc-text">2. 有哪些流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E9%98%B6%E6%AE%B5"><span class="toc-number">3.2.1.</span> <span class="toc-text">需求阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E9%98%B6%E6%AE%B5"><span class="toc-number">3.2.2.</span> <span class="toc-text">开发阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E9%98%B6%E6%AE%B5"><span class="toc-number">3.2.3.</span> <span class="toc-text">测试阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E9%98%B6%E6%AE%B5"><span class="toc-number">3.2.4.</span> <span class="toc-text">发布阶段</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E7%BB%B4%E9%98%B6%E6%AE%B5"><span class="toc-number">3.2.5.</span> <span class="toc-text">运维阶段</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%80%8E%E6%A0%B7%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">3.3.</span> <span class="toc-text">3. 怎样执行流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DevOps"><span class="toc-number">3.3.1.</span> <span class="toc-text">DevOps</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%A8%E6%B5%81%E7%A8%8B%E8%87%AA%E5%8A%A8%E5%8C%96"><span class="toc-number">3.3.2.</span> <span class="toc-text">全流程自动化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">4.</span> <span class="toc-text">参考文献</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>

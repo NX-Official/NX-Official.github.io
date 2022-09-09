@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营-4th-大数据』L6：大数据 Shuffle 原理与实践 | NX の 博客</title><meta name="keywords" content="字节青训营"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="相关链接🎶 学员手册：【大数据专场 学习资料二】第四届字节跳动青训营  讲真，这节课大概都听不懂（  Shuffle 概述 MapReduce 概述  Map  三张 gif Shuffle  本质：通过哈希区别不同类型数据 Reduce  为什么 Shuffle 对性能非常重要  总结  批式计算的发展流程 Shuffle 算子 算子分类与应用   这个例子中，把一个 txt 按行分割，然后统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『字节青训营-4th-大数据』L6：大数据 Shuffle 原理与实践">
+<meta property="og:url" content="https://www.nickxu.top/2022/07/31/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL6%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE-Shuffle-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="相关链接🎶 学员手册：【大数据专场 学习资料二】第四届字节跳动青训营  讲真，这节课大概都听不懂（  Shuffle 概述 MapReduce 概述  Map  三张 gif Shuffle  本质：通过哈希区别不同类型数据 Reduce  为什么 Shuffle 对性能非常重要  总结  批式计算的发展流程 Shuffle 算子 算子分类与应用   这个例子中，把一个 txt 按行分割，然后统">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-07-31T04:59:26.000Z">
+<meta property="article:modified_time" content="2022-08-19T02:53:44.000Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="字节青训营">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/07/31/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL6%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE-Shuffle-%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『字节青训营-4th-大数据』L6：大数据 Shuffle 原理与实践',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-19 10:53:44'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『字节青训营-4th-大数据』L6：大数据 Shuffle 原理与实践</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-31T04:59:26.000Z" title="发表于 2022-07-31 12:59:26">2022-07-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-19T02:53:44.000Z" title="更新于 2022-08-19 10:53:44">2022-08-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/">青训营</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE/">字节跳动-4th-大数据</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">378</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『字节青训营-4th-大数据』L6：大数据 Shuffle 原理与实践"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><details class="toggle" ><summary class="toggle-button" style="">相关链接</summary><div class="toggle-content"><p>🎶 学员手册：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7123908203590451207/#heading-46">【大数据专场 学习资料二】第四届字节跳动青训营</a></p>
+</div></details>
+<p>讲真，这节课大概都听不懂（</p>
+<hr>
+<h1 id="Shuffle-概述">Shuffle 概述</h1>
+<h2 id="MapReduce-概述">MapReduce 概述</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181058824.png" alt="image-20220818105838700"></p>
+<h2 id="Map">Map</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181102668.png" alt="image-20220818110201543"></p>
+<p>三张 gif</p>
+<h2 id="Shuffle">Shuffle</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181101216.png" alt="image-20220818110112097"></p>
+<p>本质：通过哈希区别不同类型数据</p>
+<h2 id="Reduce">Reduce</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181101926.png" alt="image-20220818110128825"></p>
+<h2 id="为什么-Shuffle-对性能非常重要">为什么 Shuffle 对性能非常重要</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181103549.png" alt="image-20220818110332418"></p>
+<h2 id="总结">总结</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181105838.png" alt="image-20220818110546718"></p>
+<p>批式计算的发展流程</p>
+<h1 id="Shuffle-算子">Shuffle 算子</h1>
+<h2 id="算子分类与应用">算子分类与应用</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181106085.png" alt="image-20220818110639976"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181108076.png" alt="image-20220818110821961"></p>
+<p>这个例子中，把一个 txt 按行分割，然后统计每个单词的个数</p>
+<p>reduceByKey 产生 Shuffle，做的是 A + B 的操作（有很多机器）</p>
+<p>最后 collect，返回结果</p>
+<h2 id="Spark-中对-Shuffle-的抽象-宽依赖、窄依赖">Spark 中对 Shuffle 的抽象 - 宽依赖、窄依赖</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181419371.png" alt="image-20220818141952223"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181421067.png" alt="image-20220818142111966"></p>
+<h3 id="Shuffle-Dependency">Shuffle Dependency</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181422527.png" alt="image-20220818142234422"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181423994.png" alt="image-20220818142343877"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181425584.png" alt="image-20220818142501449"></p>
+<h1 id="Shuffle-过程">Shuffle 过程</h1>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181427537.png" alt="image-20220818142746399"></p>
+<h2 id="Hash-Shuffle">Hash Shuffle</h2>
+<h3 id="写数据">写数据</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181428448.png" alt="image-20220818142843344"></p>
+<h3 id="写数据优化">写数据优化</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181429477.png" alt="image-20220818142945360"></p>
+<p>把每个 Partition 映射到某个文件的片段</p>
+<h2 id="Sort-Shuffle">Sort Shuffle</h2>
+<h3 id="写数据-2">写数据</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181431971.png" alt="image-20220818143110849"></p>
+<p>每个 task 只用一个文件存储真实数据</p>
+<h2 id="读数据">读数据</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181453374.png" alt="image-20220818145317253"></p>
+<h2 id="Shuffle-过程的触发流程">Shuffle 过程的触发流程</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181453935.png" alt="image-20220818145333838"></p>
+<p>前 5 行只是记录计算过程，在 Collect 的时候才会进行计算</p>
+<h2 id="Shuffle-Handle-的创建">Shuffle Handle 的创建</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181455067.png" alt="image-20220818145540977"></p>
+<h2 id="Shuttle-Handed-与-Shuffle-Writer-的对应关系">Shuttle Handed 与 Shuffle Writer 的对应关系</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181457198.png" alt="image-20220818145755080"></p>
+<h2 id="Writer-实现">Writer 实现</h2>
+<h3 id="BypassMergeShuffleWriter">BypassMergeShuffleWriter</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181458866.png" alt="image-20220818145844735"></p>
+<p>仅适用于Partition较少的情况</p>
+<h3 id="UnsafeShuffleWriter">UnsafeShuffleWriter</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181503808.png" alt="image-20220818150319693"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181508777.png" alt="image-20220818150809663"></p>
+<h3 id="SortShuffleWriter">SortShuffleWriter</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181511617.png" alt="image-20220818151128495"></p>
+<h2 id="Reader-实现">Reader 实现</h2>
+<h3 id="网络时序图">网络时序图</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181514706.png" alt="image-20220818151420607"></p>
+<h3 id="ShuffleBlockFetchIterator">ShuffleBlockFetchIterator</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181525027.png" alt="image-20220818152506891"></p>
+<h3 id="External-Shuffle-Service">External Shuffle Service</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181528914.png" alt="image-20220818152853800"></p>
+<h2 id="Shuffle-优化使用的技术">Shuffle 优化使用的技术</h2>
+<h3 id="Zero-Copy">Zero Copy</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181542770.png" alt="image-20220818154218648"></p>
+<h3 id="Natty-Zero-Copy">Natty Zero Copy</h3>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181546017.png" alt="image-20220818154610873"></p>
+<h2 id="常见问题">常见问题</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181548263.png" alt="image-20220818154808160"></p>
+<h2 id="Shuffle-优化">Shuffle 优化</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181552719.png" alt="image-20220818155233602"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181553992.png" alt="image-20220818155322854"></p>
+<h2 id="Shuffle-参数优化">Shuffle 参数优化</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181553716.png" alt="image-20220818155338573"></p>
+<h2 id="Shuffle-倾斜优化">Shuffle 倾斜优化</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181556214.png" alt="image-20220818155615083"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181557914.png" alt="image-20220818155736815"></p>
+<h2 id="案例-参数优化">案例 - 参数优化</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181558722.png" alt="image-20220818155837635"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181559355.png" alt="image-20220818155941258"></p>
+<h1 id="Push-Shuffle">Push Shuffle</h1>
+<p>上面讲的是 Spark 3.0 的算法</p>
+<h2 id="为什么要-Push-Shuffle">为什么要 Push Shuffle</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181600611.png" alt="image-20220818160049502"></p>
+<h2 id="Push-Shuffle-的实现">Push Shuffle 的实现</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181601397.png" alt="image-20220818160142293"></p>
+<h2 id="Magnet-实现原理">Magnet 实现原理</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181602681.png" alt="image-20220818160232562"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181603928.png" alt="image-20220818160333799"></p>
+<h2 id="Magnet-可靠性">Magnet 可靠性</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181605427.png" alt="image-20220818160513326"></p>
+<h2 id="Cloud-Shuffle-Service-思想">Cloud Shuffle Service 思想</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181607567.png" alt="image-20220818160722457"></p>
+<h2 id="Cloud-Shuffle-Service-架构">Cloud Shuffle Service 架构</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181607203.png" alt="image-20220818160738101"></p>
+<h2 id="Cloud-Shuffle-Service-写入读取">Cloud Shuffle Service 写入读取</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181608332.png" alt="image-20220818160843239"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181610133.png" alt="image-20220818161051038"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181611731.png" alt="image-20220818161108643"></p>
+<h2 id="实践案例-CSS-优化">实践案例 -  CSS 优化</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181612644.png" alt="image-20220818161200511"></p>
+<h1 id="总结-2">总结</h1>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202208181612229.png" alt="image-20220818161226128"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/">字节青训营</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">202</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">34</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">鄙人最近非常忙，故博客不能及时更新，望见谅！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Shuffle-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">Shuffle 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MapReduce-%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">MapReduce 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map"><span class="toc-number">1.2.</span> <span class="toc-text">Map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuffle"><span class="toc-number">1.3.</span> <span class="toc-text">Shuffle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reduce"><span class="toc-number">1.4.</span> <span class="toc-text">Reduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-Shuffle-%E5%AF%B9%E6%80%A7%E8%83%BD%E9%9D%9E%E5%B8%B8%E9%87%8D%E8%A6%81"><span class="toc-number">1.5.</span> <span class="toc-text">为什么 Shuffle 对性能非常重要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shuffle-%E7%AE%97%E5%AD%90"><span class="toc-number">2.</span> <span class="toc-text">Shuffle 算子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E5%AD%90%E5%88%86%E7%B1%BB%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">算子分类与应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spark-%E4%B8%AD%E5%AF%B9-Shuffle-%E7%9A%84%E6%8A%BD%E8%B1%A1-%E5%AE%BD%E4%BE%9D%E8%B5%96%E3%80%81%E7%AA%84%E4%BE%9D%E8%B5%96"><span class="toc-number">2.2.</span> <span class="toc-text">Spark 中对 Shuffle 的抽象 - 宽依赖、窄依赖</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shuffle-Dependency"><span class="toc-number">2.2.1.</span> <span class="toc-text">Shuffle Dependency</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Shuffle-%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">Shuffle 过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash-Shuffle"><span class="toc-number">3.1.</span> <span class="toc-text">Hash Shuffle</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%95%B0%E6%8D%AE"><span class="toc-number">3.1.1.</span> <span class="toc-text">写数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%95%B0%E6%8D%AE%E4%BC%98%E5%8C%96"><span class="toc-number">3.1.2.</span> <span class="toc-text">写数据优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sort-Shuffle"><span class="toc-number">3.2.</span> <span class="toc-text">Sort Shuffle</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%95%B0%E6%8D%AE-2"><span class="toc-number">3.2.1.</span> <span class="toc-text">写数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">3.3.</span> <span class="toc-text">读数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuffle-%E8%BF%87%E7%A8%8B%E7%9A%84%E8%A7%A6%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="toc-number">3.4.</span> <span class="toc-text">Shuffle 过程的触发流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuffle-Handle-%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-number">3.5.</span> <span class="toc-text">Shuffle Handle 的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuttle-Handed-%E4%B8%8E-Shuffle-Writer-%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-number">3.6.</span> <span class="toc-text">Shuttle Handed 与 Shuffle Writer 的对应关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Writer-%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.7.</span> <span class="toc-text">Writer 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BypassMergeShuffleWriter"><span class="toc-number">3.7.1.</span> <span class="toc-text">BypassMergeShuffleWriter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UnsafeShuffleWriter"><span class="toc-number">3.7.2.</span> <span class="toc-text">UnsafeShuffleWriter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SortShuffleWriter"><span class="toc-number">3.7.3.</span> <span class="toc-text">SortShuffleWriter</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reader-%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.8.</span> <span class="toc-text">Reader 实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E6%97%B6%E5%BA%8F%E5%9B%BE"><span class="toc-number">3.8.1.</span> <span class="toc-text">网络时序图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ShuffleBlockFetchIterator"><span class="toc-number">3.8.2.</span> <span class="toc-text">ShuffleBlockFetchIterator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#External-Shuffle-Service"><span class="toc-number">3.8.3.</span> <span class="toc-text">External Shuffle Service</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuffle-%E4%BC%98%E5%8C%96%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF"><span class="toc-number">3.9.</span> <span class="toc-text">Shuffle 优化使用的技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Zero-Copy"><span class="toc-number">3.9.1.</span> <span class="toc-text">Zero Copy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Natty-Zero-Copy"><span class="toc-number">3.9.2.</span> <span class="toc-text">Natty Zero Copy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">3.10.</span> <span class="toc-text">常见问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuffle-%E4%BC%98%E5%8C%96"><span class="toc-number">3.11.</span> <span class="toc-text">Shuffle 优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuffle-%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="toc-number">3.12.</span> <span class="toc-text">Shuffle 参数优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shuffle-%E5%80%BE%E6%96%9C%E4%BC%98%E5%8C%96"><span class="toc-number">3.13.</span> <span class="toc-text">Shuffle 倾斜优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B-%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96"><span class="toc-number">3.14.</span> <span class="toc-text">案例 - 参数优化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Push-Shuffle"><span class="toc-number">4.</span> <span class="toc-text">Push Shuffle</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81-Push-Shuffle"><span class="toc-number">4.1.</span> <span class="toc-text">为什么要 Push Shuffle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Push-Shuffle-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.2.</span> <span class="toc-text">Push Shuffle 的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Magnet-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">4.3.</span> <span class="toc-text">Magnet 实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Magnet-%E5%8F%AF%E9%9D%A0%E6%80%A7"><span class="toc-number">4.4.</span> <span class="toc-text">Magnet 可靠性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloud-Shuffle-Service-%E6%80%9D%E6%83%B3"><span class="toc-number">4.5.</span> <span class="toc-text">Cloud Shuffle Service 思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloud-Shuffle-Service-%E6%9E%B6%E6%9E%84"><span class="toc-number">4.6.</span> <span class="toc-text">Cloud Shuffle Service 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cloud-Shuffle-Service-%E5%86%99%E5%85%A5%E8%AF%BB%E5%8F%96"><span class="toc-number">4.7.</span> <span class="toc-text">Cloud Shuffle Service 写入读取</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E8%B7%B5%E6%A1%88%E4%BE%8B-CSS-%E4%BC%98%E5%8C%96"><span class="toc-number">4.8.</span> <span class="toc-text">实践案例 -  CSS 优化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93-2"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/20/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL20%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%8E%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/" title="『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析">『字节青训营-4th-大数据』L20：大数据可视化理论与案例分析</a><time datetime="2022-09-02T06:13:22.000Z" title="更新于 2022-09-02 14:13:22">2022-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/31/%E3%80%8EGo%E3%80%8F%E4%BD%BF%E7%94%A8-Redis-%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" title="『Go』使用 Redis 搭建简易分布式锁">『Go』使用 Redis 搭建简易分布式锁</a><time datetime="2022-08-31T04:22:14.000Z" title="更新于 2022-08-31 12:22:14">2022-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/19/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL19%EF%BC%9A%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%90%86%E8%AE%BA%E4%B8%8E%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践">『字节青训营-4th-大数据』L19：用户数据分析理论与最佳实践</a><time datetime="2022-08-29T08:28:56.000Z" title="更新于 2022-08-29 16:28:56">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/08/17/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5-4th-%E5%A4%A7%E6%95%B0%E6%8D%AE%E3%80%8FL18%EF%BC%9A%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E5%BB%BA%E8%AE%BE%E5%AE%9E%E8%B7%B5%E6%80%9D%E8%B7%AF%E4%B8%8E%E4%BC%81%E4%B8%9A%E5%AE%9E%E8%B7%B5/" title="『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践">『字节青训营-4th-大数据』L18：数据中心建设实践思路与企业实践</a><time datetime="2022-08-29T02:34:36.000Z" title="更新于 2022-08-29 10:34:36">2022-08-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2022-08-26T01:15:06.000Z" title="更新于 2022-08-26 09:15:06">2022-08-26</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
