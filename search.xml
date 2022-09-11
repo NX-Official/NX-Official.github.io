@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>『Twikoo』解决 Vercel.app 在国内被墙导致无法使用的问题</title>
+      <link href="/2022/09/11/%E3%80%8ETwikoo%E3%80%8F%E8%A7%A3%E5%86%B3-Vercel-app-%E5%9C%A8%E5%9B%BD%E5%86%85%E8%A2%AB%E5%A2%99%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/09/11/%E3%80%8ETwikoo%E3%80%8F%E8%A7%A3%E5%86%B3-Vercel-app-%E5%9C%A8%E5%9B%BD%E5%86%85%E8%A2%AB%E5%A2%99%E5%AF%BC%E8%87%B4%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>最近，我发现我的评论系统加载不出来，观察了一下，发现是域名被墙了</p><p>但是解决方法也很简单——把自己的一个域名指过去，然后再使用自己的域名就行了</p><p>首先先来到 <a href="https://vercel.com/dashboard">vercel 控制台</a>，点进去你的实例</p><p>然后找到 Setting -&gt; Domain</p><p>之后手动添加你的域名进去</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209110932331.png" alt="image-20220911093206217"></p><p>然后他会给出解析配置，你就去改你的域名解析就好了</p><p>搞定之后，访问看看</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209110932456.png" alt="image-20220911093251372"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Hexo + Butterfly 建站指南 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Twikoo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『随笔』写在新学年伊始</title>
       <link href="/2022/09/10/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F%E5%86%99%E5%9C%A8%E6%96%B0%E5%AD%A6%E5%B9%B4%E4%BC%8A%E5%A7%8B/"/>
       <url>/2022/09/10/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F%E5%86%99%E5%9C%A8%E6%96%B0%E5%AD%A6%E5%B9%B4%E4%BC%8A%E5%A7%8B/</url>
@@ -2152,7 +2177,7 @@
       
         <tags>
             
-            <tag> 时间复杂度 </tag>
+            <tag> 算法竞赛 </tag>
             
         </tags>
       
