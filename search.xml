@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>『算法拾遗』舞蹈链（Dancing Links X）与精确覆盖问题</title>
+      <link href="/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/"/>
+      <url>/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构与算法 </category>
+          
+          <category> 算法拾遗 </category>
+          
+          <category> 搜索技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 舞蹈链/DLX </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『算法拾遗』深度优先搜索（1）：初尝 DFS</title>
       <link href="/2022/09/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%881%EF%BC%89%EF%BC%9A%E5%88%9D%E5%B0%9D-DFS/"/>
       <url>/2022/09/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%881%EF%BC%89%EF%BC%9A%E5%88%9D%E5%B0%9D-DFS/</url>
