@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>『Linux』Ubuntu 编辑开始菜单</title>
+      <link href="/2022/09/25/%E3%80%8ELinux%E3%80%8FUbuntu-%E7%BC%96%E8%BE%91%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95/"/>
+      <url>/2022/09/25/%E3%80%8ELinux%E3%80%8FUbuntu-%E7%BC%96%E8%BE%91%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95/</url>
+      
+        <content type="html"><![CDATA[<p>事情的起因是这样的，我在 Ubuntu 22.04 上装了 Apifox，但是我没法正常启动</p><p>然后搜了一下，并且和客服确认了，只需要需要加上一个 <code>--no-sandbox</code> 参数</p><p>然后就可以正常启动</p><p>但是开始菜单里面的是不带这个参数的，我不可能每次都手动从命令行启动吧</p><p>然后自然就是想修改开始菜单</p><p>然后你去百度的话，都会让你使用一个加做 <code>alacarte</code> 的东西</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209252210646.png" alt="image-20220925221027503"></p><blockquote><p>不得不说，中文互联网环境真的是糟透了</p></blockquote><p>但是这东西，实际上我用的时候会报错，根本没法用</p><p>后来谷歌到了一个类似的软件叫 <code>menulibre</code> ，这个是可以用的</p><p>直接用 <code>apt</code> 下载</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install menulibre</span><br></pre></td></tr></table></figure><p>开箱即用</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209252219979.png" alt="image-20220925221946903"></p><p>然后就可以了</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 新技能 Got </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『随笔』面试官竟是我自己 —— 2022 杭助秋招面试工作感想</title>
       <link href="/2022/09/18/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F2022-%E6%9D%AD%E5%8A%A9%E6%8B%9B%E6%96%B0%E9%9D%A2%E8%AF%95%E6%84%9F%E6%83%B3/"/>
       <url>/2022/09/18/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F2022-%E6%9D%AD%E5%8A%A9%E6%8B%9B%E6%96%B0%E9%9D%A2%E8%AF%95%E6%84%9F%E6%83%B3/</url>
