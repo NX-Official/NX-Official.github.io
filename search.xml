@@ -4,13 +4,55 @@
   
     
     <entry>
-      <title>GORM-入门笔记（六）一对一关系（Belongs To 与 Has One）</title>
-      <link href="/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/"/>
-      <url>/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/</url>
+      <title>GORM-入门笔记（八）多对多关联（Many To Many）</title>
+      <link href="/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Many-To-Many%EF%BC%89/"/>
+      <url>/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Many-To-Many%EF%BC%89/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GORM-入门笔记（七）一对多关联（Has Many）</title>
+      <link href="/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Has-Many%EF%BC%89/"/>
+      <url>/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Has-Many%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GORM-入门笔记（六）一对一关联（Belongs To 与 Has One）</title>
+      <link href="/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/"/>
+      <url>/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Belongs-To（属于）">Belongs To（属于）</h1><h1 id="Has-One（拥有一个）">Has One（拥有一个）</h1><h1 id="预加载">预加载</h1><h1 id="关系操作">关系操作</h1>]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+          <category> GORM 框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GORM </tag>
+            
+            <tag> Go </tag>
+            
+        </tags>
       
     </entry>
     
