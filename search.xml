@@ -4,33 +4,92 @@
   
     
     <entry>
-      <title>GORM-入门笔记（八）多对多关联（Many To Many）</title>
-      <link href="/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Many-To-Many%EF%BC%89/"/>
-      <url>/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Many-To-Many%EF%BC%89/</url>
+      <title>GORM 入门笔记（八）多对多关联（Many To Many）</title>
+      <link href="/2022/10/05/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Many-To-Many%EF%BC%89/"/>
+      <url>/2022/10/05/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Many-To-Many%EF%BC%89/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
+      <categories>
+          
+          <category> Golang </category>
+          
+          <category> GORM 框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GORM </tag>
+            
+            <tag> Go </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>GORM-入门笔记（七）一对多关联（Has Many）</title>
+      <title>『JWT』在 go-zero 框架中使用 JWT 鉴权</title>
+      <link href="/2022/10/04/%E3%80%8EJWT%E3%80%8F%E5%9C%A8-go-zero-%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E9%89%B4%E6%9D%83/"/>
+      <url>/2022/10/04/%E3%80%8EJWT%E3%80%8F%E5%9C%A8-go-zero-%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E9%89%B4%E6%9D%83/</url>
+      
+        <content type="html"><![CDATA[<p>今天刚搞懂了这东西，睡前一定要记下来</p><p>首先一定要对 go-zero 和 JWT 有些基础，不然你大概不知道我在 BB 什么</p><p>建议把官网上的 demo 都跑一下</p><hr><p>我以一个单体服务开始讲，以下是 api 文件</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;v1&quot;</span><br><span class="line"></span><br><span class="line">service user &#123;</span><br><span class="line">@handler login</span><br><span class="line">get /login(LoginRequest) returns (LoginReply)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@server(</span><br><span class="line">jwt: Auth</span><br><span class="line">)</span><br><span class="line">service user &#123;</span><br><span class="line">@handler userInfo</span><br><span class="line">get /user_info(UserInfoRequest) returns (UserInfoReply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 目前仅测试 JWT 功能，能否从 token 中获取 user_type</span><br><span class="line">type (</span><br><span class="line"></span><br><span class="line">// 登录服务</span><br><span class="line">LoginRequest &#123;</span><br><span class="line">UserType uint8 `form:&quot;user_type&quot;`</span><br><span class="line">&#125;</span><br><span class="line">LoginReply &#123;</span><br><span class="line">Token string `json:&quot;token&quot;`</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 用户信息</span><br><span class="line">UserInfoRequest &#123;</span><br><span class="line">&#125;</span><br><span class="line">UserInfoReply &#123;</span><br><span class="line">UserType uint8 `json:&quot;user_type&quot;`</span><br><span class="line">&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>为了简洁，我抛开账号密码不谈，认定访问就登录了，然后为了说明 JWT 的存储功能，我会在 JWT 中存一个 <code>UserType</code> ，然后尝试在访问  <code>/user_info</code> 时从 JWT 读取并打印出来</p><hr><h1 id="生成并传递-token">生成并传递 token</h1><p>首先，在 <code>/etc/user.yaml</code> 中把 <code>AccessSecret</code> 和 <code>AccessExpire</code> 先定义好</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Name:</span> <span class="string">user</span></span><br><span class="line"><span class="attr">Host:</span> <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></span><br><span class="line"><span class="attr">Port:</span> <span class="number">8000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">Auth:</span></span><br><span class="line">  <span class="attr">AccessSecret:</span> <span class="string">ThisIsMySecret</span></span><br><span class="line">  <span class="attr">AccessExpire:</span> <span class="number">3600</span></span><br></pre></td></tr></table></figure><p><code>AccessSecret</code> 是用来签名的，保证这个 token 不是别人乱编出来的，一定是在你这里生成的，它可用是一个随意的字符串，但是一定不能泄露，不然就麻烦了</p><p><code>AccessExpire</code> 是可用的时间，单位为秒，鉴权时 go-zero 会自动帮你检查时间的</p><p>然后在 <code>/internal/config/config.go</code> 中加入这两个信息</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> config</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;github.com/zeromicro/go-zero/rest&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Config <span class="keyword">struct</span> &#123;</span><br><span class="line">rest.RestConf</span><br><span class="line">Auth <span class="keyword">struct</span> &#123;</span><br><span class="line">AccessSecret <span class="type">string</span></span><br><span class="line">AccessExpire <span class="type">int64</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>接着，准备一个生成 token 的函数</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *LoginLogic)</span></span> newJwtToken(userType <span class="type">uint8</span>) (<span class="type">string</span>, <span class="type">error</span>) &#123;</span><br><span class="line">claims := <span class="built_in">make</span>(jwt.MapClaims)</span><br><span class="line">claims[<span class="string">&quot;userType&quot;</span>] = userType</span><br><span class="line">token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)</span><br><span class="line"><span class="keyword">return</span> token.SignedString([]<span class="type">byte</span>(l.svcCtx.Config.Auth.AccessSecret))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在生成 token 的时候，可以往里面保存数据，但是请注意了，这个是不被加密的，重要的东西不能往里面写</p><p>然后在 <code>/internal/logic/loginlogic.go</code> 中完善登录方法</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *LoginLogic)</span></span> Login(req *types.LoginRequest) (resp *types.LoginReply, err <span class="type">error</span>) &#123;</span><br><span class="line"></span><br><span class="line">accessToken, err := l.newJwtToken(req.UserType)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">nil</span>, err</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> &amp;types.LoginReply&#123;Token: accessToken&#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>这就可以了，去请求看看</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210050037503.png" alt="image-20221005003749420"></p><p>其实还有注意的一点是往 JWT 里面的参数要搞一些会变化的值（例如时间什么的）</p><p>在这里，如果重复请求的话返回值其实是一样的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6MX0.ydX7wZAgrLGbhAVAgFY4UZ8NuwQISRO9VLPaFiW-7js</span><br></pre></td></tr></table></figure><p>更改 <code>user_type</code> 为 3 ，再拿一个 token</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210050041396.png" alt="image-20221005004148335"></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyVHlwZSI6M30.HeEnQD7gLMLLqJzqM-3bnriSD3TdumTrfebcfFocCRc</span><br></pre></td></tr></table></figure><hr><h1 id="在访问时鉴权">在访问时鉴权</h1><p>这个其实很简单，在 service 上面加 3 行就行了</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210050043089.png" alt="image-20221005004341969"></p><p>不加就是访问的时候不走 JWT</p><p>然后去 <code>/internal/logic/userinfologic.go</code> 完善 <code>UserInfo</code> 方法</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(l *UserInfoLogic)</span></span> UserInfo(req *types.UserInfoRequest) (resp *types.UserInfoReply, err <span class="type">error</span>) &#123;</span><br><span class="line"></span><br><span class="line">userTypeInJSON, ok := l.ctx.Value(<span class="string">&quot;userType&quot;</span>).(json.Number)</span><br><span class="line"></span><br><span class="line"><span class="comment">//fmt.Printf(&quot;%T\n&quot;, l.ctx.Value(&quot;userType&quot;)) // json.Number</span></span><br><span class="line">fmt.Println(userTypeInJSON, ok)</span><br><span class="line"></span><br><span class="line">userTypeInInt64, err := userTypeInJSON.Int64()</span><br><span class="line"></span><br><span class="line">userType := <span class="type">uint8</span>(userTypeInInt64)</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> &amp;types.UserInfoReply&#123;</span><br><span class="line">UserType: userType,</span><br><span class="line">&#125;, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>使用 <code>l.ctx.Value(&quot;userType&quot;)</code> 即可拿出保存的数据</p><p>要注意的是取出来的是 <code>json.Number</code> 类型，要转换</p><p>这样就可以了，去请求看看</p><p>在头部的 <code>Authorization</code> 传入 token</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210050048035.png" alt="image-20221005004817984"></p><p>再传入那个 user_type 为 3 的</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210050049263.png" alt="image-20221005004914185"></p><p>非常完美，就是这样</p><hr><h1 id="在微服务场景的使用">在微服务场景的使用</h1><p>JWT 有个特性，就是只要配置的密钥相同，就能相互认同</p><p>也就是说，在 A 处拿到的 token，只要 B 使用的密钥和 A 一样，就可以在 B 处使用</p><p>另外创建一个服务，在 <code>yaml</code> 中和 <code>config.go</code> 中做相同的修改</p><p>复制一份 api 文件，但其实只测试鉴权，我就只保留鉴权的部分了</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;v1&quot;</span></span><br><span class="line"></span><br><span class="line">@server(</span><br><span class="line">jwt: Auth</span><br><span class="line">)</span><br><span class="line">service questionnaire &#123;</span><br><span class="line">@handler userInfo</span><br><span class="line">get /user_info(UserInfoRequest) returns (UserInfoReply)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 目前仅测试 JWT 功能，能否从 token 中获取 user_type</span></span><br><span class="line"><span class="keyword">type</span> (</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用户信息</span></span><br><span class="line">UserInfoRequest &#123;</span><br><span class="line">&#125;</span><br><span class="line">UserInfoReply &#123;</span><br><span class="line">UserType <span class="type">uint8</span> <span class="string">`json:&quot;user_type&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure><p>然后方法逻辑也不用说了，一样的</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210050055987.png" alt="image-20221005005516909"></p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210050055618.png" alt="image-20221005005535538"></p><p>也是一样的完美运行</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+          <category> go-zero 框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> JWT </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>GORM 入门笔记（七）一对多关联（Has Many）</title>
       <link href="/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Has-Many%EF%BC%89/"/>
       <url>/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Has-Many%EF%BC%89/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
+      <categories>
+          
+          <category> Golang </category>
+          
+          <category> GORM 框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GORM </tag>
+            
+            <tag> Go </tag>
+            
+        </tags>
       
     </entry>
     
     
     
     <entry>
-      <title>GORM-入门笔记（六）一对一关联（Belongs To 与 Has One）</title>
+      <title>GORM 入门笔记（六）一对一关联（Belongs To 与 Has One）</title>
       <link href="/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/"/>
       <url>/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/</url>
       
