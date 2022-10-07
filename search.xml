@@ -4,11 +4,40 @@
   
     
     <entry>
+      <title>GORM 入门笔记（九）引用和关联标签</title>
+      <link href="/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/"/>
+      <url>/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="多态">多态</h1><p>多态只存在与 Has One 和 Has Mang 中</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+          <category> GORM 框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GORM </tag>
+            
+            <tag> Go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『Linux』一个多月来将 Ubuntu 22.04 作为主力系统的感想</title>
       <link href="/2022/10/06/%E3%80%8ELinux%E3%80%8F%E5%B0%86-Ubuntu-22-04-%E4%BD%9C%E4%B8%BA%E4%B8%BB%E5%8A%9B%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%84%9F%E6%83%B3/"/>
       <url>/2022/10/06/%E3%80%8ELinux%E3%80%8F%E5%B0%86-Ubuntu-22-04-%E4%BD%9C%E4%B8%BA%E4%B8%BB%E5%8A%9B%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%84%9F%E6%83%B3/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210071312347.png" alt="image-20221007131242095"></p><p>嗯，如你所见，我现在已经把 Linux 当做主力系统一个多月了</p><p>先说结论：我感觉还不错！</p><h1 id="事情的起因">事情的起因</h1><p>啊，是这样的，就是因为我受不了 Windows 了</p><p>详情可以看 <a href="/2022/09/10/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F%E5%86%99%E5%9C%A8%E6%96%B0%E5%AD%A6%E5%B9%B4%E4%BC%8A%E5%A7%8B/#%E9%87%8D%E8%A3%85%E4%BA%86%E7%B3%BB%E7%BB%9F">『随笔』写在新学年伊始</a></p><hr><h1 id="折腾过程">折腾过程</h1><h2 id="安装">安装</h2><p>首先就是决定用哪个发行版，我把主流的都试了一遍，然后发现</p><p>很明显，我除了 Debain 系，没有其他的选择</p><p><s>因为我真的 apt 用惯了</s></p><p>Debian 太简陋了，Deepin 一股国产味道，我最后选择了 Ubuntu</p><p>至于安装的过程嘛，先去官网找镜像，然后用 rufus 写到 U 盘里面，或者用 ventoy 也可以</p><p>Linux 现在在安装的时候都很贴心地给出了与 Windows 共存的选项</p><hr><h2 id="软件">软件</h2><p>对于 Linux ，过去一个很重要的问题就是日常软件的适配</p><p>但是现在已经 2022 年了，这种情况已经得到了很大的改观</p><p>我大概总结了一下我目前的应用</p><ul><li><p>能原生运行的有：</p><p>edge、钉钉、飞书、网易云音乐、WPS、VSCode、JB 全家桶、Apifox、Typero、PicGo、Clash、VLC、搜狗输入法、OBS等</p></li><li><p>需要转译的有：</p><p>QQ/TIM、微信</p></li></ul><p>可以看见，大多数应用都支持了 Linux ，但是就是憨憨腾讯，点名批评哇~~（2020年出的那个垃圾 QQ Linux 版就憋说了~~</p><p>对于 QQ/TIM 的话，crossover 可以勉强用，<a href="https://github.com/zq1997/deepin-wine">deepin-wine</a> 也可以勉强用，平时可以用 <a href="https://github.com/Icalingua-plus-plus/Icalingua-plus-plus">lcalingua++</a> 代替</p><p>对于微信的话，crossover 和 deepin-wine 表现都可以</p><hr><h2 id="美化">美化</h2><p>美化的话，用的是仿 mac 的 <a href="https://github.com/vinceliuice/WhiteSur-gtk-theme">WhiteSur-gtk-theme</a>（建议仔细看readme，而且都用他的脚本安装），可以结合<a href="https://zhuanlan.zhihu.com/p/176977192">这篇</a>来看，但是 Plank 我感觉不是很好用，就没用</p><hr><h1 id="使用体验">使用体验</h1><p>感觉 Linux 还是很丝滑的，浑身轻松，反应很快</p><p>而且资源占用也不大，硬盘就 40G 左右，然后内存平时使用 4G</p><p>日常都用 Linux 没问题，我一般只在和舍友打 Apex 的时候才换到 Windows</p>]]></content>
       
       
       <categories>

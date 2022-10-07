@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-06T16:11:36.202Z</updated>
+  <updated>2022-10-07T14:32:06.616Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,12 +17,51 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>GORM 入门笔记（九）引用和关联标签</title>
+    <link href="https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/"/>
+    <id>https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/</id>
+    <published>2022-10-07T08:45:18.000Z</published>
+    <updated>2022-10-07T14:32:06.616Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;多态&quot;&gt;多态&lt;/h1&gt;
+&lt;p&gt;多态只存在与 Has One 和 Has Mang</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>『Linux』一个多月来将 Ubuntu 22.04 作为主力系统的感想</title>
     <link href="https://www.nickxu.top/2022/10/06/%E3%80%8ELinux%E3%80%8F%E5%B0%86-Ubuntu-22-04-%E4%BD%9C%E4%B8%BA%E4%B8%BB%E5%8A%9B%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%84%9F%E6%83%B3/"/>
     <id>https://www.nickxu.top/2022/10/06/%E3%80%8ELinux%E3%80%8F%E5%B0%86-Ubuntu-22-04-%E4%BD%9C%E4%B8%BA%E4%B8%BB%E5%8A%9B%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%84%9F%E6%83%B3/</id>
     <published>2022-10-06T15:53:56.000Z</published>
-    <updated>2022-10-06T16:11:36.202Z</updated>
+    <updated>2022-10-07T08:42:08.164Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210071312347.png&quot; alt=&quot;image-20221007131242095&quot;&gt;&lt;/p&gt;
+&lt;p&gt;嗯，如你所见，我现在已经把 Linux</summary>
+        
+      
     
     
     
@@ -564,37 +603,6 @@
     
     
     <category term="IDDFS" scheme="https://www.nickxu.top/tags/IDDFS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『算法拾遗』舞蹈链（Dancing Links X）与精确覆盖问题</title>
-    <link href="https://www.nickxu.top/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/"/>
-    <id>https://www.nickxu.top/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/</id>
-    <published>2022-09-14T03:22:57.000Z</published>
-    <updated>2022-09-15T05:39:05.702Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;关于精确覆盖问题&quot;&gt;关于精确覆盖问题&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;模板题目：&lt;a href=&quot;https://www.luogu.com.cn/problem/P4929&quot;&gt;P4929</summary>
-        
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="算法拾遗" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/"/>
-    
-    <category term="搜索技术" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/%E6%90%9C%E7%B4%A2%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="舞蹈链/DLX" scheme="https://www.nickxu.top/tags/%E8%88%9E%E8%B9%88%E9%93%BE-DLX/"/>
     
   </entry>
   
