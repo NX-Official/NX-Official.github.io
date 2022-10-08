@@ -18,8 +18,8 @@
   
   <entry>
     <title>GORM 入门笔记（九）多态的概念与使用</title>
-    <link href="https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/"/>
-    <id>https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/</id>
+    <link href="https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%9A%E6%80%81%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%9A%E6%80%81%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
     <published>2022-10-07T08:45:18.000Z</published>
     <updated>2022-10-08T12:54:47.205Z</updated>
     
