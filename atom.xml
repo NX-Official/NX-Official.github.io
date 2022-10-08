@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-07T14:32:06.616Z</updated>
+  <updated>2022-10-08T12:54:47.205Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,19 +17,31 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>GORM 入门笔记（九）引用和关联标签</title>
+    <title>GORM 入门笔记（九）多态的概念与使用</title>
     <link href="https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/"/>
     <id>https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%BC%95%E7%94%A8%E5%92%8C%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/</id>
     <published>2022-10-07T08:45:18.000Z</published>
-    <updated>2022-10-07T14:32:06.616Z</updated>
+    <updated>2022-10-08T12:54:47.205Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;多态&quot;&gt;多态&lt;/h1&gt;
-&lt;p&gt;多态只存在与 Has One 和 Has Mang</summary>
+    <summary type="html">&lt;h1 id=&quot;概念&quot;&gt;概念&lt;/h1&gt;
+&lt;p&gt;多态只存在于 Has One 和 Has Mang 中，这东西有些难以表述，我尽力讲得比较清晰&lt;/p&gt;
+&lt;p&gt;假如你正在开发一个类 B 站平台，平台上可以上传视频，也可以发布文章&lt;/p&gt;
+&lt;p&gt;现在需要加入评论功能，你将如何设计评论表？&lt;/p&gt;
+&lt;p&gt;众所周知，视频是可以评论的，文章也是可以评论的 &lt;s&gt;（暂时不考虑评论的评论）&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;最简单的方式就是以视频表的主键为外键，建一个视频评论表，再另外以文章表的主键为外键，建一个文章评论表&lt;/p&gt;
+&lt;p&gt;也就是说，视频 has many 视频评论，文章 has many 文章评论，两种评论互不相干&lt;/p&gt;
+&lt;p&gt;但是，这就搞出来两张表，搞出来两种评论类型，有没有一种关联模式，能在一张表中存储所有评论呢？&lt;/p&gt;
+&lt;p&gt;或者在某些场景下，不止 A 和 B 要拥有某一类的东西，而有 ABCDEF… 那怎么办？&lt;/p&gt;
+&lt;p&gt;那自然是有的，在这里只需这样设计评论表&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;字段1：自增主键&lt;/li&gt;
+&lt;li&gt;字段2：评论内容&lt;/li&gt;
+&lt;li&gt;字段3：拥有者的 ID</summary>
         
       
     
