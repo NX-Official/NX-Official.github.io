@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-08T12:54:47.205Z</updated>
+  <updated>2022-10-10T09:01:43.232Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,11 +17,121 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>GORM 入门笔记（十二）事务的使用与坑</title>
+    <link href="https://www.nickxu.top/2022/10/10/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E4%BA%8B%E7%89%A9%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%9D%91/"/>
+    <id>https://www.nickxu.top/2022/10/10/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E4%BA%8B%E7%89%A9%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%9D%91/</id>
+    <published>2022-10-10T01:24:27.000Z</published>
+    <updated>2022-10-10T09:01:43.232Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;普通事务&quot;&gt;普通事务&lt;/h1&gt;
+&lt;p&gt;使用 &lt;code&gt;Transaction()&lt;/code&gt; 可以开启事务，在其中传入一个签名为 &lt;code&gt;func(tx *gorm.DB) error&lt;/code&gt; 的函数，在函数内操作，如果返回的 error 不为空，则这些操作都作废&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GORM 入门笔记（十一）关联标签</title>
+    <link href="https://www.nickxu.top/2022/10/09/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/"/>
+    <id>https://www.nickxu.top/2022/10/09/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/</id>
+    <published>2022-10-09T13:49:45.000Z</published>
+    <updated>2022-10-10T01:23:14.110Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在官网的&lt;a href=&quot;https://gorm.io/zh_CN/docs/associations.html#%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE&quot;&gt;实体关联&lt;/a&gt;底部有一个表格，讲的是关联标签&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;标签&lt;/th&gt;
+&lt;th style=&quot;text-align:left&quot;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;foreignKey&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;指定当前模型的列作为连接表的外键&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;references&lt;/td&gt;
+&lt;td style=&quot;text-align:left&quot;&gt;指定引用表的列名，其将被映射为连接表外键&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GORM 入门笔记（十）自引用</title>
+    <link href="https://www.nickxu.top/2022/10/08/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E8%87%AA%E5%BC%95%E7%94%A8/"/>
+    <id>https://www.nickxu.top/2022/10/08/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E8%87%AA%E5%BC%95%E7%94%A8/</id>
+    <published>2022-10-08T08:06:19.000Z</published>
+    <updated>2022-10-09T13:49:11.506Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;自引用的话比较简单~~，这一篇就是用来水的~~&lt;/p&gt;
+&lt;p&gt;书接上文，现在需要实现评论的评论，怎么办？&lt;/p&gt;
+&lt;p&gt;很简单，只需这样&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>GORM 入门笔记（九）多态的概念与使用</title>
     <link href="https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%9A%E6%80%81%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
     <id>https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%9A%E6%80%81%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
     <published>2022-10-07T08:45:18.000Z</published>
-    <updated>2022-10-08T12:54:47.205Z</updated>
+    <updated>2022-10-08T13:52:29.858Z</updated>
     
     
       
@@ -584,131 +694,6 @@
     
     
     <category term="面试工作" scheme="https://www.nickxu.top/tags/%E9%9D%A2%E8%AF%95%E5%B7%A5%E4%BD%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『算法拾遗』常见的位运算操作</title>
-    <link href="https://www.nickxu.top/2022/09/17/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C/"/>
-    <id>https://www.nickxu.top/2022/09/17/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BD%8D%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C/</id>
-    <published>2022-09-17T13:02:27.000Z</published>
-    <updated>2022-09-19T00:52:20.303Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;功能&lt;/th&gt;
-&lt;th&gt;示例&lt;/th&gt;
-&lt;th&gt;位运算&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;去掉最后一位&lt;/td&gt;
-&lt;td&gt;1011101-&amp;gt;10110&lt;/td&gt;
-&lt;td&gt;x &amp;gt;&amp;gt; 1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;在最后加一个0&lt;/td&gt;
-&lt;td&gt;1011101-&amp;gt;1011010&lt;/td&gt;
-&lt;td&gt;x &amp;lt;&amp;lt; 1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;在最后加一个1&lt;/td&gt;
-&lt;td&gt;1011101-&amp;gt;1011011&lt;/td&gt;
-&lt;td&gt;x &amp;lt;&amp;lt; 1+1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;把最后一位变成1&lt;/td&gt;
-&lt;td&gt;101100-&amp;gt;101101&lt;/td&gt;
-&lt;td&gt;x | 1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;把最后一位变成0&lt;/td&gt;
-&lt;td&gt;101101-&amp;gt;101100&lt;/td&gt;
-&lt;td&gt;x |</summary>
-        
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="算法拾遗" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/"/>
-    
-    
-    <category term="位运算" scheme="https://www.nickxu.top/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『算法拾遗』深度优先搜索（3）：IDA*（启发式迭代加深搜索）</title>
-    <link href="https://www.nickxu.top/2022/09/16/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%883%EF%BC%89%EF%BC%9AIDA-%EF%BC%88%E5%90%AF%E5%8F%91%E5%BC%8F%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2%EF%BC%89/"/>
-    <id>https://www.nickxu.top/2022/09/16/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%883%EF%BC%89%EF%BC%9AIDA-%EF%BC%88%E5%90%AF%E5%8F%91%E5%BC%8F%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2%EF%BC%89/</id>
-    <published>2022-09-16T10:48:58.000Z</published>
-    <updated>2022-09-20T01:16:08.268Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;IDA* ，也就是在 ID （迭代加深搜索）上使用 A* 的思想，引入一个估值函数 &lt;span class=&quot;katex&quot;&gt;&lt;span class=&quot;katex-mathml&quot;&gt;&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&quot;application/x-tex&quot;&gt;h(x)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&quot;katex-html&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;base&quot;&gt;&lt;span class=&quot;strut&quot; style=&quot;height:1em;vertical-align:-0.25em;&quot;&gt;&lt;/span&gt;&lt;span class=&quot;mord mathnormal&quot;&gt;h&lt;/span&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="算法拾遗" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/"/>
-    
-    <category term="搜索技术" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/%E6%90%9C%E7%B4%A2%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="IDA*" scheme="https://www.nickxu.top/tags/IDA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『算法拾遗』深度优先搜索（2）：IDDFS（迭代加深搜索）</title>
-    <link href="https://www.nickxu.top/2022/09/15/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%882%EF%BC%89%EF%BC%9AIDDFS-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2/"/>
-    <id>https://www.nickxu.top/2022/09/15/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%882%EF%BC%89%EF%BC%9AIDDFS-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2/</id>
-    <published>2022-09-15T11:35:14.000Z</published>
-    <updated>2022-09-16T03:09:24.031Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;有这样一些题目，它们的搜索树很特别：不仅很深，而且很宽，深度可能到无穷，宽度也可能极广&lt;/p&gt;
-&lt;p&gt;如果直接朴素 DFS ，会陷入递归无法返回，如果直接朴素 BFS，队列空间会爆炸&lt;/p&gt;
-&lt;p&gt;鄙人想了一个简单的例子，来说明为什么需要迭代加深搜索&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;Why-use-IDDFS&quot;&gt;Why use IDDFS&lt;/h1&gt;
-&lt;p&gt;假设你需要使用枚举的方式暴力破解一个用户的密码，密码只由 26 个小写字母组成，但是密码的位数未知&lt;/p&gt;
-&lt;p&gt;假设你的内存同时能存储 100 个字符，你该如何枚举？&lt;/p&gt;
-&lt;p&gt;先试试 BFS？首先把 26 个字母加入队列，目前队列中的状态是这样的&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="数据结构与算法" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    <category term="算法拾遗" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/"/>
-    
-    <category term="搜索技术" scheme="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/%E6%90%9C%E7%B4%A2%E6%8A%80%E6%9C%AF/"/>
-    
-    
-    <category term="IDDFS" scheme="https://www.nickxu.top/tags/IDDFS/"/>
     
   </entry>
   
