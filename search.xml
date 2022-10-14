@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>『Go』初识 Flamego 框架的一些感受</title>
+      <link href="/2022/10/14/%E3%80%8EGo%E3%80%8F%E5%88%9D%E8%AF%86-Flamego-%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E5%8F%97/"/>
+      <url>/2022/10/14/%E3%80%8EGo%E3%80%8F%E5%88%9D%E8%AF%86-Flamego-%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E5%8F%97/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210141659502.jpg" alt="微信图片_20221014164252"></p><blockquote><p>昨天被拉去做苦力惹（</p></blockquote><p>被拉去做苦力的一天，自己负责的项目一点没动，项目群里讨论得热闹非凡，负责人却被骗去其他项目帮忙了</p><p>一下午初识 Flamego ，之前感觉go-zero有点太死板了，现在又感觉 Flamego 有点过于灵活</p><p><a href="https://flamego.cn/">Flamego</a> 的话，感觉还是有点意思的，特别是那个<a href="https://flamego.cn/custom-services.html#%E6%B3%A8%E5%85%A5%E6%9C%8D%E5%8A%A1">依赖注入的方法</a>，之前都没见过，有点意思</p><p>简单地说就是直接在初始化的时候使用 Map 直接传入，然后在需要的时候取出</p><p>最后看见这东西在 GitHub 上居然只有 400+ star，感觉有点不可思议</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210150007406.png" alt="image-20221015000747277"></p><p>一问才知道性能不好，也确实</p><p>最后就是头一次见措辞这么奔放的的文档（乐</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210150010541.png" alt="image-20221015001010456"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+          <category> Flamego 框架 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go </tag>
+            
+            <tag> Flamego </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『hduhelp』如何在项目中接入助手 OAuth</title>
       <link href="/2022/10/12/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%8A%A9%E6%89%8B%20OAuth/"/>
       <url>/2022/10/12/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%8A%A9%E6%89%8B%20OAuth/</url>

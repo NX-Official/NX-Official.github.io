@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-13T04:23:47.306Z</updated>
+  <updated>2022-10-14T16:10:17.727Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『Go』初识 Flamego 框架的一些感受</title>
+    <link href="https://www.nickxu.top/2022/10/14/%E3%80%8EGo%E3%80%8F%E5%88%9D%E8%AF%86-Flamego-%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E5%8F%97/"/>
+    <id>https://www.nickxu.top/2022/10/14/%E3%80%8EGo%E3%80%8F%E5%88%9D%E8%AF%86-Flamego-%E6%A1%86%E6%9E%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E5%8F%97/</id>
+    <published>2022-10-14T04:34:21.000Z</published>
+    <updated>2022-10-14T16:10:17.727Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210141659502.jpg&quot; alt=&quot;微信图片_20221014164252&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;昨天被拉去做苦力惹（&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;被拉去做苦力的一天，自己负责的项目一点没动，项目群里讨论得热闹非凡，负责人却被骗去其他项目帮忙了&lt;/p&gt;
+&lt;p&gt;一下午初识 Flamego ，之前感觉go-zero有点太死板了，现在又感觉 Flamego 有点过于灵活&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://flamego.cn/&quot;&gt;Flamego&lt;/a&gt; 的话，感觉还是有点意思的，特别是那个&lt;a href=&quot;https://flamego.cn/custom-services.html#%E6%B3%A8%E5%85%A5%E6%9C%8D%E5%8A%A1&quot;&gt;依赖注入的方法&lt;/a&gt;，之前都没见过，有点意思&lt;/p&gt;
+&lt;p&gt;简单地说就是直接在初始化的时候使用 Map</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="Flamego 框架" scheme="https://www.nickxu.top/categories/Golang/Flamego-%E6%A1%86%E6%9E%B6/"/>
+    
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+    <category term="Flamego" scheme="https://www.nickxu.top/tags/Flamego/"/>
+    
+  </entry>
   
   <entry>
     <title>『hduhelp』如何在项目中接入助手 OAuth</title>
@@ -657,42 +693,6 @@
     <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
     
     <category term="go-zero" scheme="https://www.nickxu.top/tags/go-zero/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『Linux』Ubuntu 编辑开始菜单</title>
-    <link href="https://www.nickxu.top/2022/09/25/%E3%80%8ELinux%E3%80%8FUbuntu-%E7%BC%96%E8%BE%91%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95/"/>
-    <id>https://www.nickxu.top/2022/09/25/%E3%80%8ELinux%E3%80%8FUbuntu-%E7%BC%96%E8%BE%91%E5%BC%80%E5%A7%8B%E8%8F%9C%E5%8D%95/</id>
-    <published>2022-09-25T13:54:36.000Z</published>
-    <updated>2022-09-25T14:21:48.304Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;事情的起因是这样的，我在 Ubuntu 22.04 上装了 Apifox，但是我没法正常启动&lt;/p&gt;
-&lt;p&gt;然后搜了一下，并且和客服确认了，只需要需要加上一个 &lt;code&gt;--no-sandbox&lt;/code&gt; 参数&lt;/p&gt;
-&lt;p&gt;然后就可以正常启动&lt;/p&gt;
-&lt;p&gt;但是开始菜单里面的是不带这个参数的，我不可能每次都手动从命令行启动吧&lt;/p&gt;
-&lt;p&gt;然后自然就是想修改开始菜单&lt;/p&gt;
-&lt;p&gt;然后你去百度的话，都会让你使用一个加做 &lt;code&gt;alacarte&lt;/code&gt; 的东西&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209252210646.png&quot; alt=&quot;image-20220925221027503&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;不得不说，中文互联网环境真的是糟透了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;但是这东西，实际上我用的时候会报错，根本没法用&lt;/p&gt;
-&lt;p&gt;后来谷歌到了一个类似的软件叫 &lt;code&gt;menulibre&lt;/code&gt;</summary>
-        
-      
-    
-    
-    
-    <category term="新技能 Got" scheme="https://www.nickxu.top/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"/>
-    
-    
-    <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
     
   </entry>
   
