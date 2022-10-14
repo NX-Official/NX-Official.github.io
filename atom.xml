@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-10T09:01:43.232Z</updated>
+  <updated>2022-10-13T04:23:47.306Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,11 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>『hduhelp』如何在项目中接入助手 OAuth</title>
+    <link href="https://www.nickxu.top/2022/10/12/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%8A%A9%E6%89%8B%20OAuth/"/>
+    <id>https://www.nickxu.top/2022/10/12/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%8A%A9%E6%89%8B%20OAuth/</id>
+    <published>2022-10-12T13:17:45.000Z</published>
+    <updated>2022-10-13T04:23:47.306Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;书接&lt;a href=&quot;/2022/09/28/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%8A%A9%E6%89%8B%E7%9A%84%E5%BC%80%E6%94%BE%E6%9C%8D%E5%8A%A1/&quot;&gt;上文&lt;/a&gt;，本篇记录一下如何在项目中使用助手鉴权&lt;/p&gt;
+&lt;p&gt;例子是我正在开发的面试系统，框架是 go-zero&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;项目地址： &lt;a href=&quot;https://github.com/hduhelp/interview_backend&quot;&gt;https://github.com/hduhelp/interview_backend&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;（私有仓库，需杭助内部身份）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;先来看-API-文件&quot;&gt;先来看 API 文件&lt;/h1&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="hduhelp" scheme="https://www.nickxu.top/tags/hduhelp/"/>
+    
+  </entry>
+  
+  <entry>
     <title>GORM 入门笔记（十二）事务的使用与坑</title>
     <link href="https://www.nickxu.top/2022/10/10/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E4%BA%8B%E7%89%A9%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%9D%91/"/>
     <id>https://www.nickxu.top/2022/10/10/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E4%BA%8B%E7%89%A9%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%9D%91/</id>
     <published>2022-10-10T01:24:27.000Z</published>
-    <updated>2022-10-10T09:01:43.232Z</updated>
+    <updated>2022-10-10T09:05:40.833Z</updated>
     
     
       
@@ -663,37 +693,6 @@
     
     
     <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『随笔』面试官竟是我自己 —— 2022 杭助秋招面试工作感想</title>
-    <link href="https://www.nickxu.top/2022/09/18/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F2022-%E6%9D%AD%E5%8A%A9%E6%8B%9B%E6%96%B0%E9%9D%A2%E8%AF%95%E6%84%9F%E6%83%B3/"/>
-    <id>https://www.nickxu.top/2022/09/18/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F2022-%E6%9D%AD%E5%8A%A9%E6%8B%9B%E6%96%B0%E9%9D%A2%E8%AF%95%E6%84%9F%E6%83%B3/</id>
-    <published>2022-09-18T14:18:48.000Z</published>
-    <updated>2022-09-24T13:14:21.235Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;s&gt;虎头蛇尾地写完了，哪里写的不好请速速敲打我&lt;/s&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;前情提要&quot;&gt;前情提要&lt;/h1&gt;
-&lt;p&gt;来杭助一年了，从来没觉得自己有多大能耐&lt;/p&gt;
-&lt;p&gt;鄙人平时也没做多少事，也就是改改配置文件，天天水群，然后业务代码也没怎么动过，Golang 也还没系统地学完（事情有点小多），项目经验大头是参加的两次字节跳动青训营&lt;/p&gt;
-&lt;p&gt;&lt;s&gt;但就是我这个菜鸡，今年居然去当面试官了&lt;/s&gt;&lt;/p&gt;
-&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209222130728.png&quot; alt=&quot;image-20220922213024583&quot; style=&quot;zoom:50%;&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="随笔与总结" scheme="https://www.nickxu.top/categories/%E9%9A%8F%E7%AC%94%E4%B8%8E%E6%80%BB%E7%BB%93/"/>
-    
-    
-    <category term="面试工作" scheme="https://www.nickxu.top/tags/%E9%9D%A2%E8%AF%95%E5%B7%A5%E4%BD%9C/"/>
     
   </entry>
   
