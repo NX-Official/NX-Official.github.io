@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-14T16:10:17.727Z</updated>
+  <updated>2022-10-23T02:34:25.743Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,75 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『Ubuntu』记录两款服务/自启管理工具</title>
+    <link href="https://www.nickxu.top/2022/10/23/%E3%80%8EUbuntu%E3%80%8F%E8%AE%B0%E5%BD%95%E4%B8%A4%E6%AC%BE%E6%9C%8D%E5%8A%A1-%E8%87%AA%E5%90%AF%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/"/>
+    <id>https://www.nickxu.top/2022/10/23/%E3%80%8EUbuntu%E3%80%8F%E8%AE%B0%E5%BD%95%E4%B8%A4%E6%AC%BE%E6%9C%8D%E5%8A%A1-%E8%87%AA%E5%90%AF%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</id>
+    <published>2022-10-23T02:29:34.000Z</published>
+    <updated>2022-10-23T02:34:25.743Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;chkservice&quot;&gt;chkservice&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210231030269.png&quot; alt=&quot;image-20221023103052148&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这东西是专门管理服务的&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;sysv-rc-conf&quot;&gt;sysv-rc-conf&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210231031631.png&quot; alt=&quot;image-20221023103132540&quot;&gt;&lt;/p&gt;
+&lt;p&gt;你可以很清晰地看见各个运行级的启动项&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;这两个就是直接 &lt;code&gt;APT&lt;/code&gt; 就能下载，你可能会找不到然后需要添加&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="新技能 Got" scheme="https://www.nickxu.top/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"/>
+    
+    
+    <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>身处大二瓶颈期的一些感想</title>
+    <link href="https://www.nickxu.top/2022/10/23/%E8%BA%AB%E5%A4%84%E5%A4%A7%E4%BA%8C%E7%93%B6%E9%A2%88%E6%9C%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/"/>
+    <id>https://www.nickxu.top/2022/10/23/%E8%BA%AB%E5%A4%84%E5%A4%A7%E4%BA%8C%E7%93%B6%E9%A2%88%E6%9C%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/</id>
+    <published>2022-10-23T01:14:20.000Z</published>
+    <updated>2022-10-23T02:26:11.228Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;梦&quot;&gt;梦&lt;/h1&gt;
+&lt;p&gt;梦，奇怪的梦，为什么是你？&lt;/p&gt;
+&lt;p&gt;我的初恋哇，为什么我今天会梦到你&lt;/p&gt;
+&lt;p&gt;已经过去的事情，藏于心底的记忆&lt;/p&gt;
+&lt;p&gt;关于过去，我只能说：从初一开始，在她眼中初三结束，在我眼中高三结束，其他的我什么都不想说&lt;/p&gt;
+&lt;p&gt;我原本以为我已经把你忘记了，但没想到还会梦见你&lt;/p&gt;
+&lt;p&gt;我又梦见了什么呢？&lt;/p&gt;
+&lt;p&gt;首先，时间，是现在的时间（也就是我们有 4 年没见面了）&lt;/p&gt;
+&lt;p&gt;然后地点，是类似初中的教室，有同桌，有走廊，经典的中学教室，但是我们都是大学生&lt;/p&gt;
+&lt;p&gt;她的那个班坐在教室里面，她坐在第 2 排，然后第二列（她右侧有个同桌，男女没看清，再右边是个走廊然后是墙，然后左边也是走廊）&lt;/p&gt;
+&lt;p&gt;然后我不知道是由于什么原因（可能梦里的事情就是这样无厘头），我们有 5、6</summary>
+        
+      
+    
+    
+    
+    <category term="随笔与总结" scheme="https://www.nickxu.top/categories/%E9%9A%8F%E7%AC%94%E4%B8%8E%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="随笔" scheme="https://www.nickxu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>『Go』初识 Flamego 框架的一些感受</title>
@@ -632,67 +701,6 @@
     
     
     <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『hduhelp』如何使用助手鉴权/使用助手的开放服务</title>
-    <link href="https://www.nickxu.top/2022/09/28/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%8A%A9%E6%89%8B%E7%9A%84%E5%BC%80%E6%94%BE%E6%9C%8D%E5%8A%A1/"/>
-    <id>https://www.nickxu.top/2022/09/28/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%8A%A9%E6%89%8B%E7%9A%84%E5%BC%80%E6%94%BE%E6%9C%8D%E5%8A%A1/</id>
-    <published>2022-09-28T00:26:22.000Z</published>
-    <updated>2022-09-28T15:12:42.726Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209282111563.png&quot; alt=&quot;image-20220928211141429&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;官方文档：&lt;a href=&quot;https://open.hduhelp.com/docs/develop/&quot;&gt;https://open.hduhelp.com/docs/develop/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;因为官方文档写得有些抽象，鄙人搞懂之后特作此文以记录&lt;/p&gt;
-&lt;p&gt;PS：全程使用 &lt;code&gt;https&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1</summary>
-        
-      
-    
-    
-    
-    
-    <category term="hduhelp" scheme="https://www.nickxu.top/tags/hduhelp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于 go-zero 的简单上手笔记</title>
-    <link href="https://www.nickxu.top/2022/09/27/%E5%85%B3%E4%BA%8E%20go-zero%20%E7%9A%84%E7%AE%80%E5%8D%95%E4%B8%8A%E6%89%8B%E7%AC%94%E8%AE%B0/"/>
-    <id>https://www.nickxu.top/2022/09/27/%E5%85%B3%E4%BA%8E%20go-zero%20%E7%9A%84%E7%AE%80%E5%8D%95%E4%B8%8A%E6%89%8B%E7%AC%94%E8%AE%B0/</id>
-    <published>2022-09-27T13:48:09.000Z</published>
-    <updated>2022-09-30T00:38:50.893Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;前几天简单上手了一下 &lt;code&gt;go-zero&lt;/code&gt; 框架，去官网看了下文档，然后网上的博客，还有 B 站的视频，还有助手的项目，有了一些了解&lt;/p&gt;
-&lt;p&gt;这东西其实就是一个全自动的 web 和 RPC 框架，你只需要关注于设计，还有你的业务代码就好了，其他的 go-zero 都能帮你搞定&lt;/p&gt;
-&lt;p&gt;这东西你首先需要定义私有格式的 api 文件，这东西能很好的定义你的服务，即使直接交给前端，前端都能看懂&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="go-zero 框架" scheme="https://www.nickxu.top/categories/Golang/go-zero-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-    <category term="go-zero" scheme="https://www.nickxu.top/tags/go-zero/"/>
     
   </entry>
   
