@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-23T02:34:25.743Z</updated>
+  <updated>2022-10-28T13:22:03.197Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,76 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『大学物理2』期中复习：波动光学</title>
+    <link href="https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/"/>
+    <id>https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/</id>
+    <published>2022-10-27T15:14:57.000Z</published>
+    <updated>2022-10-28T13:22:03.197Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;光的相干性与双缝干涉&quot;&gt;光的相干性与双缝干涉&lt;/h1&gt;
+&lt;h2 id=&quot;光程和光程差&quot;&gt;光程和光程差&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282039072.png&quot; alt=&quot;image-20221028203948901&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;光强&quot;&gt;光强&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282043847.png&quot; alt=&quot;image-20221028204310760&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282043027.png&quot; alt=&quot;image-20221028204348966&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;杨氏双缝干涉&quot;&gt;杨氏双缝干涉&lt;/h2&gt;
+&lt;p&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>『大学物理2』期中复习：振动与波</title>
+    <link href="https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%8C%AF%E5%8A%A8%E4%B8%8E%E6%B3%A2/"/>
+    <id>https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%8C%AF%E5%8A%A8%E4%B8%8E%E6%B3%A2/</id>
+    <published>2022-10-27T15:14:39.000Z</published>
+    <updated>2022-10-28T12:26:05.600Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;简谐振动&quot;&gt;简谐振动&lt;/h1&gt;
+&lt;h2 id=&quot;知识点&quot;&gt;知识点&lt;/h2&gt;
+&lt;h3 id=&quot;运动方程&quot;&gt;运动方程&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210281400882.png&quot; alt=&quot;image-20221028140044740&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;弹簧振子&quot;&gt;弹簧振子&lt;/h3&gt;
+&lt;p&gt;弹簧的频率是其固有属性&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210281402055.png&quot; alt=&quot;image-20221028140211971&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;旋转矢量表示法&quot;&gt;旋转矢量表示法&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210281405466.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>『Golang』依赖注入为何物？</title>
+    <link href="https://www.nickxu.top/2022/10/26/%E3%80%8EGolang%E3%80%8F%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E4%B8%BA%E4%BD%95%E7%89%A9%EF%BC%9F/"/>
+    <id>https://www.nickxu.top/2022/10/26/%E3%80%8EGolang%E3%80%8F%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E4%B8%BA%E4%BD%95%E7%89%A9%EF%BC%9F/</id>
+    <published>2022-10-25T16:16:55.000Z</published>
+    <updated>2022-10-25T16:16:55.950Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>『Ubuntu』记录两款服务/自启管理工具</title>
@@ -126,7 +196,7 @@
     <link href="https://www.nickxu.top/2022/10/12/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%8A%A9%E6%89%8B%20OAuth/"/>
     <id>https://www.nickxu.top/2022/10/12/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%8A%A9%E6%89%8B%20OAuth/</id>
     <published>2022-10-12T13:17:45.000Z</published>
-    <updated>2022-10-13T04:23:47.306Z</updated>
+    <updated>2022-10-24T10:56:20.722Z</updated>
     
     
       
@@ -136,11 +206,7 @@
     <summary type="html">&lt;p&gt;书接&lt;a href=&quot;/2022/09/28/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%8A%A9%E6%89%8B%E7%9A%84%E5%BC%80%E6%94%BE%E6%9C%8D%E5%8A%A1/&quot;&gt;上文&lt;/a&gt;，本篇记录一下如何在项目中使用助手鉴权&lt;/p&gt;
 &lt;p&gt;例子是我正在开发的面试系统，框架是 go-zero&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;项目地址： &lt;a href=&quot;https://github.com/hduhelp/interview_backend&quot;&gt;https://github.com/hduhelp/interview_backend&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;（私有仓库，需杭助内部身份）&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;先来看-API-文件&quot;&gt;先来看 API 文件&lt;/h1&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+&lt;p&gt;示例地址： &lt;a</summary>
         
       
     
@@ -586,121 +652,6 @@
     <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
     
     <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（一）前言与介绍</title>
-    <link href="https://www.nickxu.top/2022/09/30/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E8%A8%80%E4%B8%8E%E4%BB%8B%E7%BB%8D/"/>
-    <id>https://www.nickxu.top/2022/09/30/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89%E5%89%8D%E8%A8%80%E4%B8%8E%E4%BB%8B%E7%BB%8D/</id>
-    <published>2022-09-30T00:59:17.000Z</published>
-    <updated>2022-09-30T09:55:11.841Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;什么是-ORM&quot;&gt;什么是 ORM&lt;/h1&gt;
-&lt;p&gt;教科书上的废话：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ORM 是通过使用描述对象和数据库之间映射的元数据，将程序中的对象与数据库相互映射&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;人话：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ORM 让你的数据库里面的表结果变成你代码定义的数据结构（go 中的结构体的结构）&lt;/p&gt;
-&lt;p&gt;从而做到代码结构即为数据库结构，代码行为即为数据库行为&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;为什么选择-GORM&quot;&gt;为什么选择 GORM&lt;/h1&gt;
-&lt;ol&gt;
-&lt;li&gt;作者中国人（张金柱哇，我听过他的课）&lt;/li&gt;
-&lt;li&gt;中文文档&lt;/li&gt;
-&lt;li&gt;功能全面，符合新开发习惯&lt;/li&gt;
-&lt;li&gt;稳定&lt;/li&gt;
-&lt;li&gt;…&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h1 id=&quot;如何安装&quot;&gt;如何安装&lt;/h1&gt;
-&lt;p&gt;见官方文档&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『总结』2022 国庆前阶段性总结</title>
-    <link href="https://www.nickxu.top/2022/09/29/%E3%80%8E%E6%80%BB%E7%BB%93%E3%80%8F2022%20%E5%9B%BD%E5%BA%86%E5%89%8D%E9%98%B6%E6%AE%B5%E6%80%A7%E6%80%BB%E7%BB%93/"/>
-    <id>https://www.nickxu.top/2022/09/29/%E3%80%8E%E6%80%BB%E7%BB%93%E3%80%8F2022%20%E5%9B%BD%E5%BA%86%E5%89%8D%E9%98%B6%E6%AE%B5%E6%80%A7%E6%80%BB%E7%BB%93/</id>
-    <published>2022-09-29T15:59:25.000Z</published>
-    <updated>2022-09-29T17:07:43.771Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;嗯，明天早八，要早点睡，也不分标题了吧，想到哪就写到哪&lt;/p&gt;
-&lt;p&gt;首先就是这学期的规划，我在开学初的时候计划在大二把 408 四门学完&lt;/p&gt;
-&lt;p&gt;有些大佬劝我不用那么着急，我现在感觉也是&lt;/p&gt;
-&lt;p&gt;抛开一堆有意义或没有意义的课不谈，现在发现其实有一些更重要的事情需要去做&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202209300053083.png&quot; alt=&quot;image-20220930005346944&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;例如我目前正在负责的面试系统项目&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;然后需要学一堆框架以及相关知识，&lt;code&gt;go-zero&lt;/code&gt;、&lt;code&gt;Gorm&lt;/code&gt;、&lt;code&gt;JWT&lt;/code&gt; 等等等&lt;/p&gt;
-&lt;p&gt;然后这个肯定是重点哇，属于 &lt;code&gt;紧急且重要&lt;/code&gt; 的事情，而 408 只能被归类为</summary>
-        
-      
-    
-    
-    
-    <category term="随笔与总结" scheme="https://www.nickxu.top/categories/%E9%9A%8F%E7%AC%94%E4%B8%8E%E6%80%BB%E7%BB%93/"/>
-    
-    
-    <category term="随笔" scheme="https://www.nickxu.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『Linux』如何添加路径到 PATH</title>
-    <link href="https://www.nickxu.top/2022/09/28/%E3%80%8ELinux%E3%80%8F%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%B7%AF%E5%BE%84%E5%88%B0-PATH/"/>
-    <id>https://www.nickxu.top/2022/09/28/%E3%80%8ELinux%E3%80%8F%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E8%B7%AF%E5%BE%84%E5%88%B0-PATH/</id>
-    <published>2022-09-28T01:11:44.000Z</published>
-    <updated>2022-09-28T01:24:31.952Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;使用以下命令即可&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; PATH=&lt;span class=&quot;string&quot;&gt;&amp;quot;&lt;span class=&quot;variable&quot;&gt;$PATH&lt;/span&gt;:&amp;lt;你的路径&amp;gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;例&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="新技能 Got" scheme="https://www.nickxu.top/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"/>
-    
-    
-    <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
     
   </entry>
   

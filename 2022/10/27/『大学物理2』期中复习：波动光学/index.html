@@ -1,0 +1,729 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『大学物理2』期中复习：波动光学 | NX の 博客</title><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="光的相干性与双缝干涉 光程和光程差  光强   杨氏双缝干涉    光的干涉 薄膜干涉  折射率大的是光疏介质 透射光没损失  牛顿环  光的衍射 单缝衍射  翻译    无质量弹簧 a spring of negligible mass     吸收 absorb   加速度 acceleration   振幅 amplitude   圆频率 angular frequency   波腹 ant">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『大学物理2』期中复习：波动光学">
+<meta property="og:url" content="https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="光的相干性与双缝干涉 光程和光程差  光强   杨氏双缝干涉    光的干涉 薄膜干涉  折射率大的是光疏介质 透射光没损失  牛顿环  光的衍射 单缝衍射  翻译    无质量弹簧 a spring of negligible mass     吸收 absorb   加速度 acceleration   振幅 amplitude   圆频率 angular frequency   波腹 ant">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-10-27T15:14:57.000Z">
+<meta property="article:modified_time" content="2022-10-28T13:22:03.197Z">
+<meta property="article:author" content="Nick Xu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『大学物理2』期中复习：波动光学',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-28 21:22:03'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="NX の 博客" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">237</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『大学物理2』期中复习：波动光学</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-27T15:14:57.000Z" title="发表于 2022-10-27 23:14:57">2022-10-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-28T13:22:03.197Z" title="更新于 2022-10-28 21:22:03">2022-10-28</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">767</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『大学物理2』期中复习：波动光学"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="光的相干性与双缝干涉">光的相干性与双缝干涉</h1>
+<h2 id="光程和光程差">光程和光程差</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282039072.png" alt="image-20221028203948901"></p>
+<h2 id="光强">光强</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282043847.png" alt="image-20221028204310760"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282043027.png" alt="image-20221028204348966"></p>
+<h2 id="杨氏双缝干涉">杨氏双缝干涉</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282048298.png" alt="image-20221028204846071"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282051267.png" alt="image-20221028205117125"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282053077.png" alt="image-20221028205328000"></p>
+<h1 id="光的干涉">光的干涉</h1>
+<h2 id="薄膜干涉">薄膜干涉</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282058572.png" alt="image-20221028205853388"></p>
+<p>折射率大的是光疏介质</p>
+<p>透射光没损失</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282101341.png" alt="image-20221028210148207"></p>
+<h2 id="牛顿环">牛顿环</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282105033.png" alt="image-20221028210545907"></p>
+<h1 id="光的衍射">光的衍射</h1>
+<h2 id="单缝衍射">单缝衍射</h2>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282111750.png" alt="image-20221028211137612"></p>
+<h1 id="翻译">翻译</h1>
+<table>
+<thead>
+<tr>
+<th>无质量弹簧</th>
+<th>a spring of negligible mass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>吸收</td>
+<td>absorb</td>
+</tr>
+<tr>
+<td>加速度</td>
+<td>acceleration</td>
+</tr>
+<tr>
+<td>振幅</td>
+<td>amplitude</td>
+</tr>
+<tr>
+<td>圆频率</td>
+<td>angular frequency</td>
+</tr>
+<tr>
+<td>波腹</td>
+<td>antinode</td>
+</tr>
+<tr>
+<td>静止的</td>
+<td>at rest/stationary</td>
+</tr>
+<tr>
+<td>平均寿命</td>
+<td>average lifetime</td>
+</tr>
+<tr>
+<td>亮条纹间距</td>
+<td>bright stripe space</td>
+</tr>
+<tr>
+<td>亮条纹</td>
+<td>bright stripe/bright fringe</td>
+</tr>
+<tr>
+<td>中央亮条纹</td>
+<td>central bight fringe</td>
+</tr>
+<tr>
+<td>相干源</td>
+<td>coherent source</td>
+</tr>
+<tr>
+<td>康普顿散射</td>
+<td>Compton scattering</td>
+</tr>
+<tr>
+<td>匀速</td>
+<td>constant speed</td>
+</tr>
+<tr>
+<td>干涉相长</td>
+<td>constructive</td>
+</tr>
+<tr>
+<td>坐标</td>
+<td>coordinate</td>
+</tr>
+<tr>
+<td>曲率半径</td>
+<td>curvature radius</td>
+</tr>
+<tr>
+<td>暗条纹</td>
+<td>dark fring/dark stripe</td>
+</tr>
+<tr>
+<td>干涉相消</td>
+<td>destructive</td>
+</tr>
+<tr>
+<td>对角线</td>
+<td>diagonal</td>
+</tr>
+<tr>
+<td>直径</td>
+<td>diameter</td>
+</tr>
+<tr>
+<td>传播方向</td>
+<td>direction of propagation</td>
+</tr>
+<tr>
+<td>电子</td>
+<td>electron</td>
+</tr>
+<tr>
+<td>发射光子</td>
+<td>emission photon</td>
+</tr>
+<tr>
+<td>发射</td>
+<td>emit</td>
+</tr>
+<tr>
+<td>能级结构</td>
+<td>energy-level scheme</td>
+</tr>
+<tr>
+<td>简谐运动方程</td>
+<td>equation of motion</td>
+</tr>
+<tr>
+<td>平衡位置</td>
+<td>equilibrium position</td>
+</tr>
+<tr>
+<td>激发能</td>
+<td>excitation energy</td>
+</tr>
+<tr>
+<td>平面玻璃板表面</td>
+<td>flat glass surface</td>
+</tr>
+<tr>
+<td>弹簧系数</td>
+<td>force constant</td>
+</tr>
+<tr>
+<td>四个量子数</td>
+<td>four quantum number</td>
+</tr>
+<tr>
+<td>自由电子</td>
+<td>free electron</td>
+</tr>
+<tr>
+<td>频率</td>
+<td>frequency</td>
+</tr>
+<tr>
+<td>玻璃劈尖</td>
+<td>glass wedge</td>
+</tr>
+<tr>
+<td>滑块</td>
+<td>glider</td>
+</tr>
+<tr>
+<td>基态</td>
+<td>ground state</td>
+</tr>
+<tr>
+<td>半波损</td>
+<td>half-wave loss</td>
+</tr>
+<tr>
+<td>高能加速器</td>
+<td>high-energy accelerator</td>
+</tr>
+<tr>
+<td>最大几率</td>
+<td>highest probability</td>
+</tr>
+<tr>
+<td>氢原子</td>
+<td>hydrogen atom</td>
+</tr>
+<tr>
+<td>假想单电子原子</td>
+<td>hypothetical one-electron atom</td>
+</tr>
+<tr>
+<td>理想弹簧</td>
+<td>ideal spring</td>
+</tr>
+<tr>
+<td>在空气中</td>
+<td>in air</td>
+</tr>
+<tr>
+<td>电子伏特（单位）</td>
+<td>in electron volts</td>
+</tr>
+<tr>
+<td>在水中</td>
+<td>in water</td>
+</tr>
+<tr>
+<td>入射角</td>
+<td>incident angle</td>
+</tr>
+<tr>
+<td>入射光</td>
+<td>incident light</td>
+</tr>
+<tr>
+<td>入射波</td>
+<td>incident wave</td>
+</tr>
+<tr>
+<td>无限远距离</td>
+<td>infinite distance</td>
+</tr>
+<tr>
+<td>初始高度</td>
+<td>initial height</td>
+</tr>
+<tr>
+<td>初相</td>
+<td>initial phase</td>
+</tr>
+<tr>
+<td>初态</td>
+<td>initial state</td>
+</tr>
+<tr>
+<td>电离（离子化）</td>
+<td>ionize</td>
+</tr>
+<tr>
+<td>动能</td>
+<td>kinetic energy</td>
+</tr>
+<tr>
+<td>长度收缩</td>
+<td>length contraction</td>
+</tr>
+<tr>
+<td>光路</td>
+<td>light path</td>
+</tr>
+<tr>
+<td>大小</td>
+<td>magnitude</td>
+</tr>
+<tr>
+<td>质量</td>
+<td>mass</td>
+</tr>
+<tr>
+<td>最大的</td>
+<td>maximum</td>
+</tr>
+<tr>
+<td>最大加速度</td>
+<td>maximum acceleration</td>
+</tr>
+<tr>
+<td>最大速度</td>
+<td>maximum speed/maximum velocity</td>
+</tr>
+<tr>
+<td>最大向上位移</td>
+<td>maximum upward displacement</td>
+</tr>
+<tr>
+<td>机械能</td>
+<td>mechanical energy</td>
+</tr>
+<tr>
+<td>迈克尔逊干涉</td>
+<td>Michlson interferometer</td>
+</tr>
+<tr>
+<td>最小的</td>
+<td>minimum</td>
+</tr>
+<tr>
+<td>最小波长</td>
+<td>minimum wavelenght</td>
+</tr>
+<tr>
+<td>动量</td>
+<td>momentum</td>
+</tr>
+<tr>
+<td>单色光</td>
+<td>monochromatic light</td>
+</tr>
+<tr>
+<td>牛顿环</td>
+<td>Newton’s ring</td>
+</tr>
+<tr>
+<td>节点</td>
+<td>node</td>
+</tr>
+<tr>
+<td>原子核</td>
+<td>nucleus</td>
+</tr>
+<tr>
+<td>一维定态的</td>
+<td>one-dimensional stationary</td>
+</tr>
+<tr>
+<td>相反方向</td>
+<td>opposite direction</td>
+</tr>
+<tr>
+<td>光程</td>
+<td>optical path</td>
+</tr>
+<tr>
+<td>光程差</td>
+<td>optical path difference</td>
+</tr>
+<tr>
+<td>原波长</td>
+<td>original wavelength</td>
+</tr>
+<tr>
+<td>原来的位置</td>
+<td>origional position</td>
+</tr>
+<tr>
+<td>平行光</td>
+<td>parallel light</td>
+</tr>
+<tr>
+<td>周期</td>
+<td>period</td>
+</tr>
+<tr>
+<td>相位</td>
+<td>phase</td>
+</tr>
+<tr>
+<td>光电效应</td>
+<td>photoelectric effect</td>
+</tr>
+<tr>
+<td>光子</td>
+<td>photon</td>
+</tr>
+<tr>
+<td>平面简谐波</td>
+<td>plane harmonic wave</td>
+</tr>
+<tr>
+<td>平凸镜</td>
+<td>planoconvex lens</td>
+</tr>
+<tr>
+<td>势能</td>
+<td>potential energy</td>
+</tr>
+<tr>
+<td>主量子数</td>
+<td>principle quantum number</td>
+</tr>
+<tr>
+<td>本征寿命</td>
+<td>proper lifetime</td>
+</tr>
+<tr>
+<td>质子</td>
+<td>proton</td>
+</tr>
+<tr>
+<td>放射源</td>
+<td>radioactive</td>
+</tr>
+<tr>
+<td>半径</td>
+<td>radius</td>
+</tr>
+<tr>
+<td>实常数</td>
+<td>real constant</td>
+</tr>
+<tr>
+<td>反冲电子</td>
+<td>recoiled electron</td>
+</tr>
+<tr>
+<td>长方形</td>
+<td>rectangle</td>
+</tr>
+<tr>
+<td>反射波</td>
+<td>reflected wave</td>
+</tr>
+<tr>
+<td>折射率</td>
+<td>refractive index</td>
+</tr>
+<tr>
+<td>相对速度</td>
+<td>relative speed/relative velocity</td>
+</tr>
+<tr>
+<td>静止参考系</td>
+<td>rest frame</td>
+</tr>
+<tr>
+<td>散射光子</td>
+<td>scattered x-ray/scattered photon</td>
+</tr>
+<tr>
+<td>薛定谔方程</td>
+<td>Schrödinger equation</td>
+</tr>
+<tr>
+<td>证明</td>
+<td>show that</td>
+</tr>
+<tr>
+<td>简谐振动</td>
+<td>simple harmonic motion (SHM)</td>
+</tr>
+<tr>
+<td>解</td>
+<td>solution</td>
+</tr>
+<tr>
+<td>传播速度</td>
+<td>speed of propagation</td>
+</tr>
+<tr>
+<td>遏止电压</td>
+<td>stopping potential</td>
+</tr>
+<tr>
+<td>表面积</td>
+<td>surface area</td>
+</tr>
+<tr>
+<td>地球参考系</td>
+<td>the earth’s frame</td>
+</tr>
+<tr>
+<td>薄玻璃</td>
+<td>thin glass</td>
+</tr>
+<tr>
+<td>时间膨胀</td>
+<td>time dilation</td>
+</tr>
+<tr>
+<td>时间间隔</td>
+<td>time interval</td>
+</tr>
+<tr>
+<td>完全非弹性碰撞</td>
+<td>totally inelastic collision</td>
+</tr>
+<tr>
+<td>横波</td>
+<td>transervse wave</td>
+</tr>
+<tr>
+<td>跃迁</td>
+<td>transition</td>
+</tr>
+<tr>
+<td>透明薄膜</td>
+<td>transparent thin film</td>
+</tr>
+<tr>
+<td>横向位移</td>
+<td>transverse displacement</td>
+</tr>
+<tr>
+<td>不稳定粒子</td>
+<td>unstable particle</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>velocity/speed</td>
+</tr>
+<tr>
+<td>波函数</td>
+<td>wave function</td>
+</tr>
+<tr>
+<td>波速</td>
+<td>wave speed</td>
+</tr>
+<tr>
+<td>波长</td>
+<td>wavelength</td>
+</tr>
+<tr>
+<td>宽度</td>
+<td>width</td>
+</tr>
+<tr>
+<td>逸出功</td>
+<td>work function</td>
+</tr>
+<tr>
+<td>X射线</td>
+<td>X-ray</td>
+</tr>
+<tr>
+<td>x轴</td>
+<td>x-axis</td>
+</tr>
+<tr>
+<td>杨氏双缝干涉实验</td>
+<td>Young’s doule slit interference experiment</td>
+</tr>
+<tr>
+<td>零级亮条纹</td>
+<td>zeroth order of brigth fringe</td>
+</tr>
+</tbody>
+</table>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">这家伙真勤奋，什么都留下了</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">237</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">44</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NX-Official"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://message/?uin=976180942&amp;Site=tool.520101.com&amp;Menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/static/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin"></i></a><a class="social-icon" href="mailto:976180942@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/atom.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%89%E7%9A%84%E7%9B%B8%E5%B9%B2%E6%80%A7%E4%B8%8E%E5%8F%8C%E7%BC%9D%E5%B9%B2%E6%B6%89"><span class="toc-number">1.</span> <span class="toc-text">光的相干性与双缝干涉</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E7%A8%8B%E5%92%8C%E5%85%89%E7%A8%8B%E5%B7%AE"><span class="toc-number">1.1.</span> <span class="toc-text">光程和光程差</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%89%E5%BC%BA"><span class="toc-number">1.2.</span> <span class="toc-text">光强</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A8%E6%B0%8F%E5%8F%8C%E7%BC%9D%E5%B9%B2%E6%B6%89"><span class="toc-number">1.3.</span> <span class="toc-text">杨氏双缝干涉</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%89%E7%9A%84%E5%B9%B2%E6%B6%89"><span class="toc-number">2.</span> <span class="toc-text">光的干涉</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%96%84%E8%86%9C%E5%B9%B2%E6%B6%89"><span class="toc-number">2.1.</span> <span class="toc-text">薄膜干涉</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%9B%E9%A1%BF%E7%8E%AF"><span class="toc-number">2.2.</span> <span class="toc-text">牛顿环</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%89%E7%9A%84%E8%A1%8D%E5%B0%84"><span class="toc-number">3.</span> <span class="toc-text">光的衍射</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E7%BC%9D%E8%A1%8D%E5%B0%84"><span class="toc-number">3.1.</span> <span class="toc-text">单缝衍射</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BF%BB%E8%AF%91"><span class="toc-number">4.</span> <span class="toc-text">翻译</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/" title="『大学物理2』期中复习：波动光学">『大学物理2』期中复习：波动光学</a><time datetime="2022-10-28T13:22:03.197Z" title="更新于 2022-10-28 21:22:03">2022-10-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%8C%AF%E5%8A%A8%E4%B8%8E%E6%B3%A2/" title="『大学物理2』期中复习：振动与波">『大学物理2』期中复习：振动与波</a><time datetime="2022-10-28T12:26:05.600Z" title="更新于 2022-10-28 20:26:05">2022-10-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/26/%E3%80%8EGolang%E3%80%8F%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E4%B8%BA%E4%BD%95%E7%89%A9%EF%BC%9F/" title="『Golang』依赖注入为何物？">『Golang』依赖注入为何物？</a><time datetime="2022-10-25T16:16:55.950Z" title="更新于 2022-10-26 00:16:55">2022-10-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/12/%E3%80%8Ehduhelp%E3%80%8F%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%8E%A5%E5%85%A5%E5%8A%A9%E6%89%8B%20OAuth/" title="『hduhelp』如何在项目中接入助手 OAuth">『hduhelp』如何在项目中接入助手 OAuth</a><time datetime="2022-10-24T10:56:20.722Z" title="更新于 2022-10-24 18:56:20">2022-10-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/10/23/%E3%80%8EUbuntu%E3%80%8F%E8%AE%B0%E5%BD%95%E4%B8%A4%E6%AC%BE%E6%9C%8D%E5%8A%A1-%E8%87%AA%E5%90%AF%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" title="『Ubuntu』记录两款服务/自启管理工具">『Ubuntu』记录两款服务/自启管理工具</a><time datetime="2022-10-23T02:34:25.743Z" title="更新于 2022-10-23 10:34:25">2022-10-23</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.nickxu.top/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.nickxu.top/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
