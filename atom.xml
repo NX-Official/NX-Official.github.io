@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-10-31T13:35:58.355Z</updated>
+  <updated>2022-11-06T16:18:16.504Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang 语法速通指南（七）复合数据结构之 Map</title>
+    <link href="https://www.nickxu.top/2022/11/07/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%83%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-Map/"/>
+    <id>https://www.nickxu.top/2022/11/07/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%83%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-Map/</id>
+    <published>2022-11-07T12:14:42.000Z</published>
+    <updated>2022-11-06T16:18:16.504Z</updated>
+    
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
+    
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Golang 语法速通指南（六）复合数据结构之切片（Slice)</title>
+    <link href="https://www.nickxu.top/2022/11/06/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AD%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%88%87%E7%89%87/"/>
+    <id>https://www.nickxu.top/2022/11/06/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AD%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%88%87%E7%89%87/</id>
+    <published>2022-11-06T12:14:30.000Z</published>
+    <updated>2022-11-06T16:17:42.279Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文重构于 &lt;a href=&quot;https://www.nickxu.top/2022/01/24/go-qie-pian-slice/&quot;&gt;Go 切片（Slice）&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Go 数组的长度不可改变，在特定场景中这样的集合就不太适用，Go 中提供了一种灵活，功能强悍的内置类型切片(“动态数组”)，与数组相比切片的长度是不固定的，可以追加元素，容量（cap）不够时会自动扩容&lt;/p&gt;
+&lt;p&gt;切片为引用类型，从数组中得到的切片修改元素值时，原数组也会发生变化，修改原数组时，切片也会变化&lt;/p&gt;
+&lt;h1 id=&quot;创建切片&quot;&gt;创建切片&lt;/h1&gt;
+&lt;p&gt;创建切片可以有四种方法&lt;/p&gt;
+&lt;h2 id=&quot;使用-var&quot;&gt;使用 &lt;code&gt;var&lt;/code&gt;&lt;/h2&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
+    
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
   
   <entry>
     <title>写在10月的最后一天</title>
@@ -55,7 +109,7 @@
     <link href="https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/"/>
     <id>https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/</id>
     <published>2022-10-27T15:14:57.000Z</published>
-    <updated>2022-10-28T15:44:08.913Z</updated>
+    <updated>2022-11-02T12:05:09.574Z</updated>
     
     
       
@@ -75,6 +129,10 @@
     
     
     
+    <category term="基础课复习" scheme="https://www.nickxu.top/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/"/>
+    
+    <category term="大学物理" scheme="https://www.nickxu.top/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/"/>
+    
     
   </entry>
   
@@ -83,7 +141,7 @@
     <link href="https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%8C%AF%E5%8A%A8%E4%B8%8E%E6%B3%A2/"/>
     <id>https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%8C%AF%E5%8A%A8%E4%B8%8E%E6%B3%A2/</id>
     <published>2022-10-27T15:14:39.000Z</published>
-    <updated>2022-10-29T00:21:51.445Z</updated>
+    <updated>2022-11-02T12:04:54.857Z</updated>
     
     
       
@@ -104,18 +162,9 @@
     
     
     
+    <category term="基础课复习" scheme="https://www.nickxu.top/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/"/>
     
-  </entry>
-  
-  <entry>
-    <title>『Golang』依赖注入为何物？</title>
-    <link href="https://www.nickxu.top/2022/10/26/%E3%80%8EGolang%E3%80%8F%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E4%B8%BA%E4%BD%95%E7%89%A9%EF%BC%9F/"/>
-    <id>https://www.nickxu.top/2022/10/26/%E3%80%8EGolang%E3%80%8F%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E4%B8%BA%E4%BD%95%E7%89%A9%EF%BC%9F/</id>
-    <published>2022-10-25T16:16:55.000Z</published>
-    <updated>2022-10-25T16:16:55.950Z</updated>
-    
-    
-    
+    <category term="大学物理" scheme="https://www.nickxu.top/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/"/>
     
     
   </entry>
@@ -609,36 +658,6 @@
 &lt;p&gt;来自&lt;a href=&quot;https://gorm.io/zh_CN/docs/models.html&quot;&gt;官方文档&lt;/a&gt;：&lt;/p&gt;
 &lt;p&gt;模型是标准的 struct，由 Go 的基本数据类型、实现了 Scanner 和 Valuer 接口的自定义类型及其指针或别名组成&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（三）基本表操作</title>
-    <link href="https://www.nickxu.top/2022/09/30/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%9F%BA%E6%9C%AC%E8%A1%A8%E6%93%8D%E4%BD%9C/"/>
-    <id>https://www.nickxu.top/2022/09/30/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E5%9F%BA%E6%9C%AC%E8%A1%A8%E6%93%8D%E4%BD%9C/</id>
-    <published>2022-09-30T01:00:57.000Z</published>
-    <updated>2022-10-01T02:57:16.447Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;ORM 是把结构和数据库表创建一个映射，所以我们先建一个结构体（也就是模型，这个后面详细讲）&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;//一个只有一个字段的结构体&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;type&lt;/span&gt; User &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	Name &lt;span</summary>
         
       
     
