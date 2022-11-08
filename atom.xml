@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-11-07T02:41:20.166Z</updated>
+  <updated>2022-11-08T14:30:37.405Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -21,8 +21,19 @@
     <link href="https://www.nickxu.top/2022/11/08/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E7%BB%93%E6%9E%84%E4%BD%93/"/>
     <id>https://www.nickxu.top/2022/11/08/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E7%BB%93%E6%9E%84%E4%BD%93/</id>
     <published>2022-11-08T12:14:54.000Z</published>
-    <updated>2022-11-07T02:41:20.166Z</updated>
+    <updated>2022-11-08T14:30:37.405Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;创建结构体&quot;&gt;创建结构体&lt;/h1&gt;
+&lt;h2 id=&quot;var&quot;&gt;var&lt;/h2&gt;
+&lt;p&gt;Golang 中的结构体和 C++ 中的差别不大，下面是一个例子&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
     
     
     
