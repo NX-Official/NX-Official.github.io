@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-11-09T02:17:17.502Z</updated>
+  <updated>2022-11-12T14:32:43.122Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,75 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang 语法速通指南（十）函数</title>
+    <link href="https://www.nickxu.top/2022/12/02/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0/"/>
+    <id>https://www.nickxu.top/2022/12/02/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0/</id>
+    <published>2022-12-02T12:15:33.000Z</published>
+    <updated>2022-11-12T14:32:43.122Z</updated>
+    
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
+    
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Golang 语法速通指南（九）复合数据结构之JSON</title>
+    <link href="https://www.nickxu.top/2022/11/12/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BJSON/"/>
+    <id>https://www.nickxu.top/2022/11/12/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BJSON/</id>
+    <published>2022-11-12T12:15:05.000Z</published>
+    <updated>2022-11-12T14:31:39.824Z</updated>
+    
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
+    
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>『Go』记录一种处理大文件上传的可行方案：tus 协议</title>
+    <link href="https://www.nickxu.top/2022/11/11/%E3%80%8EGo%E3%80%8F%E5%88%86%E4%BA%AB%E4%B8%80%E7%A7%8D%E5%A4%84%E7%90%86%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%96%B9%E6%A1%88/"/>
+    <id>https://www.nickxu.top/2022/11/11/%E3%80%8EGo%E3%80%8F%E5%88%86%E4%BA%AB%E4%B8%80%E7%A7%8D%E5%A4%84%E7%90%86%E5%A4%A7%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%96%B9%E6%A1%88/</id>
+    <published>2022-11-11T04:11:41.000Z</published>
+    <updated>2022-11-12T02:32:58.210Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;由于项目业务需要，我需要处理一些大文件的上传（比如说几百MB的视频）&lt;/p&gt;
+&lt;p&gt;然后在网上搜了一通之后是，发现都是一些零散的实现&lt;/p&gt;
+&lt;p&gt;但是我感觉这种东西一定是有人造过轮子的，于是我就到 GitHub 上搜索相关的包&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202211112154678.png&quot; alt=&quot;image-20221111215420536&quot;&gt;&lt;/p&gt;
+&lt;p&gt;然后就发现了 &lt;code&gt;tus&lt;/code&gt; 这个项目&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202211112156068.png&quot; alt=&quot;image-20221111215604945&quot;&gt;&lt;/p&gt;
+&lt;p&gt;打开官网，我发现这是一个基于 HTTP 的开源协议（有 &lt;a href=&quot;https://tus.io/demo.html&quot;&gt;在线 Demo&lt;/a&gt; ，感觉挺不错的），还有官方的 Go 实现</summary>
+        
+      
+    
+    
+    
+    <category term="Go" scheme="https://www.nickxu.top/categories/Go/"/>
+    
+    
+    <category term="tus" scheme="https://www.nickxu.top/tags/tus/"/>
+    
+  </entry>
   
   <entry>
     <title>新人如何参加面试系统后端讲解留档</title>
@@ -43,7 +112,7 @@
     <link href="https://www.nickxu.top/2022/11/08/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E7%BB%93%E6%9E%84%E4%BD%93/"/>
     <id>https://www.nickxu.top/2022/11/08/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AB%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E7%BB%93%E6%9E%84%E4%BD%93/</id>
     <published>2022-11-08T12:14:54.000Z</published>
-    <updated>2022-11-08T14:30:37.405Z</updated>
+    <updated>2022-11-10T10:44:24.927Z</updated>
     
     
       
@@ -565,102 +634,6 @@
     <summary type="html">&lt;h1 id=&quot;Many-To-Many（多对多）&quot;&gt;Many To Many（多对多）&lt;/h1&gt;
 &lt;p&gt;如果你一对多关系搞懂了的话，多对多其实也很容易&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『JWT』在 go-zero 框架中使用 JWT 鉴权</title>
-    <link href="https://www.nickxu.top/2022/10/04/%E3%80%8EJWT%E3%80%8F%E5%9C%A8-go-zero-%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E9%89%B4%E6%9D%83/"/>
-    <id>https://www.nickxu.top/2022/10/04/%E3%80%8EJWT%E3%80%8F%E5%9C%A8-go-zero-%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E9%89%B4%E6%9D%83/</id>
-    <published>2022-10-04T15:36:08.000Z</published>
-    <updated>2022-10-04T16:56:48.065Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;今天刚搞懂了这东西，睡前一定要记下来&lt;/p&gt;
-&lt;p&gt;首先一定要对 go-zero 和 JWT 有些基础，不然你大概不知道我在 BB 什么&lt;/p&gt;
-&lt;p&gt;建议把官网上的 demo 都跑一下&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;我以一个单体服务开始讲，以下是 api 文件&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="go-zero 框架" scheme="https://www.nickxu.top/categories/Golang/go-zero-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="JWT" scheme="https://www.nickxu.top/tags/JWT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（七）一对多关联（Has Many）与进阶预加载</title>
-    <link href="https://www.nickxu.top/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Has-Many%EF%BC%89/"/>
-    <id>https://www.nickxu.top/2022/10/03/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88Has-Many%EF%BC%89/</id>
-    <published>2022-10-03T15:17:52.000Z</published>
-    <updated>2022-10-06T16:10:24.800Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Has-Many（一对多）&quot;&gt;Has Many（一对多）&lt;/h1&gt;
-&lt;blockquote&gt;
-&lt;p&gt;官网地址：&lt;a href=&quot;https://gorm.io/zh_CN/docs/has_many.html&quot;&gt;https://gorm.io/zh_CN/docs/has_many.html&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;先回忆一下 Has One 的表达&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（六）一对一关联（Belongs To 与 Has One）、初识预加载与关系操作</title>
-    <link href="https://www.nickxu.top/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/"/>
-    <id>https://www.nickxu.top/2022/10/02/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E7%B3%BB%EF%BC%88Belongs-To-%E4%B8%8E-Has-One%EF%BC%89/</id>
-    <published>2022-10-02T14:43:07.000Z</published>
-    <updated>2022-10-07T01:34:59.280Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;首先准备两个结构体：学生和老师&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;type&lt;/span&gt; Student &lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt;</summary>
         
       
     
