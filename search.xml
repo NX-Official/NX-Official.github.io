@@ -4,36 +4,9 @@
   
     
     <entry>
-      <title>Golang 语法速通指南（十）函数</title>
-      <link href="/2022/12/02/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0/"/>
-      <url>/2022/12/02/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> Golang </category>
-          
-          <category> 语法速通 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Go </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Golang 语法速通指南（九）复合数据结构之JSON</title>
-      <link href="/2022/11/12/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BJSON/"/>
-      <url>/2022/11/12/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8BJSON/</url>
+      <title>Golang 语法速通指南（九）函数</title>
+      <link href="/2022/11/14/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%87%BD%E6%95%B0/"/>
+      <url>/2022/11/14/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%87%BD%E6%95%B0/</url>
       
         <content type="html"><![CDATA[]]></content>
       
