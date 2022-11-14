@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-11-13T14:17:27.459Z</updated>
+  <updated>2022-11-14T15:11:36.363Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,12 +17,57 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Golang 语法速通指南（九）函数</title>
+    <title>Golang 语法速通指南（十）函数之进阶使用</title>
+    <link href="https://www.nickxu.top/2022/11/15/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0%E4%B9%8B%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/"/>
+    <id>https://www.nickxu.top/2022/11/15/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0%E4%B9%8B%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/</id>
+    <published>2022-11-15T08:17:58.000Z</published>
+    <updated>2022-11-14T15:11:36.363Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;将函数看做变量&quot;&gt;将函数看做变量&lt;/h1&gt;
+&lt;h2 id=&quot;函数类型&quot;&gt;函数类型&lt;/h2&gt;
+&lt;h2 id=&quot;函数作为参数&quot;&gt;函数作为参数&lt;/h2&gt;
+&lt;h2 id=&quot;函数作为返回值&quot;&gt;函数作为返回值&lt;/h2&gt;
+&lt;h2 id=&quot;闭包&quot;&gt;闭包&lt;/h2&gt;
+&lt;h2 id=&quot;延迟调用&quot;&gt;延迟调用&lt;/h2&gt;
+&lt;p&gt;使用 &lt;code&gt;defer&lt;/code&gt; 关键字可以&lt;/p&gt;
+&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
+    
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Golang 语法速通指南（九）函数之基础使用</title>
     <link href="https://www.nickxu.top/2022/11/14/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%87%BD%E6%95%B0/"/>
     <id>https://www.nickxu.top/2022/11/14/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%87%BD%E6%95%B0/</id>
     <published>2022-11-14T12:15:33.000Z</published>
-    <updated>2022-11-13T14:17:27.459Z</updated>
+    <updated>2022-11-14T15:11:07.239Z</updated>
     
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Go 中的函数基本可分为普通函数、匿名函数和方法，方法可视为绑定在结构体上的函数，将在之后单独讲解&lt;/p&gt;
+&lt;h1 id=&quot;普通函数的声明&quot;&gt;普通函数的声明&lt;/h1&gt;
+&lt;p&gt;函数声明包括函数名，参数（入参，形参，随你怎么叫）列表，返回值（出参）列表以及函数体&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; 函数名&lt;span class=&quot;params&quot;&gt;([入参列表])&lt;/span&gt;&lt;/span&gt; [返回值列表] &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
     
     
     
@@ -628,38 +673,6 @@
     <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
     
     <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『JWT』在 go-zero 框架中使用 JWT 鉴权</title>
-    <link href="https://www.nickxu.top/2022/10/04/%E3%80%8EJWT%E3%80%8F%E5%9C%A8-go-zero-%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E9%89%B4%E6%9D%83/"/>
-    <id>https://www.nickxu.top/2022/10/04/%E3%80%8EJWT%E3%80%8F%E5%9C%A8-go-zero-%E6%A1%86%E6%9E%B6%E4%B8%AD%E4%BD%BF%E7%94%A8-JWT-%E9%89%B4%E6%9D%83/</id>
-    <published>2022-10-04T15:36:08.000Z</published>
-    <updated>2022-10-04T16:56:48.065Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;今天刚搞懂了这东西，睡前一定要记下来&lt;/p&gt;
-&lt;p&gt;首先一定要对 go-zero 和 JWT 有些基础，不然你大概不知道我在 BB 什么&lt;/p&gt;
-&lt;p&gt;建议把官网上的 demo 都跑一下&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;我以一个单体服务开始讲，以下是 api 文件&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="go-zero 框架" scheme="https://www.nickxu.top/categories/Golang/go-zero-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="JWT" scheme="https://www.nickxu.top/tags/JWT/"/>
     
   </entry>
   

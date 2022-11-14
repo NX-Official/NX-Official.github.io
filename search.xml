@@ -4,11 +4,38 @@
   
     
     <entry>
-      <title>Golang 语法速通指南（九）函数</title>
+      <title>Golang 语法速通指南（十）函数之进阶使用</title>
+      <link href="/2022/11/15/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0%E4%B9%8B%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/"/>
+      <url>/2022/11/15/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%8D%81%EF%BC%89%E5%87%BD%E6%95%B0%E4%B9%8B%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="将函数看做变量">将函数看做变量</h1><h2 id="函数类型">函数类型</h2><h2 id="函数作为参数">函数作为参数</h2><h2 id="函数作为返回值">函数作为返回值</h2><h2 id="闭包">闭包</h2><h2 id="延迟调用">延迟调用</h2><p>使用 <code>defer</code> 关键字可以</p><p><a href="https://blog.csdn.net/m0_46251547/article/details/123762669">https://blog.csdn.net/m0_46251547/article/details/123762669</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Golang </category>
+          
+          <category> 语法速通 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Golang 语法速通指南（九）函数之基础使用</title>
       <link href="/2022/11/14/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%87%BD%E6%95%B0/"/>
       <url>/2022/11/14/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B9%9D%EF%BC%89%E5%87%BD%E6%95%B0/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>Go 中的函数基本可分为普通函数、匿名函数和方法，方法可视为绑定在结构体上的函数，将在之后单独讲解</p><h1 id="普通函数的声明">普通函数的声明</h1><p>函数声明包括函数名，参数（入参，形参，随你怎么叫）列表，返回值（出参）列表以及函数体</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> 函数名<span class="params">([入参列表])</span></span> [返回值列表] &#123;</span><br><span class="line">函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="函数返回值">函数返回值</h1><p>一个函数可以有返回值，也可以没有返回值，甚至可以有多个返回值</p><p>下面是一个简单的函数</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sum</span><span class="params">(a, b <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>你可以在返回值列表就把返回的变量给定义好，这样可以 return 的时候会自动返回对应的变量</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sum</span><span class="params">(a, b <span class="type">int</span>)</span></span> (c <span class="type">int</span>) &#123; <span class="comment">// 这种写法以及多返回值都要加括号</span></span><br><span class="line">    c = a + b</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>多返回值的例子</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">divi</span><span class="params">(a, b <span class="type">int</span>)</span></span> (<span class="type">int</span>, <span class="type">int</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a / b, a % b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="函数参数">函数参数</h1><h2 id="值传递还是引用传递">值传递还是引用传递</h2><p>在 C++ 中，函数一般是值传递，也就是传递的是实参的拷贝，在函数中修改形参不会影响实参</p><p>在 Go 中也是如此，基本类型是值传递，但引用类型（如指针，slice、map、function、channel 等类型）传过去的可以看作是指针，实参会因为引用关系而修改</p><p>也就是说，基本类型是值传递，引用类型可以看作引用传递</p><h2 id="可变参数">可变参数</h2><p>Go 的可变参数是在 [C/C++ 的版本](C/C++  的版本) 上改进的，它解决了一些痛点，让使用更加方便</p><p>还是经典的求和函数，因为使用了可变参数，它可以接受任意个 <code>int</code> 类型的参数</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sum</span><span class="params">(vals ...<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">    total := <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> _, val := <span class="keyword">range</span> vals &#123;</span><br><span class="line">        total += val</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在函数体中，<code>vals</code> 可以被看作是 <code>int</code> 类型的切片</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(sum())           <span class="comment">// &quot;0&quot;</span></span><br><span class="line">fmt.Println(sum(<span class="number">3</span>))          <span class="comment">// &quot;3&quot;</span></span><br><span class="line">fmt.Println(sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>)) <span class="comment">// &quot;10&quot;</span></span><br></pre></td></tr></table></figure><p>但在外部，该函数的参数（ <code>...int</code> ）不能认为是一个 <code>int</code> 类型的切片</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">f</span><span class="params">(...<span class="type">int</span>)</span></span> &#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">g</span><span class="params">([]<span class="type">int</span>)</span></span> &#123;&#125;</span><br><span class="line">fmt.Printf(<span class="string">&quot;%T\n&quot;</span>, f) <span class="comment">// &quot;func(...int)&quot;</span></span><br><span class="line">fmt.Printf(<span class="string">&quot;%T\n&quot;</span>, g) <span class="comment">// &quot;func([]int)&quot;</span></span><br></pre></td></tr></table></figure><p>那现在我想传入一个切片怎么办？可以使用下面的方式将切片拆成参数</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">values := []<span class="type">int</span>&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br><span class="line">fmt.Println(sum(values...)) <span class="comment">// &quot;10&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
