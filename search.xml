@@ -8,7 +8,7 @@
       <link href="/2022/11/18/%E3%80%8Ek8s%E3%80%8F%E5%88%9B%E5%BB%BAdashboard%E8%AE%BF%E9%97%AEtoken/"/>
       <url>/2022/11/18/%E3%80%8Ek8s%E3%80%8F%E5%88%9B%E5%BB%BAdashboard%E8%AE%BF%E9%97%AEtoken/</url>
       
-        <content type="html"><![CDATA[<p>前几天老王八蛋给了我杭助服务器的权限，让我你一睹部署的细节</p><p>然后本菜鸡还没接触 k8s ，先把生成 dashboard token 的命令记一下（</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k3s kubectl -n kubernetes-dashboard create token admin-user</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p>前几天老王八蛋给了我杭助服务器的权限，让我一睹部署的细节</p><p>然后本菜鸡还没接触 k8s ，先把生成 dashboard token 的命令记一下（</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k3s kubectl -n kubernetes-dashboard create token admin-user</span><br></pre></td></tr></table></figure>]]></content>
       
       
       
