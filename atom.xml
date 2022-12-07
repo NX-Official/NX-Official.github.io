@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-11-23T08:18:44.775Z</updated>
+  <updated>2022-12-07T16:06:20.632Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,43 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『C/C++』一文初识Makefile与CMake</title>
+    <link href="https://www.nickxu.top/2022/12/01/%E3%80%8EC-C-%E3%80%8F%E4%B8%80%E6%96%87%E5%88%9D%E8%AF%86Makefile%E4%B8%8ECMake/"/>
+    <id>https://www.nickxu.top/2022/12/01/%E3%80%8EC-C-%E3%80%8F%E4%B8%80%E6%96%87%E5%88%9D%E8%AF%86Makefile%E4%B8%8ECMake/</id>
+    <published>2022-12-01T02:12:51.000Z</published>
+    <updated>2022-12-07T16:06:20.632Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文来源于 B 站视频，鄙人只是跟着做一下笔记：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV188411L7d2/?spm_id_from=333.1007.top_right_bar_window_default_collection.content.click&amp;amp;vd_source=e2613baf768b2432fcb2b9edd79c0c68&quot;&gt;Makefile 20分钟入门，简简单单，展示如何使用Makefile管理和编译C++代码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1bg411p7oS/?spm_id_from=333.788.recommend_more_video.-1&amp;amp;vd_source=e2613baf768b2432fcb2b9edd79c0c68&quot;&gt;CMake 6分钟入门，不用再写复杂的Makefile&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;感觉这个老师讲的真的好</summary>
+        
+      
+    
+    
+    
+    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
+    
+    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
+    
+    
+    <category term="C/C++" scheme="https://www.nickxu.top/tags/C-C/"/>
+    
+    <category term="Makefile" scheme="https://www.nickxu.top/tags/Makefile/"/>
+    
+    <category term="CMake" scheme="https://www.nickxu.top/tags/CMake/"/>
+    
+  </entry>
   
   <entry>
     <title>Golang 语法速通指南（十）函数之进阶使用</title>
@@ -611,48 +648,6 @@
 &lt;p&gt;书接上文，现在需要实现评论的评论，怎么办？&lt;/p&gt;
 &lt;p&gt;很简单，只需这样&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（九）多态的概念与使用</title>
-    <link href="https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%9A%E6%80%81%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/"/>
-    <id>https://www.nickxu.top/2022/10/07/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B9%9D%EF%BC%89%E5%A4%9A%E6%80%81%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/</id>
-    <published>2022-10-07T08:45:18.000Z</published>
-    <updated>2022-10-08T13:52:29.858Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;概念&quot;&gt;概念&lt;/h1&gt;
-&lt;p&gt;多态只存在于 Has One 和 Has Mang 中，这东西有些难以表述，我尽力讲得比较清晰&lt;/p&gt;
-&lt;p&gt;假如你正在开发一个类 B 站平台，平台上可以上传视频，也可以发布文章&lt;/p&gt;
-&lt;p&gt;现在需要加入评论功能，你将如何设计评论表？&lt;/p&gt;
-&lt;p&gt;众所周知，视频是可以评论的，文章也是可以评论的 &lt;s&gt;（暂时不考虑评论的评论）&lt;/s&gt;&lt;/p&gt;
-&lt;p&gt;最简单的方式就是以视频表的主键为外键，建一个视频评论表，再另外以文章表的主键为外键，建一个文章评论表&lt;/p&gt;
-&lt;p&gt;也就是说，视频 has many 视频评论，文章 has many 文章评论，两种评论互不相干&lt;/p&gt;
-&lt;p&gt;但是，这就搞出来两张表，搞出来两种评论类型，有没有一种关联模式，能在一张表中存储所有评论呢？&lt;/p&gt;
-&lt;p&gt;或者在某些场景下，不止 A 和 B 要拥有某一类的东西，而有 ABCDEF… 那怎么办？&lt;/p&gt;
-&lt;p&gt;那自然是有的，在这里只需这样设计评论表&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;字段1：自增主键&lt;/li&gt;
-&lt;li&gt;字段2：评论内容&lt;/li&gt;
-&lt;li&gt;字段3：拥有者的 ID</summary>
         
       
     
