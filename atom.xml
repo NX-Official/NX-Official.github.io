@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-12-08T01:17:51.468Z</updated>
+  <updated>2022-12-09T15:12:39.655Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用GitHub Actions实现简单的自动化部署</title>
+    <link href="https://www.nickxu.top/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
+    <id>https://www.nickxu.top/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</id>
+    <published>2022-12-09T12:17:58.000Z</published>
+    <updated>2022-12-09T15:12:39.655Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本篇是一个 GitHub Actions 使用示例，实现在每次提交代码时自动更新你的远端服务器正在运行的项目&lt;/p&gt;
+&lt;p&gt;但是我并不会从头开始向你介绍 GitHub Actions 是什么，而要求你事先对它有所了解&lt;/p&gt;
+&lt;p&gt;你可以去看官方文档，去 B 站找视频看，网上有很多高质量的参考资料&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202212092139233.jpg&quot; alt=&quot;a054159e939a43e3ab5ff2406081ed6d&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;又或者，你也可以去问 ChatGPT，哈哈😄&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;那为什么说是“简单的”呢？因为本篇只会举一个很简单的例子，不会涉及 docker ，也没有 k3s 集群&lt;/p&gt;
+&lt;p&gt;本篇的例子可以在我的仓库找到：&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="新技能 Got" scheme="https://www.nickxu.top/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"/>
+    
+    
+    <category term="GitHub Actions" scheme="https://www.nickxu.top/tags/GitHub-Actions/"/>
+    
+  </entry>
   
   <entry>
     <title>『C/C++』一文初识Makefile与CMake</title>
@@ -616,38 +649,6 @@
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（十）自引用</title>
-    <link href="https://www.nickxu.top/2022/10/08/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E8%87%AA%E5%BC%95%E7%94%A8/"/>
-    <id>https://www.nickxu.top/2022/10/08/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E8%87%AA%E5%BC%95%E7%94%A8/</id>
-    <published>2022-10-08T08:06:19.000Z</published>
-    <updated>2022-10-16T13:45:41.376Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;自引用的话比较简单 &lt;s&gt;，这一篇就是用来水的&lt;/s&gt;&lt;/p&gt;
-&lt;p&gt;书接上文，现在需要实现评论的评论，怎么办？&lt;/p&gt;
-&lt;p&gt;很简单，只需这样&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span</summary>
         
       
     
