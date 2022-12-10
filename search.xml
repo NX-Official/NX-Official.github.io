@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>设置在使用 SSH key 时不用再输入密码</title>
+      <link href="/2022/12/10/%E8%AE%BE%E7%BD%AE%E5%9C%A8%E4%BD%BF%E7%94%A8-SSH-key-%E6%97%B6%E4%B8%8D%E7%94%A8%E5%86%8D%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/"/>
+      <url>/2022/12/10/%E8%AE%BE%E7%BD%AE%E5%9C%A8%E4%BD%BF%E7%94%A8-SSH-key-%E6%97%B6%E4%B8%8D%E7%94%A8%E5%86%8D%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<p>今早发生了非常尴尬的事情，我在群里抱怨怎样才能在 git ssh 的时候不用密码</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202212101156880.png" alt="cb48d73493389516ba5283292da021da"></p><p>然后群u们居然告诉我：你在生成的时候不输密码就可以了！</p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202212101150420.png" alt="E49300B6C2DA5315E198DB90B63517A7" style="zoom:50%;" /><p>好家伙，这么多年每天多输了这么多密码（</p><p>那要怎样重置密码为空呢？使用下面的命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -p -f ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202212101155703.png" alt="37a866d23e9e29bac4f0996a31bbe0b3"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 新技能 Got </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ssh </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用GitHub Actions实现简单的自动化部署</title>
       <link href="/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
       <url>/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</url>

@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-12-09T15:12:39.655Z</updated>
+  <updated>2022-12-10T03:58:16.838Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>设置在使用 SSH key 时不用再输入密码</title>
+    <link href="https://www.nickxu.top/2022/12/10/%E8%AE%BE%E7%BD%AE%E5%9C%A8%E4%BD%BF%E7%94%A8-SSH-key-%E6%97%B6%E4%B8%8D%E7%94%A8%E5%86%8D%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/"/>
+    <id>https://www.nickxu.top/2022/12/10/%E8%AE%BE%E7%BD%AE%E5%9C%A8%E4%BD%BF%E7%94%A8-SSH-key-%E6%97%B6%E4%B8%8D%E7%94%A8%E5%86%8D%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/</id>
+    <published>2022-12-10T03:35:29.000Z</published>
+    <updated>2022-12-10T03:58:16.838Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今早发生了非常尴尬的事情，我在群里抱怨怎样才能在 git ssh 的时候不用密码&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202212101156880.png&quot; alt=&quot;cb48d73493389516ba5283292da021da&quot;&gt;&lt;/p&gt;
+&lt;p&gt;然后群u们居然告诉我：你在生成的时候不输密码就可以了！&lt;/p&gt;
+&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202212101150420.png&quot; alt=&quot;E49300B6C2DA5315E198DB90B63517A7&quot; style=&quot;zoom:50%;&quot; /&gt;
+&lt;p&gt;好家伙，这么多年每天多输了这么多密码（&lt;/p&gt;
+&lt;p&gt;那要怎样重置密码为空呢？使用下面的命令&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="新技能 Got" scheme="https://www.nickxu.top/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"/>
+    
+    
+    <category term="ssh" scheme="https://www.nickxu.top/tags/ssh/"/>
+    
+  </entry>
   
   <entry>
     <title>使用GitHub Actions实现简单的自动化部署</title>
@@ -602,53 +633,6 @@
     <summary type="html">&lt;h1 id=&quot;普通事务&quot;&gt;普通事务&lt;/h1&gt;
 &lt;p&gt;使用 &lt;code&gt;Transaction()&lt;/code&gt; 可以开启事务，在其中传入一个签名为 &lt;code&gt;func(tx *gorm.DB) error&lt;/code&gt; 的函数，在函数内操作，如果返回的 error 不为空，则这些操作都作废&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（十一）关联标签</title>
-    <link href="https://www.nickxu.top/2022/10/09/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/"/>
-    <id>https://www.nickxu.top/2022/10/09/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE/</id>
-    <published>2022-10-09T13:49:45.000Z</published>
-    <updated>2022-10-10T01:23:14.110Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;在官网的&lt;a href=&quot;https://gorm.io/zh_CN/docs/associations.html#%E5%85%B3%E8%81%94%E6%A0%87%E7%AD%BE&quot;&gt;实体关联&lt;/a&gt;底部有一个表格，讲的是关联标签&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;标签&lt;/th&gt;
-&lt;th style=&quot;text-align:left&quot;&gt;描述&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;foreignKey&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;指定当前模型的列作为连接表的外键&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;references&lt;/td&gt;
-&lt;td style=&quot;text-align:left&quot;&gt;指定引用表的列名，其将被映射为连接表外键&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td</summary>
         
       
     
