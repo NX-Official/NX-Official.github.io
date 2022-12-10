@@ -52,7 +52,7 @@
     <link href="https://www.nickxu.top/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
     <id>https://www.nickxu.top/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</id>
     <published>2022-12-09T12:17:58.000Z</published>
-    <updated>2022-12-09T15:12:39.655Z</updated>
+    <updated>2022-12-10T15:32:23.552Z</updated>
     
     
       
@@ -62,6 +62,7 @@
     <summary type="html">&lt;p&gt;本篇是一个 GitHub Actions 使用示例，实现在每次提交代码时自动更新你的远端服务器正在运行的项目&lt;/p&gt;
 &lt;p&gt;但是我并不会从头开始向你介绍 GitHub Actions 是什么，而要求你事先对它有所了解&lt;/p&gt;
 &lt;p&gt;你可以去看官方文档，去 B 站找视频看，网上有很多高质量的参考资料&lt;/p&gt;
+&lt;p&gt;简单地说就是 GitHub 可以在你更新代码或合并分支的时候开一个虚拟机帮你完成一些事情&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202212092139233.jpg&quot; alt=&quot;a054159e939a43e3ab5ff2406081ed6d&quot;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;又或者，你也可以去问 ChatGPT，哈哈😄&lt;/p&gt;
