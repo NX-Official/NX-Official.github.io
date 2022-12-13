@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2022-12-10T03:58:16.838Z</updated>
+  <updated>2022-12-13T16:39:23.458Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『Docker』Docker内程序如何访问宿主机的端口</title>
+    <link href="https://www.nickxu.top/2022/12/13/%E3%80%8EDocker%E3%80%8FDocker%E5%86%85%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9A%84%E7%AB%AF%E5%8F%A3/"/>
+    <id>https://www.nickxu.top/2022/12/13/%E3%80%8EDocker%E3%80%8FDocker%E5%86%85%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9A%84%E7%AB%AF%E5%8F%A3/</id>
+    <published>2022-12-13T15:50:20.000Z</published>
+    <updated>2022-12-13T16:39:23.458Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;好家伙，折腾了这个问题折腾了一天，刚才终于搞定了，简直不要太高兴&lt;/p&gt;
+&lt;p&gt;事情是这样的，我现在要折腾基于 Docker 的自动化部署，然后我的项目已经打包好了，但是运行起来有问题，一直说连不上 mysql&lt;/p&gt;
+&lt;p&gt;然后呢？ &lt;s&gt;就递归折腾（不是）&lt;/s&gt; 我就感觉肯定是网络的事情&lt;/p&gt;
+&lt;p&gt;然后就想是不是要折腾容器间通信，但是把 mysql 跑在 docker 里面肯定有不少损耗吧，问了下助手里面的大佬，结论也是这样&lt;/p&gt;
+&lt;p&gt;那么，现在的问题就是，&lt;strong&gt;如何让 Docker内程序如何访问宿主机的端口&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;然后我就去搜哇，看各种文章博客去各种平台，还看了些项目，看他们是怎么解决的&lt;/p&gt;
+&lt;p&gt;但是助手的项目自然都是读服务器上的配置文件，我也看不见&lt;/p&gt;
+&lt;p&gt;去看 docker 相关的教程，但都感觉好像没遇见这个问题一样，提都不提&lt;/p&gt;
+&lt;p&gt;去网上查这个问题，有的说就 docker 启动的时候有个网卡，然后直接连它的 ip 就行，但是我没搞定&lt;/p&gt;
+&lt;p&gt;有的说启动的时候指定 host 模式，这个在</summary>
+        
+      
+    
+    
+    
+    <category term="运维" scheme="https://www.nickxu.top/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    <category term="Docker" scheme="https://www.nickxu.top/categories/%E8%BF%90%E7%BB%B4/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://www.nickxu.top/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>设置在使用 SSH key 时不用再输入密码</title>
@@ -52,7 +88,7 @@
     <link href="https://www.nickxu.top/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
     <id>https://www.nickxu.top/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</id>
     <published>2022-12-09T12:17:58.000Z</published>
-    <updated>2022-12-10T15:32:23.552Z</updated>
+    <updated>2022-12-13T15:49:08.410Z</updated>
     
     
       
@@ -74,10 +110,14 @@
     
     
     
-    <category term="新技能 Got" scheme="https://www.nickxu.top/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"/>
+    <category term="运维" scheme="https://www.nickxu.top/categories/%E8%BF%90%E7%BB%B4/"/>
+    
+    <category term="CICD" scheme="https://www.nickxu.top/categories/%E8%BF%90%E7%BB%B4/CICD/"/>
     
     
     <category term="GitHub Actions" scheme="https://www.nickxu.top/tags/GitHub-Actions/"/>
+    
+    <category term="CICD" scheme="https://www.nickxu.top/tags/CICD/"/>
     
   </entry>
   
@@ -616,37 +656,6 @@
     
     
     <category term="hduhelp" scheme="https://www.nickxu.top/tags/hduhelp/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GORM 入门笔记（十二）事务的使用与坑</title>
-    <link href="https://www.nickxu.top/2022/10/10/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E4%BA%8B%E7%89%A9%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%9D%91/"/>
-    <id>https://www.nickxu.top/2022/10/10/GORM-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%BA%8C%EF%BC%89%E4%BA%8B%E7%89%A9%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%9D%91/</id>
-    <published>2022-10-10T01:24:27.000Z</published>
-    <updated>2022-10-10T09:05:40.833Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;普通事务&quot;&gt;普通事务&lt;/h1&gt;
-&lt;p&gt;使用 &lt;code&gt;Transaction()&lt;/code&gt; 可以开启事务，在其中传入一个签名为 &lt;code&gt;func(tx *gorm.DB) error&lt;/code&gt; 的函数，在函数内操作，如果返回的 error 不为空，则这些操作都作废&lt;/p&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="GORM 框架" scheme="https://www.nickxu.top/categories/Golang/GORM-%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
     
   </entry>
   
