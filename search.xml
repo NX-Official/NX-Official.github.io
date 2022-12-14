@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>『CI/CD』结合GitHub Actions+Docker实现自动化部署</title>
+      <link href="/2022/12/14/%E3%80%8ECI-CD%E3%80%8F%E7%BB%93%E5%90%88GitHub-Actions-Docker%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
+      <url>/2022/12/14/%E3%80%8ECI-CD%E3%80%8F%E7%BB%93%E5%90%88GitHub-Actions-Docker%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</url>
+      
+        <content type="html"><![CDATA[<p>上一篇</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 运维 </category>
+          
+          <category> CICD </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GitHub Actions </tag>
+            
+            <tag> Docker </tag>
+            
+            <tag> CICD </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『Docker』Docker内程序如何访问宿主机的端口</title>
       <link href="/2022/12/13/%E3%80%8EDocker%E3%80%8FDocker%E5%86%85%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9A%84%E7%AB%AF%E5%8F%A3/"/>
       <url>/2022/12/13/%E3%80%8EDocker%E3%80%8FDocker%E5%86%85%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E8%AE%BF%E9%97%AE%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%9A%84%E7%AB%AF%E5%8F%A3/</url>
@@ -56,7 +87,7 @@
     
     
     <entry>
-      <title>使用GitHub Actions实现简单的自动化部署</title>
+      <title>『CI/CD』使用GitHub Actions实现简单的自动化部署</title>
       <link href="/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"/>
       <url>/2022/12/09/%E4%BD%BF%E7%94%A8GitHub-Actions%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</url>
       
