@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2023-01-04T09:43:28.112Z</updated>
+  <updated>2023-01-04T11:22:55.813Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,33 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>使用 git 推送 hexo 更新到个人服务器</title>
-    <link href="https://www.nickxu.top/2023/01/04/%E4%BD%BF%E7%94%A8-git-%E6%8E%A8%E9%80%81-hexo-%E6%9B%B4%E6%96%B0%E5%88%B0%E4%B8%AA%E4%BA%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>https://www.nickxu.top/2023/01/04/%E4%BD%BF%E7%94%A8-git-%E6%8E%A8%E9%80%81-hexo-%E6%9B%B4%E6%96%B0%E5%88%B0%E4%B8%AA%E4%BA%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
-    <published>2023-01-04T06:47:28.000Z</published>
-    <updated>2023-01-04T09:43:28.112Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;test&lt;/p&gt;
-</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>『CI/CD』使用Webhook通知服务器</title>
     <link href="https://www.nickxu.top/2022/12/19/%E3%80%8ECI-CD%E3%80%8F%E4%BD%BF%E7%94%A8Webhook%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>https://www.nickxu.top/2022/12/19/%E3%80%8ECI-CD%E3%80%8F%E4%BD%BF%E7%94%A8Webhook%E9%80%9A%E7%9F%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</id>
     <published>2022-12-19T13:50:41.000Z</published>
-    <updated>2022-12-19T13:55:06.284Z</updated>
+    <updated>2023-01-04T11:22:55.813Z</updated>
     
     
       
@@ -51,7 +29,11 @@
         
         
     <summary type="html">&lt;p&gt;在前面的 Github Actions 工作流中，我们最后都是直接使用 SSH 连接在服务器上执行命令，但是这样很不优雅，而且会被认为是服务器被异常登录&lt;/p&gt;
-&lt;p&gt;所以可以尝试使用</summary>
+&lt;p&gt;所以可以尝试使用 webhook&lt;/p&gt;
+&lt;p&gt;简单地说，就是先在服务器准备一个部署脚本，然后一直运行一个守护进程监听请求，触发 GitHub Actions 时发送请求，守护进程被收到后自动执行部署脚本&lt;/p&gt;
+&lt;h1 id=&quot;准备部署脚本&quot;&gt;准备部署脚本&lt;/h1&gt;
+&lt;p&gt;准备 &lt;code&gt;redeploy.sh&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span</summary>
         
       
     
@@ -656,6 +638,41 @@
     
     
     <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>身处大二瓶颈期的一些感想</title>
+    <link href="https://www.nickxu.top/2022/10/23/%E8%BA%AB%E5%A4%84%E5%A4%A7%E4%BA%8C%E7%93%B6%E9%A2%88%E6%9C%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/"/>
+    <id>https://www.nickxu.top/2022/10/23/%E8%BA%AB%E5%A4%84%E5%A4%A7%E4%BA%8C%E7%93%B6%E9%A2%88%E6%9C%9F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%83%B3/</id>
+    <published>2022-10-23T01:14:20.000Z</published>
+    <updated>2022-10-23T02:26:11.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;梦&quot;&gt;梦&lt;/h1&gt;
+&lt;p&gt;梦，奇怪的梦，为什么是你？&lt;/p&gt;
+&lt;p&gt;我的初恋哇，为什么我今天会梦到你&lt;/p&gt;
+&lt;p&gt;已经过去的事情，藏于心底的记忆&lt;/p&gt;
+&lt;p&gt;关于过去，我只能说：从初一开始，在她眼中初三结束，在我眼中高三结束，其他的我什么都不想说&lt;/p&gt;
+&lt;p&gt;我原本以为我已经把你忘记了，但没想到还会梦见你&lt;/p&gt;
+&lt;p&gt;我又梦见了什么呢？&lt;/p&gt;
+&lt;p&gt;首先，时间，是现在的时间（也就是我们有 4 年没见面了）&lt;/p&gt;
+&lt;p&gt;然后地点，是类似初中的教室，有同桌，有走廊，经典的中学教室，但是我们都是大学生&lt;/p&gt;
+&lt;p&gt;她的那个班坐在教室里面，她坐在第 2 排，然后第二列（她右侧有个同桌，男女没看清，再右边是个走廊然后是墙，然后左边也是走廊）&lt;/p&gt;
+&lt;p&gt;然后我不知道是由于什么原因（可能梦里的事情就是这样无厘头），我们有 5、6</summary>
+        
+      
+    
+    
+    
+    <category term="随笔与总结" scheme="https://www.nickxu.top/categories/%E9%9A%8F%E7%AC%94%E4%B8%8E%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="随笔" scheme="https://www.nickxu.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
