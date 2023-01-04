@@ -293,9 +293,9 @@
     
     <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
     
-    <category term="go-zero" scheme="https://www.nickxu.top/tags/go-zero/"/>
-    
     <category term="grpc" scheme="https://www.nickxu.top/tags/grpc/"/>
+    
+    <category term="go-zero" scheme="https://www.nickxu.top/tags/go-zero/"/>
     
   </entry>
   

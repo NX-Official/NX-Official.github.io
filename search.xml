@@ -225,9 +225,9 @@
             
             <tag> Go </tag>
             
-            <tag> go-zero </tag>
-            
             <tag> grpc </tag>
+            
+            <tag> go-zero </tag>
             
         </tags>
       
