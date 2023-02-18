@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>ChatGPT对话记录（三）：GORM的行级锁</title>
+      <link href="/2023/02/19/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AGORM%E7%9A%84%E8%A1%8C%E7%BA%A7%E9%94%81/"/>
+      <url>/2023/02/19/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AGORM%E7%9A%84%E8%A1%8C%E7%BA%A7%E9%94%81/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>你知不知道gorm的Clauses方法</p></blockquote><hr><p>是的，我知道gorm的Clauses方法。在GORM中，Clauses方法是用于在查询语句中添加子句的函数。它允许您使用原始的SQL语句或GORM的构建器函数来添加子句。</p><p>Clauses方法返回的是*DB对象，您可以在此对象上继续调用其他GORM函数，例如Where、Order、Limit等，以构建完整的查询语句。Clauses方法的语法如下：</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db<span class="selector-class">.Clauses</span>(clauseBuilder...)</span><br></pre></td></tr></table></figure><p>其中，clauseBuilder可以是一个字符串表示的原始SQL语句，也可以是一个GORM构建器函数，例如Select、Where、Order、Limit等。</p><p>例如，以下代码使用Clauses方法添加了一个子句，然后使用Where和Find函数来执行查询操作：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.Clauses(<span class="string">&quot;SELECT * FROM users WHERE age &gt; ?&quot;</span>, 18).Where(<span class="string">&quot;name = ?&quot;</span>, <span class="string">&quot;John&quot;</span>).Find(&amp;<span class="built_in">users</span>)</span><br></pre></td></tr></table></figure><hr><blockquote><p>里面有个clause.Locking，能解释一下嘛</p></blockquote><hr><p>是的，<code>clause.Locking</code>是GORM中的一个子句，用于为查询语句添加<code>FOR UPDATE</code>或<code>FOR SHARE</code>语句，以实现数据库中的行级锁。</p><p>在GORM中，您可以通过在<code>Clauses</code>函数中传递<code>clause.Locking</code>子句来为查询语句添加行级锁。具体语法如下：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.<span class="title function_ invoke__">Clauses</span>(clause.Locking&#123;<span class="attr">Strength</span>: <span class="string">&quot;UPDATE&quot;</span>, <span class="attr">Tables</span>: []<span class="keyword">string</span>&#123;<span class="string">&quot;table1&quot;</span>&#125;&#125;).<span class="title function_ invoke__">Find</span>(&amp;result)</span><br></pre></td></tr></table></figure><p>上面的代码将在<code>table1</code>表上添加<code>FOR UPDATE</code>行级锁，并使用<code>Find</code>函数执行查询操作。如果您想使用<code>FOR SHARE</code>语句，则可以将<code>Strength</code>属性设置为<code>&quot;SHARE&quot;</code>。</p><p>请注意，<code>clause.Locking</code>子句只对支持行级锁的数据库有效，例如PostgreSQL、MySQL等。在不支持行级锁的数据库中，此子句将不起作用。此外，行级锁是一种悲观锁，它会对查询的行进行加锁，因此在高并发的情况下，使用行级锁可能会导致性能问题，需要谨慎使用。</p><hr><blockquote><p>type Locking struct { Strength string Table Table Options string } 它的原始定义包含3个值，分别是什么意思？</p></blockquote><hr><p><code>Locking</code>结构体的原始定义包含三个字段，它们分别是<code>Strength</code>、<code>Table</code>和<code>Options</code>。</p><ol><li><p><code>Strength</code>字段用于指定锁的类型，可以是<code>&quot;UPDATE&quot;</code>或<code>&quot;SHARE&quot;</code>。<code>&quot;UPDATE&quot;</code>表示添加<code>FOR UPDATE</code>行级锁，它可以用于查询时对返回的记录进行排他性锁定，以避免并发问题。<code>&quot;SHARE&quot;</code>表示添加<code>FOR SHARE</code>行级锁，它用于查询时对返回的记录进行共享锁定，以确保多个事务可以同时读取记录。</p></li><li><p><code>Table</code>字段用于指定要加锁的表，它可以是字符串类型的表名，也可以是一个<code>Table</code>结构体类型。<code>Table</code>结构体通常用于自定义表的别名、引用和转义。</p></li><li><p><code>Options</code>字段用于指定锁的其他选项，它是一个字符串类型的选项列表，可以包含任何其他锁定选项，例如<code>NOWAIT</code>、<code>SKIP LOCKED</code>等。默认情况下，该字段为<code>&quot;&quot;</code>，即不指定其他选项。</p></li></ol><p>总之，<code>Locking</code>结构体提供了一种简便的方式来指定查询语句中的行级锁类型、加锁表和其他选项，从而帮助开发者更方便地控制数据的并发访问。</p><hr><blockquote><p>如果我不指定table会怎样</p></blockquote><hr><p>如果在使用<code>clause.Locking</code>时不指定表名，GORM会使用默认的表名来添加行级锁。默认情况下，GORM使用查询的主表作为行级锁的表，即如果您使用<code>Model</code>函数指定了模型对象，则主表是该模型对象对应的数据库表。</p><p>例如，以下代码使用<code>clause.Locking</code>在默认表上添加<code>FOR UPDATE</code>锁：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.Model(<span class="operator">&amp;</span><span class="keyword">User</span>&#123;&#125;).<span class="keyword">Where</span>(&quot;id = ?&quot;, <span class="number">1</span>).Clauses(clause.Locking&#123;Strength: &quot;UPDATE&quot;&#125;).<span class="keyword">Update</span>(&quot;name&quot;, &quot;new_name&quot;)</span><br></pre></td></tr></table></figure><p>上面的代码将在<code>users</code>表上添加<code>FOR UPDATE</code>锁，因为<code>User</code>模型对应的数据库表是<code>users</code>表。</p><p>如果您不希望使用默认表名，可以通过在<code>Locking</code>子句中指定<code>Table</code>字段来自定义表名，例如：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.Model(<span class="operator">&amp;</span><span class="keyword">User</span>&#123;&#125;).<span class="keyword">Where</span>(&quot;id = ?&quot;, <span class="number">1</span>).Clauses(clause.Locking&#123;Strength: &quot;UPDATE&quot;, <span class="keyword">Table</span>: clause.Table&#123;Name: &quot;user_lock&quot;&#125;&#125;).<span class="keyword">Update</span>(&quot;name&quot;, &quot;new_name&quot;)</span><br></pre></td></tr></table></figure><p>上面的代码将在<code>user_lock</code>表上添加<code>FOR UPDATE</code>锁，而不是默认的<code>users</code>表。</p><p>总之，如果您没有指定表名，则GORM会使用默认表名添加行级锁，但是如果您想自定义表名，则可以通过在<code>Locking</code>子句中指定<code>Table</code>字段来实现。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ChatGPT 对话记录 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ChatGPT </tag>
+            
+            <tag> GORM </tag>
+            
+            <tag> Go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ChatGPT对话记录（二）：使用apt完全删除软件包</title>
       <link href="/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/"/>
       <url>/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/</url>
@@ -21,6 +50,8 @@
         <tags>
             
             <tag> ChatGPT </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
@@ -46,6 +77,10 @@
         <tags>
             
             <tag> ChatGPT </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> SSH </tag>
             
         </tags>
       
@@ -172,7 +207,7 @@
       
         <tags>
             
-            <tag> ssh </tag>
+            <tag> SSH </tag>
             
         </tags>
       

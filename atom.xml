@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2023-02-17T11:23:10.816Z</updated>
+  <updated>2023-02-18T16:17:57.875Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,11 +17,46 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ChatGPT对话记录（三）：GORM的行级锁</title>
+    <link href="https://www.nickxu.top/2023/02/19/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AGORM%E7%9A%84%E8%A1%8C%E7%BA%A7%E9%94%81/"/>
+    <id>https://www.nickxu.top/2023/02/19/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9AGORM%E7%9A%84%E8%A1%8C%E7%BA%A7%E9%94%81/</id>
+    <published>2023-02-18T16:14:50.000Z</published>
+    <updated>2023-02-18T16:17:57.875Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;你知不知道gorm的Clauses方法&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;是的，我知道gorm的Clauses方法。在GORM中，Clauses方法是用于在查询语句中添加子句的函数。它允许您使用原始的SQL语句或GORM的构建器函数来添加子句。&lt;/p&gt;
+&lt;p&gt;Clauses方法返回的是*DB对象，您可以在此对象上继续调用其他GORM函数，例如Where、Order、Limit等，以构建完整的查询语句。Clauses方法的语法如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight scss&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;db&lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="ChatGPT 对话记录" scheme="https://www.nickxu.top/categories/ChatGPT-%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="ChatGPT" scheme="https://www.nickxu.top/tags/ChatGPT/"/>
+    
+    <category term="GORM" scheme="https://www.nickxu.top/tags/GORM/"/>
+    
+    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ChatGPT对话记录（二）：使用apt完全删除软件包</title>
     <link href="https://www.nickxu.top/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/"/>
     <id>https://www.nickxu.top/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/</id>
     <published>2023-02-17T11:21:50.000Z</published>
-    <updated>2023-02-17T11:23:10.816Z</updated>
+    <updated>2023-02-18T16:16:38.112Z</updated>
     
     
       
@@ -58,6 +93,8 @@
     
     <category term="ChatGPT" scheme="https://www.nickxu.top/tags/ChatGPT/"/>
     
+    <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
+    
   </entry>
   
   <entry>
@@ -65,7 +102,7 @@
     <link href="https://www.nickxu.top/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%9A%E8%BF%87SSH%E5%AF%86%E9%92%A5%E8%BF%9B%E8%A1%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/"/>
     <id>https://www.nickxu.top/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9A%E9%80%9A%E8%BF%87SSH%E5%AF%86%E9%92%A5%E8%BF%9B%E8%A1%8C%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81/</id>
     <published>2023-02-16T16:54:10.000Z</published>
-    <updated>2023-02-17T11:22:12.773Z</updated>
+    <updated>2023-02-18T16:17:49.817Z</updated>
     
     
       
@@ -90,6 +127,10 @@
     
     
     <category term="ChatGPT" scheme="https://www.nickxu.top/tags/ChatGPT/"/>
+    
+    <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
+    
+    <category term="SSH" scheme="https://www.nickxu.top/tags/SSH/"/>
     
   </entry>
   
@@ -243,7 +284,7 @@
     <link href="https://www.nickxu.top/2022/12/10/%E8%AE%BE%E7%BD%AE%E5%9C%A8%E4%BD%BF%E7%94%A8-SSH-key-%E6%97%B6%E4%B8%8D%E7%94%A8%E5%86%8D%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/"/>
     <id>https://www.nickxu.top/2022/12/10/%E8%AE%BE%E7%BD%AE%E5%9C%A8%E4%BD%BF%E7%94%A8-SSH-key-%E6%97%B6%E4%B8%8D%E7%94%A8%E5%86%8D%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81/</id>
     <published>2022-12-10T03:35:29.000Z</published>
-    <updated>2022-12-10T03:58:16.838Z</updated>
+    <updated>2023-02-18T16:18:45.589Z</updated>
     
     
       
@@ -265,7 +306,7 @@
     <category term="新技能 Got" scheme="https://www.nickxu.top/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"/>
     
     
-    <category term="ssh" scheme="https://www.nickxu.top/tags/ssh/"/>
+    <category term="SSH" scheme="https://www.nickxu.top/tags/SSH/"/>
     
   </entry>
   
@@ -646,38 +687,6 @@
     
     
     <category term="随笔" scheme="https://www.nickxu.top/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>『大学物理2』期中复习：波动光学</title>
-    <link href="https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/"/>
-    <id>https://www.nickxu.top/2022/10/27/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%862%E3%80%8F%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0%EF%BC%9A%E6%B3%A2%E5%8A%A8%E5%85%89%E5%AD%A6/</id>
-    <published>2022-10-27T15:14:57.000Z</published>
-    <updated>2022-11-02T12:05:09.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;光的相干性与双缝干涉&quot;&gt;光的相干性与双缝干涉&lt;/h1&gt;
-&lt;h2 id=&quot;光程和光程差&quot;&gt;光程和光程差&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282039072.png&quot; alt=&quot;image-20221028203948901&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;光强&quot;&gt;光强&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282043847.png&quot; alt=&quot;image-20221028204310760&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202210282043027.png&quot; alt=&quot;image-20221028204348966&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;杨氏双缝干涉&quot;&gt;杨氏双缝干涉&lt;/h2&gt;
-&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    <category term="基础课复习" scheme="https://www.nickxu.top/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/"/>
-    
-    <category term="大学物理" scheme="https://www.nickxu.top/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/"/>
-    
     
   </entry>
   
