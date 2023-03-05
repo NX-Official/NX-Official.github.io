@@ -6,7 +6,7 @@
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   
   <link href="https://www.nickxu.top/"/>
-  <updated>2023-03-02T15:14:44.349Z</updated>
+  <updated>2023-03-05T14:24:34.743Z</updated>
   <id>https://www.nickxu.top/</id>
   
   <author>
@@ -17,11 +17,71 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ChatGPT对话记录（四）：手动递归下载依赖的麻烦</title>
+    <link href="https://www.nickxu.top/2023/03/05/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E6%89%8B%E5%8A%A8%E9%80%92%E5%BD%92%E4%B8%8B%E8%BD%BD%E4%BE%9D%E8%B5%96%E7%9A%84%E9%BA%BB%E7%83%A6/"/>
+    <id>https://www.nickxu.top/2023/03/05/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%EF%BC%9A%E6%89%8B%E5%8A%A8%E9%80%92%E5%BD%92%E4%B8%8B%E8%BD%BD%E4%BE%9D%E8%B5%96%E7%9A%84%E9%BA%BB%E7%83%A6/</id>
+    <published>2023-03-05T14:23:18.000Z</published>
+    <updated>2023-03-05T14:24:34.743Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;我在pkgs.org下包的时候总是要手动递归下载依赖，真的好麻烦&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;p&gt;是的，手动递归下载依赖的确很麻烦，尤其是在安装大型软件包时。幸运的是，有些包管理器提供了自动递归下载依赖的功能，这可以大大简化安装过程。&lt;/p&gt;
+&lt;p&gt;例如，如果你正在使用Ubuntu或Debian发行版，可以使用APT包管理器来自动下载软件包及其依赖项。只需运行以下命令即可安装软件包并自动下载其所有依赖项：&lt;/p&gt;
+&lt;figure class=&quot;highlight kotlin&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-&lt;span class=&quot;keyword&quot;&gt;get&lt;/span&gt; install &lt;span</summary>
+        
+      
+    
+    
+    
+    <category term="ChatGPT 对话记录" scheme="https://www.nickxu.top/categories/ChatGPT-%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95/"/>
+    
+    
+    <category term="ChatGPT" scheme="https://www.nickxu.top/tags/ChatGPT/"/>
+    
+    <category term="Linux" scheme="https://www.nickxu.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>服务器离线安装Docker</title>
+    <link href="https://www.nickxu.top/2023/03/05/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85Docker/"/>
+    <id>https://www.nickxu.top/2023/03/05/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85Docker/</id>
+    <published>2023-03-05T03:45:23.000Z</published>
+    <updated>2023-03-05T14:35:39.199Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;奶奶的昨天在学校的服务器上离线安装docker，折腾了一天都没搞定（&lt;/p&gt;
+&lt;p&gt;你要下包吧，一堆递归依赖要手动递归下载🙄&lt;/p&gt;
+&lt;p&gt;然后现在docker也没有源码编译了&lt;/p&gt;
+&lt;p&gt;我在官方文档找哇，找到了个直接下二进制文件的&lt;/p&gt;
+&lt;p&gt;然后搞定了&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/engine/install/binaries/#install-daemon-and-client-binaries-on-linux&quot;&gt;https://docs.docker.com/engine/install/binaries/#install-daemon-and-client-binaries-on-linux&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303052235444.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>写在大二下开学之初</title>
     <link href="https://www.nickxu.top/2023/03/01/%E5%86%99%E5%9C%A8%E5%A4%A7%E4%BA%8C%E5%BC%80%E5%AD%A6%E4%B9%8B%E5%88%9D/"/>
     <id>https://www.nickxu.top/2023/03/01/%E5%86%99%E5%9C%A8%E5%A4%A7%E4%BA%8C%E5%BC%80%E5%AD%A6%E4%B9%8B%E5%88%9D/</id>
     <published>2023-03-01T13:30:14.000Z</published>
-    <updated>2023-03-02T15:14:44.349Z</updated>
+    <updated>2023-03-05T14:36:19.346Z</updated>
     
     
       
@@ -43,6 +103,10 @@
     
     
     
+    <category term="随笔与总结" scheme="https://www.nickxu.top/categories/%E9%9A%8F%E7%AC%94%E4%B8%8E%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="随笔" scheme="https://www.nickxu.top/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -605,73 +669,6 @@
 &lt;h2 id=&quot;var&quot;&gt;var&lt;/h2&gt;
 &lt;p&gt;Golang 中的结构体和 C++ 中的差别不大，下面是一个例子&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
-    
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang 语法速通指南（七）复合数据结构之 Map</title>
-    <link href="https://www.nickxu.top/2022/11/07/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%83%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-Map/"/>
-    <id>https://www.nickxu.top/2022/11/07/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%83%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B-Map/</id>
-    <published>2022-11-07T12:14:42.000Z</published>
-    <updated>2022-11-07T02:40:39.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;用过 C++ 的 STL 的人肯定见过 Map，或者说这东西相当于 Python 中的字典&lt;/p&gt;
-&lt;p&gt;简单地说，就是用来存储键值对的结构，键（key）必须是可比较类型，而值（value）可以是任意类型&lt;/p&gt;
-&lt;h1 id=&quot;创建-Map&quot;&gt;创建 Map&lt;/h1&gt;
-&lt;h2 id=&quot;var&quot;&gt;var&lt;/h2&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; m &lt;span class=&quot;keyword&quot;&gt;map&lt;/span&gt;[&lt;span class=&quot;type&quot;&gt;string&lt;/span&gt;]&lt;span class=&quot;type&quot;&gt;int&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Golang" scheme="https://www.nickxu.top/categories/Golang/"/>
-    
-    <category term="语法速通" scheme="https://www.nickxu.top/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"/>
-    
-    
-    <category term="Go" scheme="https://www.nickxu.top/tags/Go/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Golang 语法速通指南（六）复合数据结构之切片（Slice)</title>
-    <link href="https://www.nickxu.top/2022/11/06/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AD%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%88%87%E7%89%87/"/>
-    <id>https://www.nickxu.top/2022/11/06/Golang-%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A%E6%8C%87%E5%8D%97%EF%BC%88%E5%85%AD%EF%BC%89%E5%A4%8D%E5%90%88%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E5%88%87%E7%89%87/</id>
-    <published>2022-11-06T12:14:30.000Z</published>
-    <updated>2022-11-07T01:01:34.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;本文重构于 &lt;a href=&quot;https://www.nickxu.top/2022/01/24/go-qie-pian-slice/&quot;&gt;Go 切片（Slice）&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Go 数组的长度不可改变，在特定场景中这样的集合就不太适用，Go 中提供了一种灵活，功能强悍的内置类型切片(“动态数组”)，与数组相比切片的长度是不固定的，可以追加元素，容量（cap）不够时会自动扩容&lt;/p&gt;
-&lt;p&gt;切片为引用类型，从数组中得到的切片修改元素值时，原数组也会发生变化，修改原数组时，切片也会变化&lt;/p&gt;
-&lt;h1 id=&quot;创建切片&quot;&gt;创建切片&lt;/h1&gt;
-&lt;p&gt;创建切片可以有四种方法&lt;/p&gt;
-&lt;h2 id=&quot;使用-var&quot;&gt;使用 &lt;code&gt;var&lt;/code&gt;&lt;/h2&gt;
-&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
         
       
     
