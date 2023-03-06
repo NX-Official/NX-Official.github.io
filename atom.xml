@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>NX の 博客</title>
-  
+  <icon>https://www.nickxu.top/static/favicon.jpg</icon>
   
   <link href="https://www.nickxu.top/atom.xml" rel="self"/>
   

@@ -6,6 +6,12 @@
     <title>NX の 博客</title>
     <link>https://www.nickxu.top/</link>
     
+    <image>
+      <url>https://www.nickxu.top/static/favicon.jpg</url>
+      <title>NX の 博客</title>
+      <link>https://www.nickxu.top/</link>
+    </image>
+    
     <atom:link href="https://www.nickxu.top/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>这家伙真勤奋，什么都留下了</description>
