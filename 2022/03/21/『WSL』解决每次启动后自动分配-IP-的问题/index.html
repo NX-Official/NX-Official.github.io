@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『WSL』解决每次启动后自动分配 IP 的问题 | NX の 博客</title><meta name="keywords" content="WSL"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="众所周知，WSL每次运行的时候都会被虚拟网卡自动分配新的IP 这很麻烦，因为每次连接都需要查它的IP  根据官方说法，如果你的Windows版本在18945之后，就支持通过localhost访问WSL  但是不知道为什么我一个Windows11不支持这个功能，所以还得想办法 解决方法我能想到的有三种：  设定固定 IP 每次启动后重设 IP 在 Windows 中自动修改host文件，使其指向WS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『WSL』解决每次启动后自动分配 IP 的问题">
-<meta property="og:url" content="https://nickxu.me/2022/03/21/%E3%80%8EWSL%E3%80%8F%E8%A7%A3%E5%86%B3%E6%AF%8F%E6%AC%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D-IP-%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:url" content="https://www.nickxu.top/2022/03/21/%E3%80%8EWSL%E3%80%8F%E8%A7%A3%E5%86%B3%E6%AF%8F%E6%AC%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D-IP-%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="众所周知，WSL每次运行的时候都会被虚拟网卡自动分配新的IP 这很麻烦，因为每次连接都需要查它的IP  根据官方说法，如果你的Windows版本在18945之后，就支持通过localhost访问WSL  但是不知道为什么我一个Windows11不支持这个功能，所以还得想办法 解决方法我能想到的有三种：  设定固定 IP 每次启动后重设 IP 在 Windows 中自动修改host文件，使其指向WS">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-03-21T06:49:15.000Z">
 <meta property="article:modified_time" content="2022-06-18T13:40:56.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="WSL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/03/21/%E3%80%8EWSL%E3%80%8F%E8%A7%A3%E5%86%B3%E6%AF%8F%E6%AC%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D-IP-%E7%9A%84%E9%97%AE%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/03/21/%E3%80%8EWSL%E3%80%8F%E8%A7%A3%E5%86%B3%E6%AF%8F%E6%AC%A1%E5%90%AF%E5%8A%A8%E5%90%8E%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D-IP-%E7%9A%84%E9%97%AE%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

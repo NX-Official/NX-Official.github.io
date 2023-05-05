@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SQL 入门笔记（十）分组数据 | NX の 博客</title><meta name="keywords" content="SQL"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="本篇主要讲述如何使用 GROUP BY 和 HAVING 子句 数据分组 上一篇讲述了如何使用聚集函数汇总数据（如总数、平均值和最大最小值） 但是目前汇总的范围只能是整个表，或使用 WHERE 匹配一个指定的字段，例如下面返回由供应商 DLL01 提供的产品数目 123SELECT COUNT(*) AS num_prods FROM Products WHERE vend_id &#x3D; &amp;#x27;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL 入门笔记（十）分组数据">
-<meta property="og:url" content="https://nickxu.me/2022/04/23/SQL-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:url" content="https://www.nickxu.top/2022/04/23/SQL-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="本篇主要讲述如何使用 GROUP BY 和 HAVING 子句 数据分组 上一篇讲述了如何使用聚集函数汇总数据（如总数、平均值和最大最小值） 但是目前汇总的范围只能是整个表，或使用 WHERE 匹配一个指定的字段，例如下面返回由供应商 DLL01 提供的产品数目 123SELECT COUNT(*) AS num_prods FROM Products WHERE vend_id &#x3D; &amp;#x27;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-04-23T06:37:00.000Z">
 <meta property="article:modified_time" content="2022-06-22T13:24:50.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/04/23/SQL-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/04/23/SQL-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%EF%BC%89%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 入门笔记（十一）面向对象 | NX の 博客</title><meta name="keywords" content="Python"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="面向对象基础 面向对象（OOP）这种烂大街东西我觉得应该没什么必要再赘述了，就简单地搬运一下菜鸟教程里面的说明  类(Class)： 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。 方法： 类中定义的函数。 类变量： 类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。 数据成员： 类变量或者实例">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 入门笔记（十一）面向对象">
-<meta property="og:url" content="https://nickxu.me/2022/07/06/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:url" content="https://www.nickxu.top/2022/07/06/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="面向对象基础 面向对象（OOP）这种烂大街东西我觉得应该没什么必要再赘述了，就简单地搬运一下菜鸟教程里面的说明  类(Class)： 用来描述具有相同的属性和方法的对象的集合。它定义了该集合中每个对象所共有的属性和方法。对象是类的实例。 方法： 类中定义的函数。 类变量： 类变量在整个实例化的对象中是公用的。类变量定义在类中且在函数体之外。类变量通常不作为实例变量使用。 数据成员： 类变量或者实例">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-07-05T23:11:01.000Z">
 <meta property="article:modified_time" content="2022-07-06T15:05:08.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/07/06/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/07/06/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E4%B8%80%EF%BC%89%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『算法拾遗』康托展开 | NX の 博客</title><meta name="keywords" content="数学"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="简述 康托展开可以求出一个全排列在所有全排列中的字典序 也可以逆操作，通过元素个数和字典序，求出第 xxx 个全排序状态 例如，对于 &amp;#123;1,2,3&amp;#125; 3 个数的全排列，共有 3!&#x3D;63!&#x3D;63!&#x3D;6 种状态 1234560: 1 2 31: 1 3 22: 2 1 33: 2 3 14: 3 1 25: 3 2 1 使用康托展开可以通过 2 3 1 求得值 3 ，逆康托展开可以">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『算法拾遗』康托展开">
-<meta property="og:url" content="https://nickxu.me/2022/07/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/index.html">
+<meta property="og:url" content="https://www.nickxu.top/2022/07/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="简述 康托展开可以求出一个全排列在所有全排列中的字典序 也可以逆操作，通过元素个数和字典序，求出第 xxx 个全排序状态 例如，对于 &amp;#123;1,2,3&amp;#125; 3 个数的全排列，共有 3!&#x3D;63!&#x3D;63!&#x3D;6 种状态 1234560: 1 2 31: 1 3 22: 2 1 33: 2 3 14: 3 1 25: 3 2 1 使用康托展开可以通过 2 3 1 求得值 3 ，逆康托展开可以">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-07-14T09:18:00.000Z">
 <meta property="article:modified_time" content="2022-09-30T15:51:02.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="数学">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/07/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/07/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%BA%B7%E6%89%98%E5%B1%95%E5%BC%80/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

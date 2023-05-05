@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>微信小程序开发基础（五）组件之超链接 | NX の 博客</title><meta name="keywords" content="微信小程序"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="在文档的导航中找到navigator  &lt;navigator&gt; &lt;navagator&gt;比HTML中的&lt;a&gt;标签，相应的，它的属性也更多，而且它是一个块级元素 url 还记得HTML中的&lt;a&gt;标签用的是href，但是在WXML中用的是url属性，尝试以下样例 123&lt;view&gt;  &lt;navigator class&#x3D;&quot;link">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序开发基础（五）组件之超链接">
-<meta property="og:url" content="https://nickxu.me/2022/03/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E7%BB%84%E4%BB%B6%E4%B9%8B%E8%B6%85%E9%93%BE%E6%8E%A5/index.html">
+<meta property="og:url" content="https://www.nickxu.top/2022/03/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E7%BB%84%E4%BB%B6%E4%B9%8B%E8%B6%85%E9%93%BE%E6%8E%A5/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="在文档的导航中找到navigator  &lt;navigator&gt; &lt;navagator&gt;比HTML中的&lt;a&gt;标签，相应的，它的属性也更多，而且它是一个块级元素 url 还记得HTML中的&lt;a&gt;标签用的是href，但是在WXML中用的是url属性，尝试以下样例 123&lt;view&gt;  &lt;navigator class&#x3D;&quot;link">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-03-20T13:39:00.000Z">
 <meta property="article:modified_time" content="2022-03-31T00:23:04.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="微信小程序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/03/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E7%BB%84%E4%BB%B6%E4%B9%8B%E8%B6%85%E9%93%BE%E6%8E%A5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/03/20/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%94%EF%BC%89%E7%BB%84%E4%BB%B6%E4%B9%8B%E8%B6%85%E9%93%BE%E6%8E%A5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

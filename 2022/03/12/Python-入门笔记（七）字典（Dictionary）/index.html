@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 入门笔记（七）字典（Dictionary） | NX の 博客</title><meta name="keywords" content="Python"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="初识字典 字典（Dictionary） 类似于 C++ 中的 Map ，内部都是键值对，用于创建一类对象对另一类对象的映射 但不同的是，字典中的映射类型是不固定的（键与键之间，值与值之间的类型可以不相同） 值可以取任何数据类型（甚至可以嵌套字典），但键必须是不可变的，如字符串，数字 创建字典 使用大括号 &amp;#123;&amp;#125; 创建 12personInfo &#x3D; &amp;#123;&amp;#x27;name">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 入门笔记（七）字典（Dictionary）">
-<meta property="og:url" content="https://nickxu.me/2022/03/12/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%AD%97%E5%85%B8%EF%BC%88Dictionary%EF%BC%89/index.html">
+<meta property="og:url" content="https://www.nickxu.top/2022/03/12/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%AD%97%E5%85%B8%EF%BC%88Dictionary%EF%BC%89/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="初识字典 字典（Dictionary） 类似于 C++ 中的 Map ，内部都是键值对，用于创建一类对象对另一类对象的映射 但不同的是，字典中的映射类型是不固定的（键与键之间，值与值之间的类型可以不相同） 值可以取任何数据类型（甚至可以嵌套字典），但键必须是不可变的，如字符串，数字 创建字典 使用大括号 &amp;#123;&amp;#125; 创建 12personInfo &#x3D; &amp;#123;&amp;#x27;name">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-03-12T12:30:57.000Z">
 <meta property="article:modified_time" content="2022-07-05T15:32:50.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/03/12/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%AD%97%E5%85%B8%EF%BC%88Dictionary%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/03/12/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%83%EF%BC%89%E5%AD%97%E5%85%B8%EF%BC%88Dictionary%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

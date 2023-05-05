@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>微信小程序开发基础（二）目录结构介绍与新建页面 | NX の 博客</title><meta name="keywords" content="微信小程序"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="本节内容源于P3  目录结构介绍 小程序文件和传统 WEB 对比 在小程序中，除了用于保存配置的json文件之外，其他大部分文件都源于传统的三板斧：HTML、CSS和JS 但是为了区分，在小程序中HTML要称为WXML，CSS要称为WXSS，JS保持不变    传统 WEB 微信小程序     HTML WXML   CSS WXSS   JS JS    小程序项目结构 一个新建的项目结构如下">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序开发基础（二）目录结构介绍与新建页面">
-<meta property="og:url" content="https://nickxu.me/2022/03/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2/index.html">
+<meta property="og:url" content="https://www.nickxu.top/2022/03/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="本节内容源于P3  目录结构介绍 小程序文件和传统 WEB 对比 在小程序中，除了用于保存配置的json文件之外，其他大部分文件都源于传统的三板斧：HTML、CSS和JS 但是为了区分，在小程序中HTML要称为WXML，CSS要称为WXSS，JS保持不变    传统 WEB 微信小程序     HTML WXML   CSS WXSS   JS JS    小程序项目结构 一个新建的项目结构如下">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-03-18T12:55:51.000Z">
 <meta property="article:modified_time" content="2022-03-28T02:13:50.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="微信小程序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/03/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/03/18/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%EF%BC%88%E4%BA%8C%EF%BC%89%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BB%8B%E7%BB%8D%E4%B8%8E%E6%96%B0%E5%BB%BA%E9%A1%B5%E9%9D%A2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";
