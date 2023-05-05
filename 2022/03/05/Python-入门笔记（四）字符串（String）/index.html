@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python 入门笔记（四）字符串（String） | NX の 博客</title><meta name="keywords" content="Python"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="初识字符串 字符串就是一串字符，有短字符串（单行字符串）和长字符串（多行字符串）两种书写形式  与 C 不同，在 Python 中没有单个字符的类型，单个字符也按字符串处理  短字符串（单行字符串） 简单地使用引号括起来，单引号和双引号均可 12&quot;This is a string&quot;&amp;#x27;This is also a string&amp;#x27; 这种灵活性运允许你在字符串中包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python 入门笔记（四）字符串（String）">
-<meta property="og:url" content="https://www.nickxu.top/2022/03/05/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88String%EF%BC%89/index.html">
+<meta property="og:url" content="https://nickxu.me/2022/03/05/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88String%EF%BC%89/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="初识字符串 字符串就是一串字符，有短字符串（单行字符串）和长字符串（多行字符串）两种书写形式  与 C 不同，在 Python 中没有单个字符的类型，单个字符也按字符串处理  短字符串（单行字符串） 简单地使用引号括起来，单引号和双引号均可 12&quot;This is a string&quot;&amp;#x27;This is also a string&amp;#x27; 这种灵活性运允许你在字符串中包">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-03-05T02:29:39.000Z">
 <meta property="article:modified_time" content="2022-07-07T07:01:52.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/03/05/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88String%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/03/05/Python-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88String%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

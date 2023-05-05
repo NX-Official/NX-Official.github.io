@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『题解』 P1403 【[AHOI2005]约数研究】 | NX の 博客</title><meta name="keywords" content="C/C++,算法竞赛,题解"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="某有银用DP吗？？？ 其实这道题用来学习DP（动态规划）也挺好的 先创个数组a[i]用于存储每个数的约数 1int a[1000000]; 再将i从1枚举到n 1for(int i&#x3D;1;i&lt;&#x3D;n;i++) 而且，可以从i的枚举i的倍数，且i绝对为i的倍数的约数 So。。。可设个变量j获得i的j倍 而且向前填数组的时候要注意i*j&lt;&#x3D;n即可 最后，1也算约数，所以a[i]++; 代码奉上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『题解』 P1403 【[AHOI2005]约数研究】">
-<meta property="og:url" content="https://www.nickxu.top/2019/05/30/ti-jie-p1403-ahoi2005yue-shu-yan-jiu/index.html">
+<meta property="og:url" content="https://nickxu.me/2019/05/30/ti-jie-p1403-ahoi2005yue-shu-yan-jiu/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="某有银用DP吗？？？ 其实这道题用来学习DP（动态规划）也挺好的 先创个数组a[i]用于存储每个数的约数 1int a[1000000]; 再将i从1枚举到n 1for(int i&#x3D;1;i&lt;&#x3D;n;i++) 而且，可以从i的枚举i的倍数，且i绝对为i的倍数的约数 So。。。可设个变量j获得i的j倍 而且向前填数组的时候要注意i*j&lt;&#x3D;n即可 最后，1也算约数，所以a[i]++; 代码奉上">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2019-05-30T10:17:37.000Z">
 <meta property="article:modified_time" content="2022-02-06T08:20:40.000Z">
 <meta property="article:author" content="Nick Xu">
@@ -13,7 +13,7 @@
 <meta property="article:tag" content="算法竞赛">
 <meta property="article:tag" content="题解">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2019/05/30/ti-jie-p1403-ahoi2005yue-shu-yan-jiu/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2019/05/30/ti-jie-p1403-ahoi2005yue-shu-yan-jiu/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

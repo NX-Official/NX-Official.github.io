@@ -1,11 +1,11 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『CI/CD』结合GitHub Actions+Docker实现自动化部署 | NX の 博客</title><meta name="keywords" content="GitHub Actions,CICD,Docker"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="上一篇 『CI&#x2F;CD』使用GitHub Actions实现简单的自动化部署  中实现了简单的自动化部署，本篇来介绍一下使用 docker 的做法 （NX 整整折腾了两天呢）  基本流程 首先要明确一下最终的运行流程，一共有4个步骤  更新代码，提交至GitHub GitHub 触发 Actions，自动 build 镜像，并推送至镜像仓库 服务器拉取最新镜像 重新启动容器  因为今天时间有点紧我就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『CI&#x2F;CD』结合GitHub Actions+Docker实现自动化部署">
-<meta property="og:url" content="https://www.nickxu.top/2022/12/14/%E3%80%8ECI-CD%E3%80%8F%E7%BB%93%E5%90%88GitHub-Actions-Docker%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:url" content="https://nickxu.me/2022/12/14/%E3%80%8ECI-CD%E3%80%8F%E7%BB%93%E5%90%88GitHub-Actions-Docker%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="上一篇 『CI&#x2F;CD』使用GitHub Actions实现简单的自动化部署  中实现了简单的自动化部署，本篇来介绍一下使用 docker 的做法 （NX 整整折腾了两天呢）  基本流程 首先要明确一下最终的运行流程，一共有4个步骤  更新代码，提交至GitHub GitHub 触发 Actions，自动 build 镜像，并推送至镜像仓库 服务器拉取最新镜像 重新启动容器  因为今天时间有点紧我就">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-12-14T07:42:48.000Z">
 <meta property="article:modified_time" content="2023-01-04T11:28:33.319Z">
 <meta property="article:author" content="Nick Xu">
@@ -13,7 +13,7 @@
 <meta property="article:tag" content="CICD">
 <meta property="article:tag" content="Docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/12/14/%E3%80%8ECI-CD%E3%80%8F%E7%BB%93%E5%90%88GitHub-Actions-Docker%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/12/14/%E3%80%8ECI-CD%E3%80%8F%E7%BB%93%E5%90%88GitHub-Actions-Docker%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

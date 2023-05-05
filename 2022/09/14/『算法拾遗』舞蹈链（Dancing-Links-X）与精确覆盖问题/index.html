@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『算法拾遗』舞蹈链（Dancing Links X）与精确覆盖问题 | NX の 博客</title><meta name="keywords" content="舞蹈链/DLX"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="关于精确覆盖问题  模板题目：P4929 【模板】舞蹈链（DLX）  精确覆盖问题描述起来十分简洁： 给定一个全集 UUU 和若干集合 S1,S2,S3,…,SnS_{1},S_{2},S_{3},\ldots ,S_{n}S1​,S2​,S3​,…,Sn​ ，现需从中选取某些集合，不重不漏地覆盖全集 UUU 或者可以用 0-1 矩阵来表示：    UUU 1 2 3 4 5 6 7     S1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『算法拾遗』舞蹈链（Dancing Links X）与精确覆盖问题">
-<meta property="og:url" content="https://www.nickxu.top/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:url" content="https://nickxu.me/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="关于精确覆盖问题  模板题目：P4929 【模板】舞蹈链（DLX）  精确覆盖问题描述起来十分简洁： 给定一个全集 UUU 和若干集合 S1,S2,S3,…,SnS_{1},S_{2},S_{3},\ldots ,S_{n}S1​,S2​,S3​,…,Sn​ ，现需从中选取某些集合，不重不漏地覆盖全集 UUU 或者可以用 0-1 矩阵来表示：    UUU 1 2 3 4 5 6 7     S1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-09-14T03:22:57.000Z">
 <meta property="article:modified_time" content="2022-09-15T05:39:05.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="舞蹈链&#x2F;DLX">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/09/14/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E8%88%9E%E8%B9%88%E9%93%BE%EF%BC%88Dancing-Links-X%EF%BC%89%E4%B8%8E%E7%B2%BE%E7%A1%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

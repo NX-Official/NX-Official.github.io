@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『C/C++』typedef关键字 | NX の 博客</title><meta name="keywords" content="C/C++"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="这篇内容实际上来源于菜鸟教程 C 语言提供了 typedef 关键字，您可以使用它来为类型取一个新的名字。下面的实例为单字节数字定义了一个术语 BYTE ： 1typedef unsigned char BYTE; 在这个类型定义之后，标识符 BYTE 可作为类型 unsigned char 的缩写，例如： 1BYTE  b1, b2; 按照惯例，定义时会大写字母，以便提醒用户类型名称是一个象征性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『C&#x2F;C++』typedef关键字">
-<meta property="og:url" content="https://www.nickxu.top/2021/11/19/cc-typedef/index.html">
+<meta property="og:url" content="https://nickxu.me/2021/11/19/cc-typedef/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="这篇内容实际上来源于菜鸟教程 C 语言提供了 typedef 关键字，您可以使用它来为类型取一个新的名字。下面的实例为单字节数字定义了一个术语 BYTE ： 1typedef unsigned char BYTE; 在这个类型定义之后，标识符 BYTE 可作为类型 unsigned char 的缩写，例如： 1BYTE  b1, b2; 按照惯例，定义时会大写字母，以便提醒用户类型名称是一个象征性">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2021-11-19T01:13:22.000Z">
 <meta property="article:modified_time" content="2022-03-16T00:43:48.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2021/11/19/cc-typedef/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2021/11/19/cc-typedef/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

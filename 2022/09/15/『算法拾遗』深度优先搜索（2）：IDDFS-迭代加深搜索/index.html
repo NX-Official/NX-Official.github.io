@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『算法拾遗』深度优先搜索（2）：IDDFS（迭代加深搜索） | NX の 博客</title><meta name="keywords" content="IDDFS"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="有这样一些题目，它们的搜索树很特别：不仅很深，而且很宽，深度可能到无穷，宽度也可能极广 如果直接朴素 DFS ，会陷入递归无法返回，如果直接朴素 BFS，队列空间会爆炸 鄙人想了一个简单的例子，来说明为什么需要迭代加深搜索  Why use IDDFS 假设你需要使用枚举的方式暴力破解一个用户的密码，密码只由 26 个小写字母组成，但是密码的位数未知 假设你的内存同时能存储 100 个字符，你该如">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『算法拾遗』深度优先搜索（2）：IDDFS（迭代加深搜索）">
-<meta property="og:url" content="https://www.nickxu.top/2022/09/15/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%882%EF%BC%89%EF%BC%9AIDDFS-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2/index.html">
+<meta property="og:url" content="https://nickxu.me/2022/09/15/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%882%EF%BC%89%EF%BC%9AIDDFS-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="有这样一些题目，它们的搜索树很特别：不仅很深，而且很宽，深度可能到无穷，宽度也可能极广 如果直接朴素 DFS ，会陷入递归无法返回，如果直接朴素 BFS，队列空间会爆炸 鄙人想了一个简单的例子，来说明为什么需要迭代加深搜索  Why use IDDFS 假设你需要使用枚举的方式暴力破解一个用户的密码，密码只由 26 个小写字母组成，但是密码的位数未知 假设你的内存同时能存储 100 个字符，你该如">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-09-15T11:35:14.000Z">
 <meta property="article:modified_time" content="2022-09-16T03:09:24.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="IDDFS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/09/15/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%882%EF%BC%89%EF%BC%9AIDDFS-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/09/15/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%882%EF%BC%89%EF%BC%9AIDDFS-%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1%E6%90%9C%E7%B4%A2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

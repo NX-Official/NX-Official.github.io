@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营-3rd』L13：深入浅出 RPC 框架 | NX の 博客</title><meta name="keywords" content="字节青训营"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="相关链接学员手册：第十三节：深入浅出 RPC 框架  基本概念 本地函数调用  远程函数调用  RPC 概念模型  一次 RPC 的完整过程  RPC 的好处  RPC 的问题  01小结  分层设计 以 Apache Thrift 为例  编解码层  生成代码  数据格式  二进制编码  选型  协议层  概念  协议构造  多路复用：一个连接内有多个请求流 协议解析  网络通信层  Socke">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『字节青训营-3rd』L13：深入浅出 RPC 框架">
-<meta property="og:url" content="https://www.nickxu.top/2022/05/27/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL13%EF%BC%9A%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-RPC-%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:url" content="https://nickxu.me/2022/05/27/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL13%EF%BC%9A%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-RPC-%E6%A1%86%E6%9E%B6/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="相关链接学员手册：第十三节：深入浅出 RPC 框架  基本概念 本地函数调用  远程函数调用  RPC 概念模型  一次 RPC 的完整过程  RPC 的好处  RPC 的问题  01小结  分层设计 以 Apache Thrift 为例  编解码层  生成代码  数据格式  二进制编码  选型  协议层  概念  协议构造  多路复用：一个连接内有多个请求流 协议解析  网络通信层  Socke">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2022-05-27T11:57:01.000Z">
 <meta property="article:modified_time" content="2022-07-28T09:46:30.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="字节青训营">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2022/05/27/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL13%EF%BC%9A%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-RPC-%E6%A1%86%E6%9E%B6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2022/05/27/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL13%EF%BC%9A%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA-RPC-%E6%A1%86%E6%9E%B6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

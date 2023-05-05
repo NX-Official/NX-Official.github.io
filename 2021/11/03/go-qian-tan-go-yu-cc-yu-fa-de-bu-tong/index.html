@@ -1,17 +1,17 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『Go』浅谈 Go 与 C/C++ 语法的不同  | NX の 博客</title><meta name="keywords" content="Go"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="看了这么多教程，感觉还是Go 语言之旅最适合新手 本周初学 Go 的基本语法，总结了一下和 C&#x2F;C++ 的区别 Go 语法与 C&#x2F;C++ 的不同 (浅谈)   每句话之后不一定要分号了   引用了包，或者变量声明没有用，就不能成功编译   大括号强制使用 C 风格：不换行，不能使用 C++ 风格   Go 的变量声明方面，名称在前，类型在后：   1234var a int		    &#x2F;&#x2F; 声明一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="『Go』浅谈 Go 与 C&#x2F;C++ 语法的不同 ">
-<meta property="og:url" content="https://www.nickxu.top/2021/11/03/go-qian-tan-go-yu-cc-yu-fa-de-bu-tong/index.html">
+<meta property="og:url" content="https://nickxu.me/2021/11/03/go-qian-tan-go-yu-cc-yu-fa-de-bu-tong/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="看了这么多教程，感觉还是Go 语言之旅最适合新手 本周初学 Go 的基本语法，总结了一下和 C&#x2F;C++ 的区别 Go 语法与 C&#x2F;C++ 的不同 (浅谈)   每句话之后不一定要分号了   引用了包，或者变量声明没有用，就不能成功编译   大括号强制使用 C 风格：不换行，不能使用 C++ 风格   Go 的变量声明方面，名称在前，类型在后：   1234var a int		    &#x2F;&#x2F; 声明一">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2021-11-03T11:24:00.000Z">
 <meta property="article:modified_time" content="2022-03-02T12:41:18.000Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2021/11/03/go-qian-tan-go-yu-cc-yu-fa-de-bu-tong/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2021/11/03/go-qian-tan-go-yu-cc-yu-fa-de-bu-tong/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";

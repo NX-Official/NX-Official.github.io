@@ -1,18 +1,18 @@
 <!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>ChatGPT对话记录（二）：使用apt完全删除软件包 | NX の 博客</title><meta name="keywords" content="ChatGPT,Linux"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="我如何使用apt完全删除软件包，连配置文件也一起删的那种   要使用apt命令完全删除软件包以及其相关的配置文件，可以使用purge选项。以下是具体的步骤：   打开终端，使用root权限或sudo权限登录。   运行以下命令以卸载软件包及其配置文件： sudo apt purge 软件包名称 将软件包名称替换为要删除的软件包的名称。   在确认提示中，输入Y以确认卸载操作。   如果您还想删除">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ChatGPT对话记录（二）：使用apt完全删除软件包">
-<meta property="og:url" content="https://www.nickxu.top/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/index.html">
+<meta property="og:url" content="https://nickxu.me/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/index.html">
 <meta property="og:site_name" content="NX の 博客">
 <meta property="og:description" content="我如何使用apt完全删除软件包，连配置文件也一起删的那种   要使用apt命令完全删除软件包以及其相关的配置文件，可以使用purge选项。以下是具体的步骤：   打开终端，使用root权限或sudo权限登录。   运行以下命令以卸载软件包及其配置文件： sudo apt purge 软件包名称 将软件包名称替换为要删除的软件包的名称。   在确认提示中，输入Y以确认卸载操作。   如果您还想删除">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="og:image" content="https://nickxu.me/static/202202230023069.jpg">
 <meta property="article:published_time" content="2023-02-17T11:21:50.000Z">
 <meta property="article:modified_time" content="2023-02-18T16:16:38.112Z">
 <meta property="article:author" content="Nick Xu">
 <meta property="article:tag" content="ChatGPT">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://www.nickxu.top/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+<meta name="twitter:image" content="https://nickxu.me/static/202202230023069.jpg"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/2023/02/17/ChatGPT%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E4%BD%BF%E7%94%A8apt%E5%AE%8C%E5%85%A8%E5%88%A0%E9%99%A4%E8%BD%AF%E4%BB%B6%E5%8C%85/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
 (function() {
   var hm = document.createElement("script");
   hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";
