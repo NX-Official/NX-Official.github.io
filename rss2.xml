@@ -15,13 +15,45 @@
     <atom:link href="https://www.nickxu.top/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>这家伙真勤奋，什么都留下了</description>
-    <pubDate>Tue, 13 Jun 2023 16:56:12 GMT</pubDate>
+    <pubDate>Sat, 17 Jun 2023 14:16:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
+      <title>『算法拾遗』二叉树（Binary Tree）</title>
+      <link>https://www.nickxu.top/posts/281.html</link>
+      <guid>https://www.nickxu.top/posts/281.html</guid>
+      <pubDate>Sat, 17 Jun 2023 14:13:47 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;大概复习了一遍&lt;/p&gt;
+&lt;p&gt;只能等期末考试后再好好整理了（&lt;/p&gt;
+</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>大概复习了一遍</p><p>只能等期末考试后再好好整理了（</p>]]></content:encoded>
+      
+      
+      <category domain="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</category>
+      
+      <category domain="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/">算法拾遗</category>
+      
+      <category domain="https://www.nickxu.top/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/%E4%BA%8C%E5%8F%89%E6%A0%91/">二叉树</category>
+      
+      
+      <category domain="https://www.nickxu.top/tags/%E6%A0%91/">树</category>
+      
+      
+      <comments>https://www.nickxu.top/posts/281.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>『算法拾遗』跳表（Skip List）</title>
-      <link>https://www.nickxu.top/posts/.html</link>
-      <guid>https://www.nickxu.top/posts/.html</guid>
+      <link>https://www.nickxu.top/posts/280.html</link>
+      <guid>https://www.nickxu.top/posts/280.html</guid>
       <pubDate>Tue, 13 Jun 2023 16:54:15 GMT</pubDate>
       
         
@@ -45,7 +77,7 @@
       <category domain="https://www.nickxu.top/tags/%E8%B7%B3%E8%A1%A8/">跳表</category>
       
       
-      <comments>https://www.nickxu.top/posts/.html#disqus_thread</comments>
+      <comments>https://www.nickxu.top/posts/280.html#disqus_thread</comments>
       
     </item>
     
@@ -545,31 +577,6 @@
       
       
       <comments>https://www.nickxu.top/2023/03/13/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E5%AE%BF%E8%88%8D%E4%B8%8A%E6%B5%B7%E4%B8%80%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>一行命令打包 Docker Compose 中的镜像</title>
-      <link>https://www.nickxu.top/2023/03/13/%E4%B8%80%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%89%93%E5%8C%85docker-compose%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/</link>
-      <guid>https://www.nickxu.top/2023/03/13/%E4%B8%80%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%89%93%E5%8C%85docker-compose%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/</guid>
-      <pubDate>Mon, 13 Mar 2023 08:25:08 GMT</pubDate>
-      
-        
-        
-      <description>&lt;p&gt;最近要在一个离线服务器上运行一个 docker-compose ，但是因为是离线嘛，镜像一个一个打包太麻烦了，就找到了下面这个命令，在一个有网的环境先打包整个 docker-compose 里的镜像&lt;/p&gt;
-&lt;figure class=&quot;highlight bash&quot;&gt;&lt;t</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<p>最近要在一个离线服务器上运行一个 docker-compose ，但是因为是离线嘛，镜像一个一个打包太麻烦了，就找到了下面这个命令，在一个有网的环境先打包整个 docker-compose 里的镜像</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker save -o docker-images.tar $(docker-compose config | awk <span class="string">&#x27;&#123;if ($1 == &quot;image:&quot;) print $2;&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure><p>然后再把文件传输过去，读取的时候就用这个命令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker load -i docker-images.tar</span><br></pre></td></tr></table></figure>]]></content:encoded>
-      
-      
-      
-      <category domain="https://www.nickxu.top/tags/docker/">docker</category>
-      
-      
-      <comments>https://www.nickxu.top/2023/03/13/%E4%B8%80%E8%A1%8C%E5%91%BD%E4%BB%A4%E6%89%93%E5%8C%85docker-compose%E4%B8%AD%E7%9A%84%E9%95%9C%E5%83%8F/#disqus_thread</comments>
       
     </item>
     

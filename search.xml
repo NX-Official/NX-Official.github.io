@@ -4,9 +4,38 @@
   
     
     <entry>
+      <title>『算法拾遗』二叉树（Binary Tree）</title>
+      <link href="//posts/281.html"/>
+      <url>//posts/281.html</url>
+      
+        <content type="html"><![CDATA[<p>大概复习了一遍</p><p>只能等期末考试后再好好整理了（</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据结构与算法 </category>
+          
+          <category> 算法拾遗 </category>
+          
+          <category> 二叉树 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 树 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『算法拾遗』跳表（Skip List）</title>
-      <link href="//posts/.html"/>
-      <url>//posts/.html</url>
+      <link href="//posts/280.html"/>
+      <url>//posts/280.html</url>
       
         <content type="html"><![CDATA[<p>别急，这周内会写</p>]]></content>
       
