@@ -110,19 +110,6 @@
     
     
     <entry>
-      <title>直观理解前后端概念 —— 以逆向学院教评系统为例</title>
-      <link href="//posts/279.html"/>
-      <url>//posts/279.html</url>
-      
-        <content type="html"><![CDATA[<h1 id="概念理解">概念理解</h1><h2 id="前端概念">前端概念</h2><p>给用户画画，呈现界面</p><ul><li>html 有什么</li><li>css 长什么样</li><li>js 交互逻辑、与后端交互</li></ul><h2 id="后端概念">后端概念</h2><p>提供接口给前端调用</p><p>响应前端请求，获取数据</p><hr><h1 id="实操">实操</h1><p><a href="http://www.teachingevaluationsystem.cn:8088/#/login">http://www.teachingevaluationsystem.cn:8088/#/login</a></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>后端层与层传递结构体时自动转换类型</title>
       <link href="//posts/278.html"/>
       <url>//posts/278.html</url>
