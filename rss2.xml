@@ -86,13 +86,15 @@
       
         
         
-      <description>&lt;p&gt;别急，这周内会写&lt;/p&gt;
+      <description>&lt;p&gt;&lt;s&gt;别急，这周内会写&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;哇我感觉事情有点多，然后我现在主要是要准备面试的内容&lt;/p&gt;
+&lt;p&gt;这东西只能说有空再写了&lt;/p&gt;
 </description>
         
       
       
       
-      <content:encoded><![CDATA[<p>别急，这周内会写</p>]]></content:encoded>
+      <content:encoded><![CDATA[<p><s>别急，这周内会写</s></p><p>哇我感觉事情有点多，然后我现在主要是要准备面试的内容</p><p>这东西只能说有空再写了</p>]]></content:encoded>
       
       
       <category domain="https://nickxu.me/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</category>
