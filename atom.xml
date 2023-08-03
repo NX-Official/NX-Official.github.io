@@ -6,7 +6,7 @@
   <link href="https://nickxu.me/atom.xml" rel="self"/>
   
   <link href="https://nickxu.me/"/>
-  <updated>2023-08-03T08:22:29.472Z</updated>
+  <updated>2023-08-03T08:41:57.831Z</updated>
   <id>https://nickxu.me/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『LeetCode-HOT-100』T21～T30</title>
+    <link href="https://nickxu.me/post/leetcode-hot-100-t21-t30.html"/>
+    <id>https://nickxu.me/post/leetcode-hot-100-t21-t30.html</id>
+    <published>2023-08-03T08:27:29.000Z</published>
+    <updated>2023-08-03T08:41:57.831Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="全排列"><a href="https://leetcode.cn/problems/permutations/">全排列</a></h1><p><a href="https://nickxu.me/2022/07/10/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88/?highlight=%E6%8E%92%E5%88%97#%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%EF%BC%88%E6%B3%95%E4%BA%8C%EF%BC%8C%E6%8E%A8%E8%8D%90%EF%BC%89">板子题</a>，不解释</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">permute</span><span class="params">(nums []<span class="type">int</span>)</span></span> (ans [][]<span class="type">int</span>) &#123;</span><br><span class="line"><span class="keyword">var</span> dfs <span class="function"><span class="keyword">func</span><span class="params">(begain, end <span class="type">int</span>)</span></span></span><br><span class="line">dfs = <span class="function"><span class="keyword">func</span><span class="params">(begain, end <span class="type">int</span>)</span></span> &#123;</span><br><span class="line"><span class="keyword">if</span> begain == end &#123;</span><br><span class="line"><span class="comment">// 切片是引用类型，需要深拷贝一下</span></span><br><span class="line">tmp := <span class="built_in">make</span>([]<span class="type">int</span>, <span class="built_in">len</span>(nums))</span><br><span class="line"><span class="built_in">copy</span>(tmp, nums)</span><br><span class="line">ans = <span class="built_in">append</span>(ans, tmp)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> i := begain; i &lt;= end; i++ &#123;</span><br><span class="line">nums[begain], nums[i] = nums[i], nums[begain]</span><br><span class="line">dfs(begain+<span class="number">1</span>, end)</span><br><span class="line">nums[begain], nums[i] = nums[i], nums[begain]</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">dfs(<span class="number">0</span>, <span class="built_in">len</span>(nums)<span class="number">-1</span>)</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;全排列&quot;&gt;&lt;a href=&quot;https://leetcode.cn/problems/permutations/&quot;&gt;全排列&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://nickxu.me/2022/07/10/%E3%80%8E%E7%AE%97%E</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>『LeetCode-HOT-100』T11～T20</title>
@@ -501,34 +522,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>大二下宿舍上海一日游游记</title>
-    <link href="https://nickxu.me/2023/03/13/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E5%AE%BF%E8%88%8D%E4%B8%8A%E6%B5%B7%E4%B8%80%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0/"/>
-    <id>https://nickxu.me/2023/03/13/%E5%A4%A7%E4%BA%8C%E4%B8%8B%E5%AE%BF%E8%88%8D%E4%B8%8A%E6%B5%B7%E4%B8%80%E6%97%A5%E6%B8%B8%E6%B8%B8%E8%AE%B0/</id>
-    <published>2023-03-13T08:26:09.000Z</published>
-    <updated>2023-03-24T03:09:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这篇因为时间拖太久了没写，就感觉没有当时的感觉了</p><p>现在只能说把朋友圈 copy 一下了，本来想详细讲讲的（</p><blockquote><p>讲真周末去长三角周边城市不比在下沙玩舒服？早上花一个小时坐高铁到上海虹桥，然后沿着10号线一路玩<br>上午到中共一大纪念馆，中午吃个饭，继续坐地铁到豫园，顺便还有城隍庙可以逛一下，接着去南京步行街一路逛吃，晚上逛到外滩正好看夜景，最后原路返回坐高铁回杭州，懂不懂国际性大都市的含金量哇🤣</p></blockquote><div class="gallery">    <div class="fj-gallery  data" data-rowHeight="220" data-limit="10">    <span class="gallery-data">[{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241108463.png","alt":"image-20230324110835972"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241108172.png","alt":"image-20230324110847152"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241108898.png","alt":"image-20230324110851874"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241108429.png","alt":"image-20230324110857406"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241109812.png","alt":"image-20230324110915794"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241109336.png","alt":"image-20230324110925318"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241109416.png","alt":"image-20230324110933398"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241109513.png","alt":"image-20230324110944495"},{"url":"https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202303241109287.png","alt":"image-20230324110953266"}]</span>    </div>    <button class="gallery-load-more"><span>加载更多</span><i class="fa-solid fa-arrow-down"></i></button>    </div>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;这篇因为时间拖太久了没写，就感觉没有当时的感觉了&lt;/p&gt;
-&lt;p&gt;现在只能说把朋友圈 copy 一下了，本来想详细讲讲的（&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;讲真周末去长三角周边城市不比在下沙玩舒服？早上花一个小时坐高铁到上海虹桥，然后沿着10号线一路玩&lt;br&gt;
-上午到</summary>
-      
-    
-    
-    
-    <category term="随笔与总结" scheme="https://nickxu.me/categories/%E9%9A%8F%E7%AC%94%E4%B8%8E%E6%80%BB%E7%BB%93/"/>
-    
-    
-    <category term="旅游" scheme="https://nickxu.me/tags/%E6%97%85%E6%B8%B8/"/>
     
   </entry>
   
