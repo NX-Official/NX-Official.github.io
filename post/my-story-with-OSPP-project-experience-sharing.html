@@ -1,0 +1,594 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>『OSPP2023』我与 OSPP 的故事 —— 项目经验分享 | NX の 博客</title><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="书接上文 『OSPP2023』我与 OSPP 的故事 —— 从听闻到中选 ，本文注重于描写项目开发的经历  项目基本信息   项目名称：为 Envoy Go 扩展建设插件市场   项目导师：纪卓志   项目描述： Envoy 是当前最流行的网络代理之一，Go 扩展是 MOSN 社区为 Envoy 增"><link rel="shortcut icon" href="/static/icon.png"><link rel="canonical" href="https://nickxu.me/post/my-story-with-OSPP-project-experience-sharing.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//hm.baidu.com"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?3573ab9aac9d53e5c34fea51e076a07d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-VBKFEG3YFD"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-VBKFEG3YFD');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":300,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":800},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『OSPP2023』我与 OSPP 的故事 —— 项目经验分享',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-17 21:45:21'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><script async src="https://analytics.umami.is/script.js" data-website-id="cabaee36-5ea6-431c-8f56-4127be850896"></script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="NX の 博客" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="NX の 博客" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">277</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">41</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="NX の 博客"><span class="site-name">NX の 博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li><li><a class="site-page child" href="/links/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『OSPP2023』我与 OSPP 的故事 —— 项目经验分享</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-15T12:58:06.000Z" title="发表于 2023-10-15 20:58:06">2023-10-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-10-17T13:45:21.293Z" title="更新于 2023-10-17 21:45:21">2023-10-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/OSPP/">OSPP</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>书接上文 <a href="https://nickxu.me/2023/06/my-story-with-OSPP-from-hearing-to-being-selected.html">『OSPP2023』我与 OSPP 的故事 —— 从听闻到中选</a> ，本文注重于描写项目开发的经历</p>
+<hr>
+<h1 id="项目基本信息">项目基本信息</h1>
+<ul>
+<li>
+<p>项目名称：为 Envoy Go 扩展建设插件市场</p>
+</li>
+<li>
+<p>项目导师：纪卓志</p>
+</li>
+<li>
+<p>项目描述：</p>
+<p>Envoy 是当前最流行的网络代理之一，Go 扩展是 MOSN 社区为 Envoy 增加的 Go 生态基础，也是 MOSN 社区 MoE 框架的基础。</p>
+<p>受益于Golang生态系统，研发可以轻松在 Envoy 实现插件用于更多的长尾场景，其中很多场景都是通用的。</p>
+<p>本项目是为Envoy Go 扩展构建插件市场。在插件市场中，人们可以在插件市场中分享插件，选用已经存在的插件。通过插件市场，可以让 Envoy、MoE 生态变得更加开放、共享、丰富。</p>
+</li>
+<li>
+<p>项目链接：</p>
+<p><a target="_blank" rel="noopener" href="https://summer-ospp.ac.cn/org/prodetail/23f080259?lang=zh&amp;list=pro">https://summer-ospp.ac.cn/org/prodetail/23f080259?lang=zh&amp;list=pro</a></p>
+</li>
+</ul>
+<h1 id="项目迭代经历">项目迭代经历</h1>
+<p>首先我想说这个项目的架构设计经历了多次变动，发现最后做出来的和最开始想的根本不是一个东西（笑）</p>
+<p>一开始 OSPP 上简短的描述并不能让我了解太多，于是我开始翻 MOSN 的文档，并且和导师在 <a target="_blank" rel="noopener" href="https://github.com/mosn/envoy-golang-filter-hub/issues/1">Issue</a> 下交流更为详细的需求</p>
+<p>需要实现的是一个插件市场，也就是类似于 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/vscode">VSCode Marketplace</a> 或者 <a target="_blank" rel="noopener" href="https://github.com/marketplace?type=actions">GitHub Marketplace</a> 的效果，含插件提交、审核、版本管理和二进制构建分发等</p>
+<p><img src="https://image.nickxu.me/202310171527416.png" alt="image-20231017下午32737287"></p>
+<p>我的构想是分为三个部分，GitHub、后端本体还有镜像仓库</p>
+<p>开发者在自己的仓库里开发，如果要上架的话需要移交仓库权限到官方组织里，发布新版本就正常 Release，可以通过 GitHub Actions 通知后端或者由后端来轮询同步</p>
+<p>后端同步仓库情况，维护插件列表与各自的历史版本，同时对每个版本都编译并推送镜像</p>
+<p><img src="https://image.nickxu.me/202310171109975.png" alt="v1.全局设计"></p>
+<p>而对于后端内部，我当初打算搓一套微服务，还画了微服务拆分与架构图（</p>
+<p><img src="https://image.nickxu.me/202310171200663.png" alt="v1.微服务拆分"></p>
+<p><img src="https://image.nickxu.me/202310171109179.png" alt="v1.后端架构"></p>
+<p>然而项目的难点实际上不在于要用什么什么复杂的技术，而在于整体的面向用户的设计，能有一套实际落地可执行的方案</p>
+<p><img src="https://image.nickxu.me/202310171158892.png" alt="image-20231017上午115835855"></p>
+<blockquote>
+<p>感谢导师及时为我指明方向 ❤️</p>
+</blockquote>
+<p>我觉得导师说的的确很有道理，需要交付 MVP 最小价值产品，它指的是产品在满足基本功能需求的前提下，具有的最小的功能集合</p>
+<p>于是，后端肯定是一个简单单体了，并且仓库变成了各自独立开发，目前主要的工作放在细化整个链路上的各个环节</p>
+<p>OK，我们的目标是搭建一个插件市场，插件本体作为 Docker Image 的形式分发，为了达到这个目标，我们需要解决几个子问题</p>
+<ul>
+<li>提交流程该如何设计
+<ul>
+<li>上架一个插件，用户需要提交哪些内容？</li>
+</ul>
+</li>
+<li>审核流程该如何设计
+<ul>
+<li>哪些行为需要审核？</li>
+<li>如何审核，自建审核系统，还是依托其他服务？</li>
+</ul>
+</li>
+<li>如何进行版本管理
+<ul>
+<li>如何上架新版本</li>
+<li>如何下架一个版本</li>
+</ul>
+</li>
+<li>元信息（名称描述分类等）如何存储
+<ul>
+<li>是全部都存在插件本体中，然后平台后端全量缓存</li>
+<li>还是一部分打包在插件中，另一部分单独在后端保存</li>
+</ul>
+</li>
+<li>插件本体（Docker镜像）该如何构建，存储与分发
+<ul>
+<li>是我们负责构建存储分发一条龙</li>
+<li>还是交给用户存储在第三方（如 Docker Hub），我们只保存地址？</li>
+</ul>
+</li>
+</ul>
+<p>自己摸索无异于闭门造车，我认为可以参考一下其他平台的做法</p>
+<p>因此，我研究了 8 个类似的或者可以提高参考价值的平台，观察他们是如何解决这些问题的，总结为下表：</p>
+<table>
+<thead>
+<tr>
+<th>平台/市场</th>
+<th>提交流程</th>
+<th>审核机制</th>
+<th>版本管理</th>
+<th>验证官方发布</th>
+<th>元信息保存</th>
+<th>官方文档</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/vscode">Visual Studio Code Marketplace</a></td>
+<td>1. 将插件打包为 <code>.vsix</code> 文件<br>2. 在 <a target="_blank" rel="noopener" href="https://azure.microsoft.com/services/devops/">Azure DevOps</a> 使用Microsoft 帐户创建账号并获取 Token<br />3. 使用同一Microsoft 帐户在 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/manage">Visual Studio Marketplace</a> 创建发布者 <br />4. 使用 <code>vsce login</code> 与  <code>vsce publish</code> 命令发布插件</td>
+<td>在 Visual Studio Marketplace 上由 Marketplace 团队进行审核</td>
+<td>1. 更新 <code>package.json</code> 的版本号<br>2. 使用 <code>vsce publish</code> 发布新版本<br />3. 无法直接删除特定版本，需要联系官方支持团队进行处理</td>
+<td><a target="_blank" rel="noopener" href="https://code.visualstudio.com/api/working-with-extensions/publishing-extension#verify-a-publisher">通过验证是否持有该公司/组织的域名</a></td>
+<td>保存在项目的 <code>package.json</code> 中<br />包含唯一标识、名称、描述、版本号、发布者名称、兼容的 VSC 版本、分类、关键词等</td>
+<td><a target="_blank" rel="noopener" href="https://code.visualstudio.com/api/working-with-extensions/publishing-extension">Publishing Extensions | Visual Studio Code Extension API</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/">JetBrains Plugin Repository</a></td>
+<td>1. 在官网上创建账号<br>2. 在创建插件页面上传插件 JAR/ZIP 文件并发布</td>
+<td>由 JetBrains 团队进行审核</td>
+<td>1. 上传新的插件文件<br>2. 在“Versions”选项卡中删除旧版本</td>
+<td>暂无明确的官方验证机制</td>
+<td>大部分保存在项目的 <code>plugin.xml</code> 中，但分类是在发布的页面手动指定</td>
+<td><a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/docs/marketplace/uploading-a-new-plugin.html">Uploading a new plugin | JetBrains Marketplace Documentation</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/marketplace?type=actions">GitHub Actions</a></td>
+<td>1. 在 GitHub 仓库中完成开发，并编写 <code>action.yml</code><br />2. 创建一个 release ，勾上发布到市场，同时填写分类等信息</td>
+<td>无审核机制，发布后即可使用</td>
+<td>1. 创建新的 release， 并勾上发布到市场<br />2. 如要删除发布，取消勾选并保存即可</td>
+<td>仓库属于哪个组织，就是由哪个组织发布的</td>
+<td>大部分保存在项目的 <code>action.yml</code> 中，但分类是在发布的页面手动指定</td>
+<td><a target="_blank" rel="noopener" href="https://docs.github.com/zh/actions/creating-actions/publishing-actions-in-github-marketplace">在 GitHub Marketplace 中发布操作 - GitHub 文档</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/category/extensions">Chrome Web Store</a></td>
+<td>1. 在 Chrome 开发者仪表盘创建新项目<br>2. 上传 <code>.zip</code> 文件包含扩展的所有代码<br>3. 填写项目详情，如名称、描述、图标、预览图等<br>4. 提交审核并支付开发者注册费用</td>
+<td>由 Google 团队进行人工审核，内容涵盖性能、安全、隐私等方面</td>
+<td>1. 在开发者仪表盘提交新的 <code>.zip</code> 文件<br>2. 旧版本不会被自动删除，用户可以在商店中查看所有版本</td>
+<td>通过 Google 账户验证</td>
+<td>一部分保存在项目的 <code>manifest.json</code> 中，如名称、版本号、描述等<br />其余信息如图标、预览图、详细描述在开发者仪表盘填写</td>
+<td><a target="_blank" rel="noopener" href="https://support.google.com/chrome/a/answer/2714278?hl=zh-Hans">创建和发布自定义 Chrome 应用和扩展程序 - Chrome Enterprise and Education帮助</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.apple.com/app-store/">Apple App Store</a></td>
+<td>1. 注册成为 Apple 开发者并支付年费<br>2. 使用 Xcode 开发应用并配置相关信息<br>3. 在 App Store Connect 上创建应用并上传<br>4. 提交审核请求</td>
+<td>由 Apple 团队进行严格审核，包括功能、安全性、隐私、设计等方面</td>
+<td>1. 在 Xcode 中更新版本号和构建号<br>2. 在 App Store Connect 上上传新版本并提交审核<br>3. 旧版本自动下架</td>
+<td>通过 Apple Developer Program 验证身份</td>
+<td>最基础的部分保存在项目的  <code>Info.plist</code> 中，如版本号，构建号，唯一标识，设备上显示的名称<br />另一部分是在 App Store Connect 上，包括在App Store上的应用名称、描述、版本号、类别、预览截图等</td>
+<td><a target="_blank" rel="noopener" href="https://developer.apple.com/cn/ios/submit/">将 iOS App 提交至 App Store - Apple Developer</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://cn.wordpress.org/plugins/">WordPress Plugin Repository</a></td>
+<td>1. 在官网上注册账号<br>2. 在 SVN 仓库中添加插件代码<br>3. 使用 Readme Validator 验证 <code>readme.txt</code><br>4. 在官网上提交插件并等待审核</td>
+<td>由 WordPress 团队进行审核，主要关注插件的功能和安全性</td>
+<td>1. 在 SVN 仓库中更新插件和 <code>readme.txt</code> 的版本号<br>2. 在官网上标记新版本的发布<br>3. 旧版本仍然可用</td>
+<td>没有明确的官方验证机制</td>
+<td>保存在项目的 <code>readme.txt</code> 中，包括名称、描述、版本号、作者、标签等</td>
+<td><a target="_blank" rel="noopener" href="https://codex.wordpress.org/zh-cn:%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6">zh-cn:开发一个插件 « WordPress Codex</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://hub.docker.com/search?q=&amp;type=extension">Docker Extension</a><br /></td>
+<td>1. 在Docker Hub上注册账号<br>2. 构建好你的扩展镜像，并提交到 Docker Hub<br />3. 选择一种发布方式并等待审核</td>
+<td>可以选择<a target="_blank" rel="noopener" href="https://github.com/docker/extensions-submissions/issues/new?assignees=&amp;labels=&amp;template=1_automatic_review.yaml&amp;title=%5BSubmission%5D%3A+">自行发布</a>或者<a target="_blank" rel="noopener" href="https://www.docker.com/products/extensions/submissions/">请求官方审核</a></td>
+<td>1. 推送新版本的扩展 Docker Image ，并带有递增的版本标记<br />2. 像管理你的镜像版本一样管理你的扩展版本</td>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/docker-hub/publish/">加入 Docker Verified Publisher Program</a></td>
+<td>保存在扩展镜像中的 <code>metadata.json</code> 中，当然官方肯定也会缓存一部分</td>
+<td><a target="_blank" rel="noopener" href="https://docs.docker.com/desktop/extensions-sdk/extensions/publish/">Publish your extension to the marketplace</a></td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://openai.com/blog/chatgpt-plugins">ChatGPT Plugins</a></td>
+<td>1. 搭建好你的 API 服务<br />2. 以官方的格式创建 JSON/YAML 文件描述你的插件，并保存在域名下</td>
+<td>目前是在官网通过机器人递交表单，然后人工审核</td>
+<td>1. 更新你部署即可<br />2. 不需要维护多版本，访问到的就是你部署的最新版本</td>
+<td>暂无明确的官方验证机制</td>
+<td>大部分保存在你部署的 API 的域名下的 YAML/JSON 文件中，官方服务器仅保存名称，描述及域名等基本信息</td>
+<td><a target="_blank" rel="noopener" href="https://platform.openai.com/docs/plugins/getting-started">Getting Started - OpenAI API</a></td>
+</tr>
+</tbody>
+</table>
+<p>依此，我进行以下设计（下面节选自 Proposal）</p>
+<blockquote>
+<ul>
+<li>
+<p>在提交流程这一步来看，我感觉 GitHub Actions 的流程和我们的项目是最贴切的，毕竟我们希望尽可能地利用 GitHub 的基础设施，我认为我们也可以将仓库的一个 Release 关联到插件的一个版本</p>
+</li>
+<li>
+<p>审核机制来看，大部分都是平台自建审核功能，而我也注意到了Docker Extension 的 <a target="_blank" rel="noopener" href="https://github.com/docker/extensions-submissions/issues/new?assignees=&amp;labels=&amp;template=1_automatic_review.yaml&amp;title=%5BSubmission%5D%3A+">自行发布</a> 的做法，我认为可以借鉴他的做法：他是一个 Issue Form 对应一个申请，然后，用 tag 标记状态，并由 GitHub Actions 自动检查是否符合条件，这种做法让我想起来社团里有学长加友链也是<a target="_blank" rel="noopener" href="https://github.com/aFlyBird0/blog-friends/issues/new/choose">这么</a>搞的， Issue Form 真的可玩性挺高的</p>
+<p>而对于我们来说，可以根据审核的事件类型自定义要不要加人工审核，比如说上架，机器人检查通过之后（这个 repo 的确按照我们规定的格式编写好了插件，可以编译成 Docker Image），可以自动 @ 管理员来人工审核并通过（更改 tag 并关闭 issue），如果有问题则可以在这个 issue 下面继续交流</p>
+</li>
+<li>
+<p>版本管理来看，可以使用与 GitHub Actions 一样的关联 Release 的做法，然后上架或者下架新版本都需要提交审核申请，添加/解除与一个 Release 的关联</p>
+</li>
+<li>
+<p>验证官方发布来看，也可以和 GitHub Actions 一样，仓库在谁手里就是谁发布的，当然还可以以提交审核的方式认证一些别的 tag</p>
+</li>
+<li>
+<p>关于元信息存储，我的看法是与 Visual Studio Code 一样在本体中全量存储（比如在根目录的 <code>metadata.json</code> ） ，然后后端数据库缓存一份，并且始终缓存最新版的信息，这种做法对后端应该最方便，但是对用户来说可能有点麻烦，毕竟你要改描述或者分类这种信息也需要再发布一个新版本</p>
+<p>也就是说，只要插件的仓库中有一个能编译出来镜像的 <code>Dockerfile</code> ，以及一个符合规范的 <code>metadata.yaml</code> ，就够了</p>
+</li>
+<li>
+<p>插件本体存储来看，除去 ChatGPT Plugins 提交的是 API 之外，其他的都是提交并分发一个能离线运行的实体，有些实体是不需要编译的，直接提交源码即可，有些是提交了编译后的产物（如 JAR 包），而在这些案例中大多数都是直接提交编译后的二进制，但是 Docker Extension 有所不同，他是让用户自行将 Docker Image 提交到 Docker Hub ， 然后提交扩展的时候就上交一个链接就好了，如果我们也这样做的话就是把存储成本转嫁给用户，但是从稳定性来看感觉不妥，当然你也可以说 Docker Hub 是他们自家的存储设施，我的结论就是由我们自己负责编译和存储</p>
+</li>
+</ul>
+<p>另外，作为一个市场还可以有评分和评论的功能，但是我感觉没什么必要，评分的话看仓库的 star 应该就可以了，如果对插件有什么看法的话也可以直接去提一个 issue，当然如果要做的话也可以用 <a target="_blank" rel="noopener" href="https://giscus.app/zh-CN">giscus</a> 这种解决方法，直接依托 GitHub 的基础设施</p>
+<p>…</p>
+</blockquote>
+<p>而核心的上架流程是这样的</p>
+<blockquote>
+<h3 id="上架插件-发布新版本">上架插件/发布新版本</h3>
+<ol>
+<li>
+<p>在自己的 GitHub 仓库中开发好插件，包含 <code>Dockerfile</code> 与 <code>metadata.yaml</code></p>
+</li>
+<li>
+<p>使用 Issue Form 提交申请，包括自己的仓库地址，同意服务条款</p>
+</li>
+<li>
+<p>使用 GitHub Actions 检查是否接收了服务条款</p>
+</li>
+<li>
+<p>使用 GitHub Actions 找到该项目的 Latest Release ，检查是否合规</p>
+<ol>
+<li>
+<p>元数据是否符合规范、完整</p>
+<ol>
+<li>询问后端是否重名</li>
+<li>是否填写了分类、分类是否在预定义的种类中</li>
+<li>如果定义了 icon、color ，定义是否合规</li>
+</ol>
+</li>
+<li>
+<p>是否能够编译</p>
+<p>使用 <code>docker build</code> 试编译</p>
+</li>
+</ol>
+</li>
+<li>
+<p>自动检测通过，打上 tag ， 等待人工审核</p>
+<p>若未通过，告知原因，并告知需要发布新版本并使用 <code>/validate</code> 重新检测</p>
+</li>
+<li>
+<p>人工审核并更新 tag</p>
+</li>
+<li>
+<p>GitHub Actions 识别到通过的 tag， 向后端上报要关联到的 release 版本</p>
+</li>
+<li>
+<p>上架完成后自动关闭 issue</p>
+</li>
+</ol>
+<p>…</p>
+</blockquote>
+<p>前文所说的 Docker Extension 的 <a target="_blank" rel="noopener" href="https://github.com/docker/extensions-submissions/issues/new?assignees=&amp;labels=&amp;template=1_automatic_review.yaml&amp;title=%5BSubmission%5D%3A+">自行发布</a> 我感觉设计的真的很好，最大的特点就是使用 Issue Form 进行申请，然后 GitHub Actions 会自动跑一遍检查，并在 Issue 页面使用对话的形式与用户交互，如果有错误也会指出，并使用 tag 追踪状态</p>
+<p><img src="https://image.nickxu.me/202310171132528.png" alt="image-20231017上午113215497"></p>
+<p><img src="https://image.nickxu.me/202310171131340.png" alt="image-20231017上午113155311"></p>
+<p><img src="https://image.nickxu.me/202310171131472.png" alt="image-20231017上午113133442"></p>
+<p>这一设计最大的好处就是公开透明，所有与用户的交互都是公开的，并且就在 GitHub</p>
+<p>很巧的是我们社团的 <a target="_blank" rel="noopener" href="https://blog.marlene.top/index.php/develop/93.html">Marlene</a> 同学的 OSPP 项目也是做插件市场，我和他在私下讨论了这种做法，他也表示很认同，并打算借鉴这种方案</p>
+<p>于是总体设计就变成了这个样子</p>
+<p><img src="https://image.nickxu.me/202310171110193.png" alt="v4.全局设计"></p>
+<p>差别不算大，但是变成了每次发版都要新增一个 Issue 并进行两段式审核，一次机审是看符不符合规范，第二次是人工审核，也就是要求中的「经过社区 review」</p>
+<p>之后就是 OSPP 中选了，中选后被社区拉着开了次会</p>
+<img src="https://image.nickxu.me/202310171626988.png" alt="image-20231017下午42651938" style="zoom:50%;" />
+<blockquote>
+<p>有点后悔没录像，感觉开的挺好的</p>
+</blockquote>
+<p>会上我讲解了现在的方案，有一个问题被重点讨论，就是不再使⽤分库的形式（开发者在各⾃的仓库维护项⽬），⽽是⼤库（所有⼈向主仓库提交 PR）</p>
+<p>这个改变有几个原因，我记得一方面能增加开发者的认同感（我给官方仓库贡献了一个插件），另一方面这个平台应该是我们与开发者共建，而不是我们去服务开发者（有点怪，但大概是这个意思）</p>
+<p>于是，使用大库的话很多逻辑就又要改了，比方说版本管理要自己设计一套方案，我当时设计的是在元数据里记录版本，然后版本变动的时候就通知后端更新数据，把本次 commit hash 和这个插件的这个版本关联起来，再去做 bulid</p>
+<p>为什么要做版本管理呢？这个在会上我也讨论过，比如 VSCode 的插件就有版本管理，它每个插件版本都在元数据写上能支持哪些 VSCode 版本，我觉得我们这个 MoE 的基座也会存在类似的问题</p>
+<p>项目结构大概就是这个样子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── LICENSE</span><br><span class="line">├── README.md</span><br><span class="line">├── plugins # 插件⽬录，存储所有插件</span><br><span class="line">│   ├── example</span><br><span class="line">│   ├── example2</span><br><span class="line">│   ├── example3</span><br><span class="line">│   └── example4</span><br><span class="line">└── web</span><br><span class="line"> ├── frontend # 前端</span><br><span class="line"> └── backend  # 后端</span><br></pre></td></tr></table></figure>
+<p>每个插件目录的必须内容如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">example</span><br><span class="line">├── changelog.md # 开发者⾃⼰维护的 Markdown</span><br><span class="line">├── config.proto # 配置参数定义</span><br><span class="line">├── metadata.yaml # 插件元数据，包括名称描述分类版本等</span><br><span class="line">└── readme.md # 开发者⾃⼰维护的 Markdown</span><br></pre></td></tr></table></figure>
+<p>这样一来，后端就需要 clone 和 pull 这个仓库，再深挖 git 历史，分析各个插件的历史版本，有点费力</p>
+<p>为什么要这么搞呢？有没有更简单的方法，可能吧，但是我没找到</p>
+<ul>
+<li>Docker Extension 交的本来就是 Docker Image 的地址，Docker Hub 能给他做版本管理</li>
+<li>而 Marlene 那是 PyPI ，版本管理那边已经做好了</li>
+</ul>
+<p>当然大库也不是全然没好处，我感觉这样就可以省一些逻辑，比方说貌似不需要 Issue Form 来处理各个发版事件了，也不需要维护一堆 tag，每个人直接对着仓库 PR 就行，只需要一个 Actions 里有一个简单的检查，不需要糊交互</p>
+<p>想好了之后我开始想前后端了，MVP 的话，感觉两个接口就行，一个列表一个详情即可</p>
+<p>而后端还需要数据库吗？啊，貌似数据库也不需要了，可以每次更新的时候直接生成 JSON 缓存，然后直接返回给前端，而查询的话至少近期可以在前端进行，这样貌似根据稳定</p>
+<p>而 build 的话，我打算暂时先放一放吧，做最简单的打包某版本的源代码，至于编译上传 S3，或者使用 Docker Image 可以后面再说</p>
+<p>同时，我开始糊前端，先画设计图</p>
+<img src="https://image.nickxu.me/202310171411499.png" alt="429cdbfb0271c2ced239bae81e6748fc" style="zoom:50%;" />
+<p>主⻚包含列出，搜索、分类功能，详情页包含 Overview、Config、Version和 Changlog 四个 Tab</p>
+<p>后端感觉没什么问题我就开始搓前端了，但前端我其实不是很会，但是还是在前端大佬 daidr 的帮助下完成了</p>
+<p><img src="https://image.nickxu.me/202309281924384.png" alt=""></p>
+<blockquote>
+<p>首页</p>
+</blockquote>
+<p><img src="https://image.nickxu.me/202309281928905.png" alt=""></p>
+<blockquote>
+<p>详情页的 Overview ，是原 <code>readme.md</code> 的渲染</p>
+<p>但这个渲染并不是简单的渲染，我是调用了 GitHub 的  <a target="_blank" rel="noopener" href="https://docs.github.com/zh/rest/markdown/markdown?apiVersion=2022-11-28#render-a-markdown-document">Render a Markdown document</a> 接口，结合了仓库的上下文</p>
+<p>（⽐如 <code>#1</code> 会被正确指向对应的 Issue 或者 PR）</p>
+</blockquote>
+<p><img src="https://image.nickxu.me/202309281926402.png" alt=""></p>
+<blockquote>
+<p>Config 是原 <code>config.proto</code> 的渲染</p>
+</blockquote>
+<p><img src="https://image.nickxu.me/202309281926047.png" alt=""></p>
+<blockquote>
+<p>Changelog 是原 <code>changelog.md</code> 的渲染</p>
+</blockquote>
+<p><img src="https://image.nickxu.me/202309281928369.png" alt=""><img src="https://image.nickxu.me/202309281927210.png" alt=""></p>
+<blockquote>
+<p>Versions 包含插件的所有历史版本，这个在 GitHub 直接发一个 Release 是社区里其他导师建议的</p>
+</blockquote>
+<p>而调试到了最后，居然感觉连后端都可以不要了（</p>
+<p>首先由于域名备案等考虑需要，⽬前不需要有评论等交互功能，OAuth 登陆⽬前没有意义，有也可以使用静态博客的评论系统，而流量统计使用第三方服务也可以做到，至于编译推送，也可以在 GitHub Actions 中完成（我之前感觉从公网推送到内网不是很合适，但现在感觉应该也就是推到某些第三方服务上了）</p>
+<p><img src="https://image.nickxu.me/202310172115508.png" alt="image-20231017下午91551486"></p>
+<blockquote>
+<p>好好好</p>
+</blockquote>
+<p>于是我开始把原来后端的逻辑塞到 GitHub 工作流中再重构，再进行若干修改</p>
+<p>我想到了可以直接以 RAW 的形式直接读取仓库里的 JSON 文件，就像我的一个玩具项目一样</p>
+<p><img src="https://image.nickxu.me/202310171410304.png" alt="7a6ab5853fd4d20854d3bdc491a72fd4"></p>
+<p>其实没后端反而更方便了，因为我大概只需要执行这段伪代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 插件 := <span class="keyword">range</span> 所有插件 &#123;</span><br><span class="line">   <span class="keyword">if</span> 当前插件的版本没有打过tag &#123;</span><br><span class="line">       发布并更新缓存</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外还有些小改动，就是把生成的缓存移到其他分支中，因为 <code>main</code> 分支大概会有保护规则，不允许直接提交</p>
+<p>于是我将缓存移到 <code>cache</code> 分支，并用将前端用 GitHub Page 发布，这下是真不要钱了（</p>
+<p>再不断的调试后，到这一步，整个项目其实已经应该能跑了，而令我没想到的是，回看最开始的产出要求，我其实一个都没做到（笑）</p>
+<ol>
+<li>提供一个Envoy Go 插件的内容平台，在这里可以发布经过社区review的优秀插件，需要拥有服务端与前端页面</li>
+<li>不自建账号体系，通过GitHub OAuth2.0完成用户认证与授权</li>
+<li>进阶 - 对接GitHub OpenAPI，支持动态获取插件所在仓库信息，包括README，分支版本以及star数</li>
+</ol>
+<p><s>乐，只能说计划没法赶上变化</s></p>
+<p>除此之外，还令我没想到的是导师会提那么多 LICENSE 相关的问题（</p>
+<p><img src="https://image.nickxu.me/202310172122478.png" alt="08b0a845b2c2c0a642d8116684a9e502"></p>
+<img src="https://image.nickxu.me/202310172123143.png" alt="397e42e1900775a5c99f0cfc6f6428ed" style="zoom:50%;" />
+<img src="https://image.nickxu.me/202310172123387.png" alt="86a757d0c923feb50298e40519ea5223" style="zoom: 67%;" />
+<p>我大概了解各自开源协议的含义，但还从没认真对待过</p>
+<p>至于未来这个项目会怎么发展，导师说还可以用 <a target="_blank" rel="noopener" href="https://docusaurus.io/zh-CN/">Docusaurus</a> 做生成的静态前端，我想也是，这样就不用生成 cache 了，直接更新前端，能少一次请求</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/OSPP/">OSPP</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/post/allow-everything-to-happen.html" title="你还惦记着你那二面呢｜Allow Everything to Happen"><img class="cover" src="/static/202202230023069.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">你还惦记着你那二面呢｜Allow Everything to Happen</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div id="comment-switch"><span class="first-comment">Giscus</span><span class="switch-btn"></span><span class="second-comment">Twikoo</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">这家伙真勤奋，什么都留下了</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">277</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">57</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">41</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/NX-Official"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://message/?uin=976180942&amp;Site=tool.520101.com&amp;Menu=yes" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/static/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin"></i></a><a class="social-icon" href="mailto:nx@nickxu.me" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">项目基本信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%BF%AD%E4%BB%A3%E7%BB%8F%E5%8E%86"><span class="toc-number">2.</span> <span class="toc-text">项目迭代经历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E6%9E%B6%E6%8F%92%E4%BB%B6-%E5%8F%91%E5%B8%83%E6%96%B0%E7%89%88%E6%9C%AC"><span class="toc-number">2.0.1.</span> <span class="toc-text">上架插件&#x2F;发布新版本</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/my-story-with-OSPP-project-experience-sharing.html" title="『OSPP2023』我与 OSPP 的故事 —— 项目经验分享">『OSPP2023』我与 OSPP 的故事 —— 项目经验分享</a><time datetime="2023-10-17T13:45:21.293Z" title="更新于 2023-10-17 21:45:21">2023-10-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts-you-might-be-interested-in.html" title="🌟 你可能感兴趣的文章｜Posts you might be interested in">🌟 你可能感兴趣的文章｜Posts you might be interested in</a><time datetime="2023-10-15T12:37:48.771Z" title="更新于 2023-10-15 20:37:48">2023-10-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/26/qq%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%88%9D%E4%B8%8A%E6%89%8B/" title="go-cqhttp QQ 机器人初上手">go-cqhttp QQ 机器人初上手</a><time datetime="2023-10-15T12:25:58.346Z" title="更新于 2023-10-15 20:25:58">2023-10-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/03/18/%E5%91%8A%E5%88%ABELK%EF%BC%81%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%97%A5%E5%BF%97%E6%94%B6%E9%9B%86%E7%B3%BB%E7%BB%9FGrafana-Loki%E5%88%9D%E4%B8%8A%E6%89%8B/" title="轻量级日志收集系统 Grafana Loki 初上手">轻量级日志收集系统 Grafana Loki 初上手</a><time datetime="2023-10-15T12:25:38.413Z" title="更新于 2023-10-15 20:25:38">2023-10-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/02/13/Hexo%20+%20Butterfly%20%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97%EF%BC%88%E3%80%87%EF%BC%89%E5%89%8D%E8%A8%80/" title="Hexo + Butterfly 建站指南（〇）前言">Hexo + Butterfly 建站指南（〇）前言</a><time datetime="2023-10-15T12:24:19.315Z" title="更新于 2023-10-15 20:24:19">2023-10-15</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>function getGiscusTheme (theme) {
+  return theme === 'dark' ? 'dark' : 'light'
+}
+
+function loadGiscus () {
+  const config = Object.assign({
+    src: 'https://giscus.app/client.js',
+    'data-repo': 'NX-Official/NX-Official.github.io',
+    'data-repo-id': 'R_kgDOGzWHdw',
+    'data-category-id': 'DIC_kwDOGzWHd84CX4Hy',
+    'data-mapping': 'pathname',
+    'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+    'data-reactions-enabled': '1',
+    crossorigin: 'anonymous',
+    async: true
+  },null)
+
+  let ele = document.createElement('script')
+  for (let key in config) {
+    ele.setAttribute(key, config[key])
+  }
+  document.getElementById('giscus-wrap').insertAdjacentElement('afterbegin',ele)
+}
+
+function changeGiscusTheme (theme) {
+  function sendMessage(message) {
+    const iframe = document.querySelector('iframe.giscus-frame')
+    if (!iframe) return
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app')
+  }
+
+  sendMessage({
+    setConfig: {
+      theme: getGiscusTheme(theme)
+    }
+  });
+}
+
+btf.addModeChange('giscus', changeGiscusTheme)
+
+if ('Giscus' === 'Giscus' || !false) {
+  if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+  else loadGiscus()
+} else {
+  function loadOtherComment () {
+    loadGiscus()
+  }
+}</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.nickxu.top/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.nickxu.top/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.textContent = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Giscus' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="/pluginsSrc/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><script data-pjax src="https://npm.elemecdn.com/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<div class="recent-post-item" id="gitcalendarBar" style="width:100%;height:auto;padding:10px;"><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></div>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/'|| '/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://git-calender.nickxu.top/api?NX-Official",['#161b22','#0e4429','#0e4429','#0e4429','#006d32','#006d32','#26a641','#26a641','#39d353','#39d353','#39d353'],'NX-Official')
+    }
+  </script><!-- hexo injector body_end end --></body></html>
