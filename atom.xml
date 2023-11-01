@@ -6,7 +6,7 @@
   <link href="https://nickxu.me/atom.xml" rel="self"/>
   
   <link href="https://nickxu.me/"/>
-  <updated>2023-10-31T06:11:26.293Z</updated>
+  <updated>2023-11-01T13:33:00.177Z</updated>
   <id>https://nickxu.me/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『代码随想录』DAY8｜字符串：344.反转字符串 541.反转字符串 II</title>
+    <link href="https://nickxu.me/post/programmercarl-day8.html"/>
+    <id>https://nickxu.me/post/programmercarl-day8.html</id>
+    <published>2023-11-01T12:44:35.000Z</published>
+    <updated>2023-11-01T13:33:00.177Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="344-反转字符串"><a href="https://leetcode.cn/problems/reverse-string/">344. 反转字符串</a></h1><p>朴实无华</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseString</span><span class="params">(s []<span class="type">byte</span>)</span></span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(s)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n/<span class="number">2</span>; i++ &#123;</span><br><span class="line">        s[n-i<span class="number">-1</span>], s[i] = s[i], s[n-i<span class="number">-1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h1 id="541-反转字符串-II"><a href="https://leetcode.cn/problems/reverse-string-ii/">541.反转字符串 II</a></h1><p>朴实无华的递归</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseStr</span><span class="params">(s <span class="type">string</span>, k <span class="type">int</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">    n := <span class="built_in">len</span>(s)</span><br><span class="line">    <span class="keyword">if</span> n &lt;= k &#123;</span><br><span class="line">        <span class="keyword">return</span> reverse(s)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> n &gt; k &amp;&amp; n &lt; <span class="number">2</span>*k &#123;</span><br><span class="line">        <span class="keyword">return</span> reverse(s[:k]) + s[k:]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> reverse(s[:k]) + s[k:<span class="number">2</span>*k] + reverseStr(s[<span class="number">2</span>*k:], k)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverse</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">    bytes := []<span class="type">byte</span>(s)</span><br><span class="line">    n := <span class="built_in">len</span>(bytes)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n/<span class="number">2</span>; i++ &#123;</span><br><span class="line">        bytes[i], bytes[n-i<span class="number">-1</span>] = bytes[n-i<span class="number">-1</span>], bytes[i]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">string</span>(bytes)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h1 id="LCR-122-路径加密"><a href="https://leetcode.cn/problems/ti-huan-kong-ge-lcof/">LCR 122.路径加密</a></h1><p>朴实无华</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">pathEncryption</span><span class="params">(path <span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">ans := <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> _, c := <span class="keyword">range</span> path &#123;</span><br><span class="line"><span class="keyword">if</span> c == <span class="string">&#x27;.&#x27;</span> &#123;</span><br><span class="line">ans += <span class="string">&quot; &quot;</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">ans += <span class="type">string</span>(c)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h1 id="151-反转字符串中的单词"><a href="https://leetcode.cn/problems/reverse-words-in-a-string/">151.反转字符串中的单词</a></h1><p>Go 写起来真舒服</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">reverseWords</span><span class="params">(s <span class="type">string</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> s[<span class="number">0</span>] == <span class="string">&#x27; &#x27;</span> &#123;</span><br><span class="line">        s = s[<span class="number">1</span>:]</span><br><span class="line">    &#125;</span><br><span class="line">    n := <span class="built_in">len</span>(s)</span><br><span class="line">    ans := <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n; i++ &#123;</span><br><span class="line">        word := <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> i &lt; n &amp;&amp; s[i] != <span class="string">&#x27; &#x27;</span> &#123;</span><br><span class="line">            word += <span class="type">string</span>(s[i])</span><br><span class="line">            i++</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="string">&quot; &quot;</span> + word + ans</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i+<span class="number">1</span> &lt; n &amp;&amp; s[i+<span class="number">1</span>] == <span class="string">&#x27; &#x27;</span> &#123;</span><br><span class="line">            i++</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans[<span class="number">1</span>:]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h1 id="LCR-182-动态口令"><a href="https://leetcode.cn/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/">LCR 182.动态口令</a></h1><p>？？？</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">dynamicPassword</span><span class="params">(password <span class="type">string</span>, target <span class="type">int</span>)</span></span> <span class="type">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> password[target:] + password[:target]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;344-反转字符串&quot;&gt;&lt;a href=&quot;https://leetcode.cn/problems/reverse-string/&quot;&gt;344. 反转字符串&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;朴实无华&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;spa</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>『代码随想录』DAY7｜哈希表：454.四数相加 II 383. 赎金信</title>
@@ -265,49 +287,6 @@
 &lt;ul&gt;
 &lt;li&gt;性能需求高：因为每次请求都要查缓存，如果用户规模越大的问题越明显&lt;/li&gt;
 &lt;li&gt;对分布式不友好：</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>字节二面挂，还是人太菜了</title>
-    <link href="https://nickxu.me/post/bytedance-interview-failed-2023-09.html"/>
-    <id>https://nickxu.me/post/bytedance-interview-failed-2023-09.html</id>
-    <published>2023-09-07T09:19:57.000Z</published>
-    <updated>2023-09-07T15:28:21.175Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="字节一面">字节一面</h1><ul><li>自我介绍</li><li>简单介绍字节青训营项目</li><li>是组队的吗</li><li>项目耗时</li><li>项目收获的点</li><li>ELK 是你们搭建的吗</li><li>ELK 的软件安装</li><li>数据流大概是怎样的</li><li>是通过什么写到 Logstash 里的</li><li>Logstash 的功能</li><li>你们用的的 fail2ban 是什么</li><li>traceID 介绍</li><li>微服务框架用的什么</li><li>traceID 在框架中是怎么传递的</li><li>对于异步的请求怎么处理的</li><li>这个项目的挑战和难点</li><li>Golang 的 Panic 关键字</li><li>Panic 怎么恢复</li><li>不加 defer 会怎样</li><li>为什么不能恢复</li><li>go 的方法的传值，传递切片，是怎么传的，在里面改变切片，外部能感受到吗</li><li>你说的副本是什么概念</li><li>在函数中 map 改变 kv，外部能感受吗</li><li>传递结构体，一般传值还是传指针</li><li>GMP 模型</li><li>在一个程序中不断起 goroutine，它的队列最终是个什么状态</li><li>一个 G 在一个 M 上执行的时间过长，会怎样调度</li><li>是通过什么策略控制的呢</li><li>刚才说的太长时间你有个时间上的概念吗，什么时间算太长</li><li>协程和线程的区别</li><li>其他的优势，怎么时候选择协程，什么时候不应该选协程</li><li>线程和协程，IO 密集型和 CPU 密集型哪个更适合</li><li>他节省的时间是怎么体现的</li><li>如果我找其他的线程呢？有什么区别</li><li>你比较擅长什么</li><li>MySQL 为什么使用 B+ 树</li><li>分裂与结合，这个是 B 树与 B+ 树的区别吗</li><li>放在叶子结点上导致了什么呢</li><li>还有其他的吗</li><li>了解过跳表吗</li><li>时间复杂度一样吗，跳表和 B+</li><li>为什么 Redis 的 zest 使用了跳表，为什么不用 B+</li><li>MySQL 和 Redis 这两种的本质区别</li><li>有没有可能这两种分别适用于内存和磁盘</li><li>你有什么想问的</li><li>简单编程题 15min：两个 Version 字符串比较大小</li></ul><h1 id="字节二面">字节二面</h1><ul><li>自我介绍</li><li>个人擅长的领域，未来发展</li><li>能实习多长时间</li><li>什么时候可以开始</li><li>你想在哪些方向上，哪些团队实习</li><li>青训营经历</li><li>团队人数，分工</li><li>队长开发吗</li><li>持续时间</li><li>封闭式的吗</li><li>你对这个抖音后端的设计思路</li><li>微服务你这个怎么拆的</li><li>为什么这么拆</li><li>有没有必要把用户拆出来</li><li>微服务好处，实用角度</li><li>服务观测、日志收集，这个是怎么考虑的</li><li>项目难点</li><li>团队项目管理难点</li><li>怎样让协同的质量更高</li><li>做过的其他项目</li><li>跳表是什么</li><li>对比有序的数组的优点</li><li>平衡树是什么概念</li><li>平衡树有什么实现</li><li>某一种平衡树自平衡的思路</li><li>线程和协程的区别</li><li>协程为什么是 kb 级</li><li>开销更小，具体表现在哪些方面</li><li>还有别的吗</li><li>你学过什么计算机基础方面的课程吗</li><li>http 请求的数据包的传输，发生过程</li><li>四次挥手介绍</li><li>tcp 的拥塞算法</li><li>设计模式</li><li>多久接触 go 语言</li><li>gorm 的理解</li><li>技术的角度，你有没有看过源码，或者使用的角度</li><li>你有看过他的实现吗</li><li>乐观锁和悲观锁</li><li>互斥锁什么时候用</li><li>互斥锁使用的注意点</li><li>为什么设计上是不可重入的</li><li>设计上怎么避免重复上锁</li><li>介绍一下Protocol Buffers</li><li>还有吗</li><li>修改名字，换 key，在序列化上有什么注意点吗</li><li>技术上还有什么擅长的没问到的</li><li>缓存一致性</li><li>删除而不是更新是为什么</li><li>删除不会有这个问题吗</li><li>延迟双删再解释一下</li><li>如果中间有人拉了值那不就拉到旧值了</li><li>算法题 15min：手写 LRU</li></ul><h1 id="自我感受">自我感受</h1><p><img src="https://image.nickxu.me/202309072326888.png" alt="e1e010d400b8c12dce93aecd2ebee860"></p><p><img src="https://image.nickxu.me/202309072325699.png" alt="2f20f8a4ee11d8830852953215d693b0"></p><p>字节二面挂，复盘了一下感觉还是自己太菜了</p><p>感觉问的问题也算合理，我应该能答出来才对</p><p>最近发生了好多事情，真的累，以后再说吧</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;字节一面&quot;&gt;字节一面&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;自我介绍&lt;/li&gt;
-&lt;li&gt;简单介绍字节青训营项目&lt;/li&gt;
-&lt;li&gt;是组队的吗&lt;/li&gt;
-&lt;li&gt;项目耗时&lt;/li&gt;
-&lt;li&gt;项目收获的点&lt;/li&gt;
-&lt;li&gt;ELK 是你们搭建的吗&lt;/li&gt;
-&lt;li&gt;ELK 的软件安装&lt;/li&gt;
-&lt;li&gt;数据流大概是怎样的&lt;/li&gt;
-&lt;li&gt;是通过什么写到 Logstash 里的&lt;/li&gt;
-&lt;li&gt;Logstash 的功能&lt;/li&gt;
-&lt;li&gt;你们用的的 fail2ban 是什么&lt;/li&gt;
-&lt;li&gt;traceID 介绍&lt;/li&gt;
-&lt;li&gt;微服务框架用的什么&lt;/li&gt;
-&lt;li&gt;traceID 在框架中是怎么传递的&lt;/li&gt;
-&lt;li&gt;对于异步的请求怎么处理的&lt;/li&gt;
-&lt;li&gt;这个项目的挑战和难点&lt;/li&gt;
-&lt;li&gt;Golang 的 Panic 关键字&lt;/li&gt;
-&lt;li&gt;Panic 怎么恢复&lt;/li&gt;
-&lt;li&gt;不加 defer 会怎样&lt;/li&gt;
-&lt;li&gt;为什么不能恢复&lt;/li&gt;
-&lt;li&gt;go 的方法的传值，传递切片，是怎么传的，在里面改变切片，外部能感受到吗&lt;/li&gt;
-&lt;li&gt;你说的副本是什</summary>
       
     
     
