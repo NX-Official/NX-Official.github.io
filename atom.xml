@@ -6,7 +6,7 @@
   <link href="https://nickxu.me/atom.xml" rel="self"/>
   
   <link href="https://nickxu.me/"/>
-  <updated>2023-11-02T04:45:47.452Z</updated>
+  <updated>2023-11-03T04:04:49.113Z</updated>
   <id>https://nickxu.me/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>『代码随想录』DAY10｜栈与队列：232.用栈实现队列 225.用队列实现栈</title>
+    <link href="https://nickxu.me/post/programmercarl-day10.html"/>
+    <id>https://nickxu.me/post/programmercarl-day10.html</id>
+    <published>2023-11-03T02:43:22.000Z</published>
+    <updated>2023-11-03T04:04:49.113Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="232-用栈实现队列"><a href="https://leetcode.cn/problems/implement-queue-using-stacks/">232.用栈实现队列</a></h1><p>因为栈和队列的出队顺序是反的，所以再来个栈倒腾一下就是正的了</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyQueue <span class="keyword">struct</span> &#123;</span><br><span class="line">    in  []<span class="type">int</span></span><br><span class="line">    out []<span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span></span> MyQueue &#123;</span><br><span class="line">    <span class="keyword">return</span> MyQueue&#123;</span><br><span class="line">        in:  []<span class="type">int</span>&#123;&#125;,</span><br><span class="line">        out: []<span class="type">int</span>&#123;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span></span> Push(x <span class="type">int</span>) &#123;</span><br><span class="line">    this.in = <span class="built_in">append</span>(this.in, x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span></span> shift() &#123; <span class="comment">// 倒腾一下</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">len</span>(this.in) != <span class="number">0</span> &#123;</span><br><span class="line">        this.out = <span class="built_in">append</span>(this.out, this.in[<span class="built_in">len</span>(this.in)<span class="number">-1</span>])</span><br><span class="line">        this.in = this.in[:<span class="built_in">len</span>(this.in)<span class="number">-1</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span></span> Pop() <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(this.out) == <span class="number">0</span> &#123;</span><br><span class="line">        this.shift()</span><br><span class="line">    &#125;</span><br><span class="line">    ans := this.out[<span class="built_in">len</span>(this.out)<span class="number">-1</span>]</span><br><span class="line">    this.out = this.out[:<span class="built_in">len</span>(this.out)<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span></span> Peek() <span class="type">int</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(this.out) == <span class="number">0</span> &#123;</span><br><span class="line">        this.shift()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> this.out[<span class="built_in">len</span>(this.out)<span class="number">-1</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyQueue)</span></span> Empty() <span class="type">bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(this.in) == <span class="number">0</span> &amp;&amp; <span class="built_in">len</span>(this.out) == <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h1 id="225-用队列实现栈"><a href="https://leetcode.cn/problems/implement-stack-using-queues/">225.用队列实现栈</a></h1><p>一个队列就够了</p><p>出栈的话，把前 <code>n-1</code> 个元素扔到后面去，当前元素就是刚入队的元素了</p><p><code>Top()</code> 的话就先出栈再放进去</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> MyStack <span class="keyword">struct</span> &#123;</span><br><span class="line">    q []<span class="type">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Constructor</span><span class="params">()</span></span> MyStack &#123;</span><br><span class="line">    <span class="keyword">return</span> MyStack&#123;</span><br><span class="line">        q: []<span class="type">int</span>&#123;&#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyStack)</span></span> Push(x <span class="type">int</span>) &#123;</span><br><span class="line">    this.q = <span class="built_in">append</span>(this.q, x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyStack)</span></span> shift() &#123; <span class="comment">// 将前 n-1 个元素出队再加入</span></span><br><span class="line">    n := <span class="built_in">len</span>(this.q)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; n<span class="number">-1</span>; i++ &#123;</span><br><span class="line">        this.q = <span class="built_in">append</span>(this.q[<span class="number">1</span>:], this.q[<span class="number">0</span>])</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyStack)</span></span> Pop() <span class="type">int</span> &#123;</span><br><span class="line">    this.shift()</span><br><span class="line">    ans := this.q[<span class="number">0</span>]</span><br><span class="line">    this.q = this.q[<span class="number">1</span>:]</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyStack)</span></span> Top() <span class="type">int</span> &#123;</span><br><span class="line">    ans := this.Pop()</span><br><span class="line">    this.Push(ans)</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(this *MyStack)</span></span> Empty() <span class="type">bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">len</span>(this.q) == <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;232-用栈实现队列&quot;&gt;&lt;a href=&quot;https://leetcode.cn/problems/implement-queue-using-stacks/&quot;&gt;232.用栈实现队列&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;因为栈和队列的出队顺序是反的，所以再来个栈倒腾一下就是正的了&lt;/p&gt;
+&lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span clas</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>『代码随想录』DAY9｜字符串：28.找出字符串中第一个匹配项的下标</title>
@@ -246,41 +268,6 @@
     
     
     <category term="OSPP" scheme="https://nickxu.me/tags/OSPP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你还惦记着你那二面呢｜Allow Everything to Happen</title>
-    <link href="https://nickxu.me/post/allow-everything-to-happen.html"/>
-    <id>https://nickxu.me/post/allow-everything-to-happen.html</id>
-    <published>2023-10-12T16:56:14.000Z</published>
-    <updated>2023-10-12T17:20:59.012Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="https://image.nickxu.me/202310130057300.png" alt="f6d2c2d5852e153218a05493c7948488"></p><blockquote><p>「你还惦记着你那二面呢」</p></blockquote><p>我真的好累，今天还吐了，感觉病了</p><p>我消失了很长一段时间，本来我想写一篇长文，记录我从 8 月 22 号返校到现在发生的所有事情</p><p>但是我真的好累，简单地说，就是诸事不顺，面试、亚运、学业…我不想写</p><p>我总是想在最后来一波升华，但是我其实并没有走出来，架构不出，我写不出来</p><p>我太想成功了，但这正是我没法成功的原因</p><p>就像你找东西，你越找就越找不到，经常是后面不经意的时候突然就冒出来了</p><p>就我现在这个状态，我想留一句话，与君共勉吧</p><blockquote><p>Allow everything to happen｜允许所有事情发生</p></blockquote><p>最后，我还想说</p><p>爸爸妈妈，我永远爱你们❤️</p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1979375472&auto=1&height=66"></iframe>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://image.nickxu.me/202310130057300.png&quot; alt=&quot;f6d2c2d5852e153218a05493c7948488&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;「你还惦记着你那二面呢」&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;我真的好累，今天还吐了，感觉病了&lt;/p&gt;
-&lt;p&gt;我消失了很长一段时间，本来我想写一篇长文，记录我从 8 月 22 号返校到现在发生的所有事情&lt;/p&gt;
-&lt;p&gt;但是我真的好累，简单地说，就是诸事不顺，面试、亚运、学业…我不想写&lt;/p&gt;
-&lt;p&gt;我总是想在最后来一波升华，但是我其实并没有走出来，架构不出，我写不出来&lt;/p&gt;
-&lt;p&gt;我太想成功了，但这正是我没法成功的原因&lt;/p&gt;
-&lt;p&gt;就像你找东西，你越找就越找不到，经常是后面不经意的时候突然就冒出来了&lt;/p&gt;
-&lt;p&gt;就我现在这个状态，我想留一句话，与君共勉吧&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Allow everything to happen｜允许所有事情发生&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;最后，我还想说&lt;/p&gt;
-&lt;p&gt;爸爸妈</summary>
-      
-    
-    
-    
     
   </entry>
   
