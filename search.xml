@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Mac Windows 网线直连文件传输</title>
+      <link href="//post/mac-windows-file-copy-by-directly-LAN.html"/>
+      <url>//post/mac-windows-file-copy-by-directly-LAN.html</url>
+      
+        <content type="html"><![CDATA[<p>今天又学到一个小技巧，使用一条网线直连两台 PC 进行文件传输</p><p>我是把 Mac 上的文件传到 Windows 上，但其实两台 Windows 也大同小异</p><p>首先当然是网线插上</p><p>下一步是自己手动改一下 IP 到同一网段，之后 ping 一下，能 ping 通就算没问题</p><p><img src="https://image.nickxu.me/202311051156967.png" alt="ab8422039ce9ef1e9ead78e908707278"></p><p><img src="https://image.nickxu.me/202311051155650.png" alt="image-20231105115544617 AM"></p><p>传输文件使用 HTTP 其实最方便，直接用 py 起一个 http server</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /path/to/dir</span><br><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure><p>然后你就可以通过浏览器访问了</p><p><img src="https://image.nickxu.me/202311051153910.png" alt="image-20231105115344658 AM"></p><p>本地看上去没问题之后就可以在另一端访问了</p><p>我记得下载是满速的，千兆以太网直接吃满，嘎嘎快（</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>『代码随想录』DAY11｜栈与队列：20.有效的括号 150.逆波兰表达式求值</title>
       <link href="//post/programmercarl-day11.html"/>
       <url>//post/programmercarl-day11.html</url>
