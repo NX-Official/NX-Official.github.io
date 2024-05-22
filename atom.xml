@@ -6,7 +6,7 @@
   <link href="https://nickxu.me/atom.xml" rel="self"/>
   
   <link href="https://nickxu.me/"/>
-  <updated>2024-03-22T15:16:06.068Z</updated>
+  <updated>2024-05-22T04:15:28.986Z</updated>
   <id>https://nickxu.me/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Recovery From Panic</title>
+    <link href="https://nickxu.me/post/recovery-from-panic.html"/>
+    <id>https://nickxu.me/post/recovery-from-panic.html</id>
+    <published>2024-05-19T04:00:13.000Z</published>
+    <updated>2024-05-22T04:15:28.986Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="https://image.nickxu.me/202405221201934.png" alt="c14be6b9eaadbe7ae1e40572e8cca6e3"></p><blockquote><p>真丢人，每次都搞成这样子呜呜</p></blockquote><p>不行啊，平时和女生讲话太少了，真经验不够</p><p>我平时圈子就是一群搞技术的大老爷们，真没什么机会和女生说话</p><p>我大学到目前三年全扑到主线任务上了，这也是我现在能在腾讯实习的原因</p><p>但是支线是一点都没动啊（</p><p>我之前其实是有做出些努力的，比如去年杭州亚运会我去做志愿者，朋友圈多了很多女生</p><p>但是我感觉我真聊不起来哇 <s>（感觉真没什么好聊的）</s></p><p>我感觉我现在人际关系多多少少有点问题，我妈也经常说我，她去游泳也能交到朋友，去健身也能交到朋友，而我来来去去也就那几个</p><p>是时候做出些改变了（</p><p>PS：因为现在开始上班了而且学习的事情也有点多，所以已经有很长一段时间没更新了，我只能说尽量把我去年几个月的总结文早点发布出来吧</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://image.nickxu.me/202405221201934.png&quot; alt=&quot;c14be6b9eaadbe7ae1e40572e8cca6e3&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;真丢人，每次都搞成这样子呜呜&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;不行啊，平时和女生讲话太少了，真经验不够&lt;/p&gt;
+&lt;p&gt;我平时圈子就是一群搞技术的大老爷们，真没什么机会和女生说话&lt;/p&gt;
+&lt;p&gt;我大学到目前三年全扑到主线任务上了，这也是我现在能在腾讯实习的原因&lt;/p&gt;
+&lt;p&gt;但是支线是一点都没动啊（&lt;/p&gt;
+&lt;p&gt;我之前其实是有做出些努力的，比如去年杭州亚运会我去做志愿者，朋友圈多了很多女生&lt;/p&gt;
+&lt;p&gt;但是我感觉我真聊不起来哇 &lt;s&gt;（感觉真没什么好聊的）&lt;/s&gt;&lt;/p&gt;
+&lt;p&gt;我感觉我现在人际关系多多少少有点问题，我妈也经常说我，她去游泳也能交到朋友，去健身也能交到朋友，而我来来去去也就那几个&lt;/p&gt;
+&lt;p&gt;是时候做出些改变了（&lt;/p&gt;
+&lt;p&gt;PS：因为现在开始上班了而且学习的事情也有点多，所以已经有很长一段时间没更新了，我只能说尽量把我去</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>简明 Docker + GitHub Actions 自动化部署教程</title>
@@ -224,33 +256,6 @@
 &lt;hr&gt;
 &lt;h1 id=&quot;144-二叉树的前序遍历&quot;&gt;&lt;a href=&quot;https://leetcode.cn/problems/binary-tree-preorder-traversal/&quot;&gt;144.二叉树的前序遍历&lt;/a&gt;&lt;/h1&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;</summary>
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Mac Windows 网线直连文件传输</title>
-    <link href="https://nickxu.me/post/mac-windows-file-copy-by-directly-LAN.html"/>
-    <id>https://nickxu.me/post/mac-windows-file-copy-by-directly-LAN.html</id>
-    <published>2023-11-05T03:52:30.000Z</published>
-    <updated>2023-11-05T04:02:50.924Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天又学到一个小技巧，使用一条网线直连两台 PC 进行文件传输</p><p>我是把 Mac 上的文件传到 Windows 上，但其实两台 Windows 也大同小异</p><p>首先当然是网线插上</p><p>下一步是自己手动改一下 IP 到同一网段，之后 ping 一下，能 ping 通就算没问题</p><p><img src="https://image.nickxu.me/202311051156967.png" alt="ab8422039ce9ef1e9ead78e908707278"></p><p><img src="https://image.nickxu.me/202311051155650.png" alt="image-20231105115544617 AM"></p><p>传输文件使用 HTTP 其实最方便，直接用 py 起一个 http server</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /path/to/dir</span><br><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure><p>然后你就可以通过浏览器访问了</p><p><img src="https://image.nickxu.me/202311051153910.png" alt="image-20231105115344658 AM"></p><p>本地看上去没问题之后就可以在另一端访问了</p><p>我记得下载是满速的，千兆以太网直接吃满，嘎嘎快（</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;今天又学到一个小技巧，使用一条网线直连两台 PC 进行文件传输&lt;/p&gt;
-&lt;p&gt;我是把 Mac 上的文件传到 Windows 上，但其实两台 Windows 也大同小异&lt;/p&gt;
-&lt;p&gt;首先当然是网线插上&lt;/p&gt;
-&lt;p&gt;下一步是自己手动改一下 IP 到同一网段，之后 ping 一下，能 ping 通就算没问题&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://image.nickxu.me/202311051156967.png&quot; alt=&quot;ab8422039ce9ef1e9ead78e908707278&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://image.nickxu.me/202311051155650.png&quot; alt=&quot;image-20231105115544617 AM&quot;&gt;&lt;/p&gt;
-&lt;p&gt;传输文件使用 HTTP 其实最方便，直接用 py 起一个 http server&lt;/p&gt;
-&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/</summary>
       
     
     
